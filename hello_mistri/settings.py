@@ -26,7 +26,7 @@ SECRET_KEY = 'bih!2-x!v=1lu^f!bv(h7e2frl)vaa62=3b_ljloeq)au@d!sg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','ea2b561b74a1.ngrok.io']
+ALLOWED_HOSTS = ['127.0.0.1','rafsan123.pythonanywhere.com']
 
 
 # Application definition
@@ -122,12 +122,23 @@ WSGI_APPLICATION = 'hello_mistri.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'hello_mistri',
+#         'USER':'root',
+#         'PASSWORD':'',
+#         'HOST':'localhost',
+#         'PORT':'3306',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'hello_mistri',
         'USER':'root',
-        'PASSWORD':'',
+        'PASSWORD':'rafsan123',
         'HOST':'localhost',
         'PORT':'3306',
     }
