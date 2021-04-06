@@ -35,6 +35,8 @@
   </div>
 </nav>
 
+
+
 {% if  request.user.is_authenticated %}
 
   
@@ -49,10 +51,7 @@
       </p>
     </div>
 </div>
-{% for ass in backends.associated %}
-<img src="{{ass.extra_data.picture.data.url}}" alt="">
 
-{% endfor %}
 
 
 

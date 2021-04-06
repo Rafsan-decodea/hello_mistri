@@ -11,6 +11,9 @@ def index(request):
 def dashboard(request): 
     return render(request ,"dashboard/index.html")
 
+def information(request):
+    return render(request,"information.html")
+
 def logout(request):
     user_logout(request)
     return render(request,"index.html")
