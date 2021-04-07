@@ -68,20 +68,22 @@
   
  
 
-<form  id="ClintAccount">
+<form  id="ClintAccount" method="POST" action="/insert_client"  >
+  {% csrf_token %}
   <div class="container" >
+
     <h1>Please Fill Up Clint information </h1>
     <p>Please fill in this form to create an account.</p>
     <hr>
-
+    <input type="text" hidden value="1" name="clint_id" />
     <label for="Name"><b>Name</b></label>
-    <input type="text" value="{{ request.user.username }}" placeholder="{{ request.user.username }}" name="name" id="email" required>
+    <input type="text" value="{{ request.user.username }}"  name="name" id="email" required>
 
     <label for="email"><b>Phone Number </b></label>
-    <input type="text" placeholder="Enter Phone Number " name="email" id="email" required>
+    <input type="text" placeholder="Enter Phone Number " name="phone" id="email" required>
 
     <label for="inputlg">address</label>
-    <input class="form-control input-lg" id="inputlg" type="text">
+    <input class="form-control input-lg" id="inputlg" name="address" type="text">
 
 
     <button type="submit" class="registerbtn">Next</button>
@@ -90,25 +92,29 @@
 </form>
 
 
-<form id="MistriAccount">
+<form id="MistriAccount" method="POST" action="/insert_mistri"  enctype="multipart/form-data">
+  {% csrf_token %}
+  <input type="text" hidden value="2" name=" mistri_id" />
   <div class="container" >
     <h1>Plese fillup Mistri  information </h1>
     <p>Please fill in this form to create an account.</p>
     <hr>
 
     <label for="Name"><b>Name  </b></label>
-    <input type="text" placeholder="Enter Email" name="name" id="email" required>
+    <input type="text"  name="name" id="email" required>
     
     <label for="phone"><b>Phone Number </b></label>
     <input type="text" placeholder="phone" name="number" id="email" required>
 
     <label class="form-label" for="customFile">Upload image </label>
-    <input type="file" class="form-control" id="customFile" />
+    <input type="file" class="form-control" name="image" id="customFile" />
 <br><br>
     <label class="form-label" for="customFile">date of Birth </label>
-    <input type="date" class="form-control" id="customFile" />
+    <input type="date" class="form-control" id="customFile"  name="dob"/>
 
  <br><br>
+ <label for="inputlg">address</label>
+ <input class="form-control input-lg" id="inputlg" name="address" type="text">
     <button type="submit" class="registerbtn">Next</button>
 
 </form>
