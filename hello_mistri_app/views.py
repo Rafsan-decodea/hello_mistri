@@ -22,17 +22,31 @@ def insert_data(request):
 
 def information(request):
     #{{user.social_auth.get.provider}} {{ user.social_auth.get.uid }}
-    return render(request,"information.html")
+    data = Clint_UID.objects.all()
+
+    context = {
+        "client_data": data,
+    }
+    return render(request,"information.html" ,context)
 
 def insert_clint_information(request):
     if request.method == 'POST':
          clint = ClientInformation()
-         clint.clint_id = request.POST.get('clint_id')
+         data = request.POST.get('clint_id')
+         print (data)
+         clint.clint_id = request.POST.get('clint_id') 
          clint.name= request.POST.get('name')
          clint.phone= request.POST.get('phone')
          clint.address = request.POST.get('address')
+        
+         clint_uid = Clint_UID()
+         clint_uid.clint = clint
+         clint_uid.uid = request.POST.get('client_uid')
          clint.save()
-         return render(request,"dashboard/index.html")
+         clint_uid.save()
+         
+        
+    return render(request,"dashboard/index.html")
 
 def insert_mistri_information(request):
     if request.method == 'POST':
@@ -45,7 +59,12 @@ def insert_mistri_information(request):
          mistri.address = request.POST.get('address')
          mistri.dob = request.POST.get('dob')
          mistri.save()
-         return render(request,"dashboard/index.html")
+    if request.method == 'POST':
+         mistri_uid = Mistri_UID()
+         mistri_uid.uid =  request.POST.get('mistri_uid')
+         mistri_uid.save()
+    
+    return render(request,"dashboard/index.html")
 
 
 def logout(request):

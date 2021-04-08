@@ -105,6 +105,7 @@ LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'information'
 
+
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'user_link'] # add this
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {       # add this
   'fields': 'id, name, email, picture.type(large), link'
@@ -122,27 +123,27 @@ WSGI_APPLICATION = 'hello_mistri.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'hello_mistri',
-        'USER':'root',
-        'PASSWORD':'',
-        'HOST':'localhost',
-        'PORT':'3306',
-    }
-}
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
 #         'NAME': 'hello_mistri',
 #         'USER':'root',
-#         'PASSWORD':'rafsan123',
+#         'PASSWORD':'',
 #         'HOST':'localhost',
 #         'PORT':'3306',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'hello_mistri',
+        'USER':'root',
+        'PASSWORD':'rafsan123',
+        'HOST':'localhost',
+        'PORT':'3306',
+    }
+}
 
 # DATABASES = {
 #     'default': {

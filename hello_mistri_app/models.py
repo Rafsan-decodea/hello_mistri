@@ -1,8 +1,16 @@
+from __future__ import unicode_literals
 from django.db import models
 from django.db.models.fields.files import ImageField
 from phone_field import PhoneField
 
+
+
 # Create your models here.
+
+
+
+
+
 
 
 class ClientInformation(models.Model):  
@@ -11,6 +19,7 @@ class ClientInformation(models.Model):
    name = models.CharField(max_length=100)
    phone = PhoneField(blank=False, help_text='Contact phone number')
    address = models.CharField(max_length=500)
+
 
 
    def __str__(self):
@@ -22,6 +31,8 @@ class Admin(models.Model):
        name = models.CharField(max_length=100)
        def __str__(self):
             return 'Admin Name ==> {0}'.format(self.name)
+
+
 
 
 class MistriInformation(models.Model):
@@ -37,3 +48,10 @@ class MistriInformation(models.Model):
               return 'Mistri name ==>{0}'.format(self.name)
 
        
+class Mistri_UID(models.Model):
+      mistri = models.OneToOneField(MistriInformation,on_delete=models.CASCADE,primary_key=True)
+      uid = models.CharField(max_length=1000)
+
+class Clint_UID(models.Model):
+      clint = models.OneToOneField(ClientInformation,on_delete=models.CASCADE,primary_key=True)
+      uid = models.CharField(max_length=1000)

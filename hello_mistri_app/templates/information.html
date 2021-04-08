@@ -3,6 +3,17 @@
 
 {% if  request.user.is_authenticated %}
 
+{% for data  in client_data  %}
+    
+ {% if data.uid == data.uid %}
+
+        Data is Simmiler
+        
+   
+ {% endif %}
+     
+
+
   
 
 <!doctype html>
@@ -75,9 +86,11 @@
     <h1>Please Fill Up Clint information </h1>
     <p>Please fill in this form to create an account.</p>
     <hr>
+
     <input type="text" hidden value="1" name="clint_id" />
+    <input type="text" hidden value="{{ user.social_auth.get.uid }}" name="client_uid">
     <label for="Name"><b>Name</b></label>
-    <input type="text" value="{{ request.user.username }}"  name="name" id="email" required>
+    <input type="text" value="{{ request.user.first_name }} {{ request.user.last_name }}"  name="name" id="email" required>
 
     <label for="email"><b>Phone Number </b></label>
     <input type="text" placeholder="Enter Phone Number " name="phone" id="email" required>
@@ -94,14 +107,15 @@
 
 <form id="MistriAccount" method="POST" action="/insert_mistri"  enctype="multipart/form-data">
   {% csrf_token %}
-  <input type="text" hidden value="2" name=" mistri_id" />
+  <input type="text" hidden value="2" name="mistri_id" />
+  <input type="text" hidden value="{{ user.social_auth.get.uid }}" name="mistri_uid">
   <div class="container" >
     <h1>Plese fillup Mistri  information </h1>
     <p>Please fill in this form to create an account.</p>
     <hr>
 
     <label for="Name"><b>Name  </b></label>
-    <input type="text" value="{{ request.user.username }}"  name="name" id="email" required>
+    <input type="text" value="{{ request.user.first_name }} {{ request.user.last_name }}"  name="name" id="email" required>
     
     <label for="phone"><b>Phone Number </b></label>
     <input type="text" placeholder="phone" name="number" id="email" required>
@@ -118,6 +132,8 @@
     <button type="submit" class="registerbtn">Next</button>
 
 </form>
+
+{% endfor %}
 {% endif %}
 
 
@@ -125,3 +141,4 @@
 
 </body>
 </html>
+
