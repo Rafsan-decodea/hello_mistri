@@ -21,6 +21,7 @@ def insert_data(request):
 
 
 def information(request):
+    #{{user.social_auth.get.provider}} {{ user.social_auth.get.uid }}
     return render(request,"information.html")
 
 def insert_clint_information(request):
