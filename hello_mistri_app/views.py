@@ -9,7 +9,16 @@ def index(request):
     return render(request,"index.html")
 
 def dashboard(request): 
+   
     return render(request ,"dashboard/index.html")
+
+def insert_data(request):
+     admin = Admin.objects.all()
+     context = {
+        "admin" : admin,
+       }
+     return render(request,"dashboard/data_entry.html",context)
+
 
 def information(request):
     return render(request,"information.html")

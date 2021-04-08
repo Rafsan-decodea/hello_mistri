@@ -16,6 +16,13 @@ class ClientInformation(models.Model):
    def __str__(self):
             return 'Clint Name ==> {0}'.format(self.name)
 
+class Admin(models.Model):
+       id = models.AutoField(primary_key=True)
+       admin_id = models.IntegerField()
+       name = models.CharField(max_length=100)
+       def __str__(self):
+            return 'Admin Name ==> {0}'.format(self.name)
+
 
 class MistriInformation(models.Model):
        id = models.AutoField(primary_key=True)
@@ -28,3 +35,5 @@ class MistriInformation(models.Model):
 
        def __str__(self):
               return 'Mistri name ==>{0}'.format(self.name)
+
+       

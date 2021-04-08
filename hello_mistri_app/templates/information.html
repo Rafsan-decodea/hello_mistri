@@ -101,7 +101,7 @@
     <hr>
 
     <label for="Name"><b>Name  </b></label>
-    <input type="text"  name="name" id="email" required>
+    <input type="text" value="{{ request.user.username }}"  name="name" id="email" required>
     
     <label for="phone"><b>Phone Number </b></label>
     <input type="text" placeholder="phone" name="number" id="email" required>
