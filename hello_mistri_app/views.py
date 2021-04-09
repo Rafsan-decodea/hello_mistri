@@ -22,10 +22,11 @@ def insert_data(request):
 
 def information(request):
     #{{user.social_auth.get.provider}} {{ user.social_auth.get.uid }}
-    data = Clint_UID.objects.all()
-
+    client_data = ClientInformation.objects.all()
+    mistri_data = Mistri_UID.objects.all()
     context = {
-        "client_data": data,
+        "client_data": client_data,
+        "mistri_data":mistri_data,
     }
     return render(request,"information.html" ,context)
 

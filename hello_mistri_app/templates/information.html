@@ -1,20 +1,37 @@
 
 {%load static%}
 
-{% if  request.user.is_authenticated %}
-
-{% for data  in client_data  %}
-    
- {% if data.uid == data.uid %}
-
-        Data is Simmiler
-        
-   
- {% endif %}
-     
-
 
   
+
+
+{% if  request.user.is_authenticated %}
+
+{% comment %}
+  {% for client_data in client_data  %}
+     {% for mistri_data  in  mistri_data %}
+
+        {% if client_data.phone %}
+         
+            <meta http-equiv="refresh" content="0; url= {% url 'dashboard'%} ">
+
+            <h1>{{client_data.phone}}</h1>
+        
+        {% if mistri_data.phone %}
+          
+             <meta http-equiv="refresh" content="0; url= {% url 'dashboard'%} ">
+          
+        {% endif %}
+          
+        {% endif %}
+       
+     {% endfor %}  
+
+  {% endfor %}
+     
+     
+  {% endcomment %}
+
 
 <!doctype html>
 <html>
@@ -30,7 +47,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
 
    <script src="{%static 'custom.js'%}"></script>
-    <title>Welcome to Hello Mistri </title>
+    <title>Welcome to Hello Mistri  </title>
     
     </head>
 <body>
@@ -62,14 +79,18 @@
   
   <br><br><br><br>
   <div class="border border-light p-3 mb-4">
+{% for client_data in  client_data %}
+  
+
 
     <div class="text-center" id="MistriAccountBTN">
       <button type="button" class="btn btn-primary btn-lg btn-block">Register As a Mistri</button>
     </div>
-
+      {{client_data.phone}}
   </div>
   <br><br>
   <div class="border border-light p-3 mb-4">
+   {% endfor %}
 
     <div class="text-center" id="ClintAccountBTN">
       <button type="button" class="btn btn-primary btn-lg btn-block">Register as a Client </button>
@@ -133,8 +154,19 @@
 
 </form>
 
-{% endfor %}
+
+
+
+
+
 {% endif %}
+
+
+
+
+
+
+
 
 
 
