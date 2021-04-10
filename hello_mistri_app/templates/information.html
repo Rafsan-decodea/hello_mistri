@@ -5,32 +5,10 @@
   
 
 
-{% if  request.user.is_authenticated %}
 
-{% comment %}
-  {% for client_data in client_data  %}
-     {% for mistri_data  in  mistri_data %}
-
-        {% if client_data.phone %}
-         
-            <meta http-equiv="refresh" content="0; url= {% url 'dashboard'%} ">
-
-            <h1>{{client_data.phone}}</h1>
-        
-        {% if mistri_data.phone %}
-          
-             <meta http-equiv="refresh" content="0; url= {% url 'dashboard'%} ">
-          
-        {% endif %}
-          
-        {% endif %}
-       
-     {% endfor %}  
-
-  {% endfor %}
      
      
-  {% endcomment %}
+
 
 
 <!doctype html>
@@ -79,18 +57,18 @@
   
   <br><br><br><br>
   <div class="border border-light p-3 mb-4">
-{% for client_data in  client_data %}
-  
 
-
-    <div class="text-center" id="MistriAccountBTN">
+     
+  <div class="text-center" id="MistriAccountBTN">
       <button type="button" class="btn btn-primary btn-lg btn-block">Register As a Mistri</button>
     </div>
-      {{client_data.phone}}
+      
+
   </div>
+
   <br><br>
   <div class="border border-light p-3 mb-4">
-   {% endfor %}
+
 
     <div class="text-center" id="ClintAccountBTN">
       <button type="button" class="btn btn-primary btn-lg btn-block">Register as a Client </button>
@@ -101,7 +79,7 @@
  
 
 <form  id="ClintAccount" method="POST" action="/insert_client"  >
-  {% csrf_token %}
+
   <div class="container" >
 
     <h1>Please Fill Up Clint information </h1>
@@ -126,8 +104,9 @@
 </form>
 
 
+
 <form id="MistriAccount" method="POST" action="/insert_mistri"  enctype="multipart/form-data">
-  {% csrf_token %}
+
   <input type="text" hidden value="2" name="mistri_id" />
   <input type="text" hidden value="{{ user.social_auth.get.uid }}" name="mistri_uid">
   <div class="container" >
@@ -159,7 +138,7 @@
 
 
 
-{% endif %}
+
 
 
 
