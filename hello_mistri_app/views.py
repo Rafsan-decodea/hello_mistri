@@ -36,8 +36,8 @@ def insert_clint_information(request):
          print (request.POST.get('clint_id'))
          print (request.POST.get('name'))
          print ( request.POST.get('phone'))
-
          clint.save()
+         
          
          
         
