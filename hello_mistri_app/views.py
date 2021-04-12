@@ -23,17 +23,23 @@ def insert_data(request):
 
 def information(request):
     #{{user.social_auth.get.provider}} {{ user.social_auth.get.uid }}
-
-    return render(request,"information.html")
+    mistri = MistriInformation.objects.all()
+    client = ClientInformation.objects.all()
+    context ={
+        "mistri_data":mistri,
+        "client_data":client,
+    }
+    return render(request,"information.html",context)
 
 def insert_clint_information(request):
     if request.method == 'POST':
          u = User.objects.get(pk=request.user.id)
          clint_id = request.POST.get('clint_id') 
+         uid  = request.POST.get('client_uid')
          name= request.POST.get('name')
          phone= request.POST.get('phone')
          address = request.POST.get('address')
-         c = ClientInformation.objects.create(user=u , clint_id=clint_id,name=name,phone=phone,address=address)
+         c = ClientInformation.objects.create(user=u ,uid=uid ,clint_id=clint_id,name=name,phone=phone,address=address)
          c.save()
        
         
@@ -47,12 +53,13 @@ def insert_mistri_information(request):
     if request.method == 'POST':
          u = User.objects.get(pk=request.user.id)
          mistri_id = request.POST.get('mistri_id')
+         uid = request.POST.get('mistri_uid')
          name = request.POST.get('name')
          phone = request.POST.get('phone')
          image = request.FILES['image']  
          address = request.POST.get('address')
          dob = request.POST.get('dob')
-         MistriInformation.objects.create(user=u,mistri_id=mistri_id,name=name,phone=phone,image=image,address=address,dob=dob).save()
+         MistriInformation.objects.create(user=u,mistri_id=mistri_id,uid=uid,name=name,phone=phone,image=image,address=address,dob=dob).save()
          
          
          

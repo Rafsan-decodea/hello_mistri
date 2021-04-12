@@ -18,6 +18,7 @@ from django.dispatch import receiver
 class ClientInformation(models.Model):  
    user = models.OneToOneField(User, on_delete=models.CASCADE ,primary_key=True)
    clint_id = models.CharField(max_length=10)
+   uid = models.CharField(max_length=1000)
    name = models.CharField(max_length=100)
    phone = PhoneField(blank=False, help_text='Contact phone number')
    address = models.CharField(max_length=500)
@@ -43,6 +44,7 @@ class Admin(models.Model):
 class MistriInformation(models.Model):
        user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
        mistri_id = models.CharField(max_length=10)
+       uid = models.CharField(max_length=1000)
        name = models.CharField(max_length=100)
        phone = PhoneField(blank=False,help_text='Contact phone number')
        image = models.ImageField(upload_to='media')
