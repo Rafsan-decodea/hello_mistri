@@ -16,26 +16,17 @@ from django.dispatch import receiver
 
 
 class ClientInformation(models.Model):  
-   user = models.ForeignKey(User, on_delete=models.CASCADE)
+   user = models.OneToOneField(User, on_delete=models.CASCADE ,primary_key=True)
    clint_id = models.CharField(max_length=10)
    name = models.CharField(max_length=100)
    phone = PhoneField(blank=False, help_text='Contact phone number')
    address = models.CharField(max_length=500)
 
+
    
    def __str__(self):
             return 'Clint Name ==> {0}'.format(self.name)
     
-
-
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        ClientInformation.objects.create(user=instance)
-
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.clientinformation.save()
 
 
 
@@ -50,25 +41,21 @@ class Admin(models.Model):
 
 
 class MistriInformation(models.Model):
-       user = models.ForeignKey(User, on_delete=models.CASCADE)
+       user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
        mistri_id = models.CharField(max_length=10)
        name = models.CharField(max_length=100)
        phone = PhoneField(blank=False,help_text='Contact phone number')
        image = models.ImageField(upload_to='media')
        dob = models.CharField(max_length=500)
        address =models.CharField(max_length=500)
+
+
+
+
  
        def __str__(self):
               return 'Mistri name ==>{0}'.format(self.name)
 
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        MistriInformation.objects.create(user=instance)
-
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.mistriinformation.save()
 
 
 

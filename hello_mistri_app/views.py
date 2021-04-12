@@ -28,15 +28,15 @@ def information(request):
 
 def insert_clint_information(request):
     if request.method == 'POST':
-         clint = ClientInformation()
-         clint.clint_id = request.POST.get('clint_id') 
-         clint.name= request.POST.get('name')
-         clint.phone= request.POST.get('phone')
-         clint.address = request.POST.get('address')
-         print (request.POST.get('clint_id'))
-         print (request.POST.get('name'))
-         print ( request.POST.get('phone'))
-         clint.save()
+         u = User.objects.get(pk=request.user.id)
+         clint_id = request.POST.get('clint_id') 
+         name= request.POST.get('name')
+         phone= request.POST.get('phone')
+         address = request.POST.get('address')
+         c = ClientInformation.objects.create(user=u , clint_id=clint_id,name=name,phone=phone,address=address)
+         c.save()
+       
+        
          
          
          
@@ -45,14 +45,16 @@ def insert_clint_information(request):
 
 def insert_mistri_information(request):
     if request.method == 'POST':
-         mistri = MistriInformation()
-         mistri.mistri_id = request.POST.get('mistri_id')
-         mistri.name = request.POST.get('name')
-         mistri.phone = request.POST.get('phone')
-         mistri.image = request.FILES['image']  
-         mistri.address = request.POST.get('address')
-         mistri.dob = request.POST.get('dob')
-         mistri.save()
+         u = User.objects.get(pk=request.user.id)
+         mistri_id = request.POST.get('mistri_id')
+         name = request.POST.get('name')
+         phone = request.POST.get('phone')
+         image = request.FILES['image']  
+         address = request.POST.get('address')
+         dob = request.POST.get('dob')
+         MistriInformation.objects.create(user=u,mistri_id=mistri_id,name=name,phone=phone,image=image,address=address,dob=dob).save()
+         
+         
          
     
     return render(request,"dashboard/index.html")
