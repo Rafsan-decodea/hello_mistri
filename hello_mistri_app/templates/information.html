@@ -50,13 +50,9 @@
       </ul>
     </div>
   </nav>
-    
-  {% for client in  client_data %}
 
-  {% if user.social_auth.get.uid == client.uid %}
-  
-       {% if client.phone == None %}
-  
+
+
   <br><br><br><br>
   <div class="border border-light p-3 mb-4">
 
@@ -141,19 +137,59 @@
 </body>
 </html>
 
- {% else %}
-
-        <meta http-equiv="refresh" content="0; URL={% url 'dashboard' %}" />
-      
-
-          {% endif %}
-       {% endif %}
-   
-   {% endfor %}
-
-
-
-
-
+        <!-- <meta http-equiv="refresh" content="0; URL={% url 'dashboard' %}" /> -->
+     
 
 {% endif %}
+
+<script>
+
+  $(document).ready(function(){
+   
+    {% for evarage in client_data%}
+
+       {% if evarage.uid == "" %}
+            
+            $("body").show();
+
+          {% else %}
+       
+            {%if user.social_auth.get.uid == evarage.uid %}
+               
+                $(location).attr('href',"{% url 'dashboard' %}");
+
+              
+
+            {% endif %}
+
+       {% endif %}
+    
+            
+     {% endfor %}  
+
+     {% for evarage in  mistri_data%}
+
+       {% if evarage.uid == "" %}
+            
+            $("body").show();
+
+          {% else %}
+       
+            {%if user.social_auth.get.uid == evarage.uid %}
+               
+                $(location).attr('href',"{% url 'dashboard' %}");
+
+              
+
+            {% endif %}
+
+       {% endif %}
+    
+            
+     {% endfor %} 
+  
+  
+  });
+
+
+  </script>

@@ -39,12 +39,6 @@
 </nav>
 
 
-  
-
-
-
-
-
 <div class="container">
   <div class="jumbotron">
       <h1 class="display-4">Welcome to Hello Mistri </h1>
@@ -53,10 +47,10 @@
       <p class="lead">
         {% if  request.user.is_authenticated %}
         <a class="btn btn-primary btn-lg " href="{% url 'dashboard' %}" role="button">Goto Dashboard</a>
-      
-       
-        {%  endif %}
+        {% else %}
         <a class="btn btn-primary btn-lg" href="{% url 'social:begin' 'facebook' %}" role="button">Login/Signup</a>
+        {%  endif %}
+       
         <!-- <a class="btn btn-primary btn-lg " id="open-popup-btn"    role="button">Login/Signup</a> -->
       </p>
     </div>

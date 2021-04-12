@@ -33,7 +33,7 @@ def information(request):
 
 def insert_clint_information(request):
     if request.method == 'POST':
-         u = User.objects.get(pk=request.user.id)
+         u = User.objects.get(pk=request.user.id)# get Authenticate id and insert data to it
          clint_id = request.POST.get('clint_id') 
          uid  = request.POST.get('client_uid')
          name= request.POST.get('name')

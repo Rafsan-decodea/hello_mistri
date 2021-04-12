@@ -16,7 +16,7 @@ from django.dispatch import receiver
 
 
 class ClientInformation(models.Model):  
-   user = models.OneToOneField(User, on_delete=models.CASCADE ,primary_key=True)
+   user = models.OneToOneField(User, on_delete=models.CASCADE ,primary_key=True) # Relation With one to one User Model
    clint_id = models.CharField(max_length=10)
    uid = models.CharField(max_length=1000)
    name = models.CharField(max_length=100)
@@ -42,7 +42,7 @@ class Admin(models.Model):
 
 
 class MistriInformation(models.Model):
-       user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+       user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)# Relation With one to one User Model And True Nullable
        mistri_id = models.CharField(max_length=10)
        uid = models.CharField(max_length=1000)
        name = models.CharField(max_length=100)
