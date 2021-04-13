@@ -6,19 +6,32 @@ from .models import *
 
 
 def index(request):
-    
     return render(request,"index.html")
 
 def dashboard(request): 
-   
-    return render(request ,"dashboard/index.html")
-
-def insert_data(request):
      admin = Admin.objects.all()
+     mistri = MistriInformation.objects.all()
+     client = ClientInformation.objects.all()
+
      context = {
         "admin" : admin,
+        "mistri_data":mistri,
+        "client_data":client,
        }
-     return render(request,"dashboard/data_entry.html",context)
+   
+     return render(request ,"dashboard/personal_information.html",context)
+
+# def insert_data(request):
+#      admin = Admin.objects.all()
+#      mistri = MistriInformation.objects.all()
+#      client = ClientInformation.objects.all()
+
+#      context = {
+#         "admin" : admin,
+#         "mistri_data":mistri,
+#         "client_data":client,
+#        }
+#      return render(request,"dashboard/data_entry.html",context)
 
 
 def information(request):
@@ -47,7 +60,7 @@ def insert_clint_information(request):
          
          
         
-    return render(request,"dashboard/index.html")
+    return render(request,"dashboard/data_entry.html")
 
 def insert_mistri_information(request):
     if request.method == 'POST':
@@ -64,7 +77,7 @@ def insert_mistri_information(request):
          
          
     
-    return render(request,"dashboard/index.html")
+    return render(request,"dashboard/data_entry.html")
     
 
 

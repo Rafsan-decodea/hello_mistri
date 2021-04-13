@@ -148,11 +148,7 @@
    
     {% for evarage in client_data%}
 
-       {% if evarage.uid == "" %}
-            
-            $("body").show();
-
-          {% else %}
+         
        
             {%if user.social_auth.get.uid == evarage.uid %}
                
@@ -162,7 +158,7 @@
 
             {% endif %}
 
-       {% endif %}
+    
     
             
      {% endfor %}  
