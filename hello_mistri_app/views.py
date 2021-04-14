@@ -60,7 +60,7 @@ def insert_clint_information(request):
          
          
         
-    return render(request,"dashboard/data_entry.html")
+    return render(request,"dashboard/personal_information.html")
 
 def insert_mistri_information(request):
     if request.method == 'POST':
@@ -77,7 +77,7 @@ def insert_mistri_information(request):
          
          
     
-    return render(request,"dashboard/data_entry.html")
+    return render(request,"dashboard/personal_information.html")
     
 
 
