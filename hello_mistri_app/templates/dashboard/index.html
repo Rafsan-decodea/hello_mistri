@@ -126,7 +126,7 @@
 
                                         <img src="{{ass.extra_data.picture.data.url}}" class="img-radius" alt="User-Profile-Image">
                                     {% endfor %}
-                                    <span>{{ request.user.first_name }} {{ request.user.last_name }} </span>
+                                    <span id="user_name"> </span>
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
@@ -170,12 +170,12 @@
                                 <div class="main-menu-header">
                                   {% for ass in backends.associated %}
                                     <img class="img-40 img-radius" src="{{ass.extra_data.picture.data.url}}" alt="User-Profile-Image">
-                                
-                                    <div class="user-details">
-                                        <span >{{ request.user.first_name }} {{ request.user.last_name }}</span>
+                                 {% endfor %}
+                                    <div class="user-details" id="user_name">
+                                        <span id="user_name">sdsd</span>
                                         <span id="user_details"><i class="ti-angle-down"></i></span>
                                     </div>
-                                      {% endfor %}
+                                     
                                 </div>
 
                                 <div class="main-menu-content">
@@ -473,7 +473,7 @@ var nav = $('.fixed-button');
                 {% if evarage.clint_id == "1"  %}
                    
                    document.getElementById("user_details").innerHTML = "Logine as Client";
-                   document.getElementById("")
+                   document.getElementById("user_name").innerHTML = "{{evarage.name}}";
                    
                 {% endif %}
 
@@ -496,7 +496,7 @@ var nav = $('.fixed-button');
                    document.getElementById("user_details").innerHTML = "Logine as Msitri";
                    document.getElementById("mistri_service").innerHTML = "আপনার সার্ভিস Select করুন";
                    document.getElementById("mistri_done_work").innerHTML = "আপনার কি কি  সার্ভিস সম্পন্ন করেছেন ";
-                
+                   document.getElementById("user_name").innerHTML = "{{evarage.name}}";
                 
                 {% endif %}
 
