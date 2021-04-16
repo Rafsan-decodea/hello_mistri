@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'social_django',
     'django_extensions',
     'phone_field',
+    'django_cleanup',# This is for autometic media Delete 
     # 'allauth',
  
     # 'allauth.account',
@@ -123,27 +124,27 @@ WSGI_APPLICATION = 'hello_mistri.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'hello_mistri',
-        'USER':'root',
-        'PASSWORD':'',
-        'HOST':'localhost',
-        'PORT':'3306',
-    }
-}
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
 #         'NAME': 'hello_mistri',
 #         'USER':'root',
-#         'PASSWORD':'rafsan123',
+#         'PASSWORD':'',
 #         'HOST':'localhost',
 #         'PORT':'3306',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'hello_mistri',
+        'USER':'root',
+        'PASSWORD':'rafsan123',
+        'HOST':'localhost',
+        'PORT':'3306',
+    }
+}
 
 # DATABASES = {
 #     'default': {
