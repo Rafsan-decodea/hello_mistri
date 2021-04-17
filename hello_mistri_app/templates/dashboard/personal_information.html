@@ -18,9 +18,10 @@
 
 <br><br><br><br><br><br>
 
-   <form id="contact-form-mistri" method="post" action="contact.php" role="form">
-
-    <div class="messages"></div>
+   <form id="contact-form-mistri" method="POST" action="/insert_mistri"  enctype="multipart/form-data">
+      {% csrf_token %}
+   <input type="text" hidden value="1" name="clint_id" />
+    <input type="text" hidden value="{{ user.social_auth.get.uid }}" name="client_uid">
 
     <div class="controls">
 
@@ -28,14 +29,14 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="form_name">আপনার নাম *</label>
-                    <input id="form_name" type="text" name="name" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required.">
+                    <input id="yourname"  type="text" name="name" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required.">
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="form_lastname">আপনার মোবাইল *</label>
-                    <input id="form_lastname" type="text" name="surname" class="form-control" placeholder="Please enter your lastname *" required="required" data-error="Lastname is required.">
+                    <input  id="yourmobilenumber" type="text" name="number" class="form-control" placeholder="Please enter your lastname *" required="required" data-error="Lastname is required.">
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
@@ -44,7 +45,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="form_email">আপনি কি কাজ করেন  *</label>
-                    <input id="form_email" type="email" name="email" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required.">
+                    <input id="form_email"  name="email" class="form-control" placeholder="Please enter your email *"  data-error="Valid email is required.">
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
@@ -53,7 +54,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="form_email">আপনার জন্ম তারিখ  *</label>
-                    <input id="form_email" type="email" name="email" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required.">
+                    <input  id="dateofbirth" name="dob" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required.">
                     <div class="help-block with-errors"></div>
                 </div>
          
@@ -67,7 +68,7 @@
              <div class="col-md-6">
                 <div class="form-group">
                     <label for="form_email">আপনার ঠিকানা  *</label>
-                    <input id="form_email" type="email" name="email" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required.">
+                    <input id="form_email"  name="address" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required.">
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
@@ -94,7 +95,7 @@
 
 <form id="contact-form-client" method="post" action="contact.php" role="form">
 
-    <div class="messages"></div>
+  
 
     <div class="controls">
 
@@ -102,7 +103,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="form_name">আপনার নাম *</label>
-                    <input id="form_name" type="text" name="name" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required.">
+                    <input id="yourname" type="text" name="name" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required.">
                     <div class="help-block with-errors"></div>
                 </div>
             </div>

@@ -63,7 +63,7 @@ def insert_mistri_information(request):
          mistri_id = request.POST.get('mistri_id')
          uid = request.POST.get('mistri_uid')
          name = request.POST.get('name')
-         phone = request.POST.get('phone')
+         phone = request.POST.get('number')
          image = request.FILES['image']  
          address = request.POST.get('address')
          dob = request.POST.get('dob')

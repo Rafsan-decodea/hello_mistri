@@ -288,6 +288,9 @@ var nav = $('.fixed-button');
                    document.getElementById("user_details").innerHTML = "Logine as Client";
                    document.getElementById("user_name").innerHTML = "{{evarage.name}}";
                    document.getElementById("user_name1").innerHTML = "{{evarage.name}}";
+
+                   // This Segment Use For Client information Show
+                   document.getElementById("yourname").value = "{{evarage.name}}";
                 
                    
                 {% endif %}
@@ -301,7 +304,7 @@ var nav = $('.fixed-button');
 
 
  
-     {% for evarage in mistri_data%}
+   {% for evarage in mistri_data%}
 
       
 
@@ -319,6 +322,12 @@ var nav = $('.fixed-button');
                    document.getElementById("mistri_done_work").innerHTML = "আপনার কি কি  সার্ভিস সম্পন্ন করেছেন ";
                    document.getElementById("user_name").innerHTML = "{{evarage.name}}";
                    document.getElementById("user_name1").innerHTML = "{{evarage.name}}";
+
+                   // This Segment Use For Client information Show
+                   document.getElementById("yourname").value = "{{evarage.name}}";
+                   document.getElementById("yourmobilenumber").value = "{{evarage.phone}}";
+                   document.getElementById("dateofbirth").value = "{{evarage.dob}}";
+
                    
            
 
