@@ -272,9 +272,17 @@ var nav = $('.fixed-button');
 <script>
 
   $(document).ready(function(){
+
+ {% if not client_data and  not mistri_data  %} 
+     
+          $(location).attr('href',"{% url 'logout' %}");
+           $(location).attr('href',"{% url 'dashboard' %}");
+   
+{% endif %} 
+
+
    
     {% for evarage in client_data%}
-
 
        
             {%if user.social_auth.get.uid == evarage.uid %}
@@ -290,30 +298,23 @@ var nav = $('.fixed-button');
 
 
             {% endif %}
-
   
     
             
-     {% endfor %}  
+     {% endfor %} 
 
+
+ 
      {% for evarage in mistri_data%}
 
+      
 
-       
             {%if user.social_auth.get.uid == evarage.uid %}
 
                
             {% if evarage.mistri_id == "2"  %}
 
-           if(document.getElementById("user_name").innerHTML == " " )
-              {
-                   $(location).attr('href',"{% url 'logout' %}");
-                   $(location).attr('href',"{% url 'dashboard' %}");
-               
-              }
-              else{
-              
-
+          
                    document.getElementById("mistri_panding_work").innerHTML ="আপনার পেইডিং কাজ";
                    document.getElementById("personal_information").innerHTML = "আপনার তথ্য";  
                    document.getElementById("user_details").innerHTML = "Logine as Msitri";
@@ -321,11 +322,8 @@ var nav = $('.fixed-button');
                    document.getElementById("mistri_done_work").innerHTML = "আপনার কি কি  সার্ভিস সম্পন্ন করেছেন ";
                    document.getElementById("user_name").innerHTML = "{{evarage.name}}";
                    document.getElementById("user_name1").innerHTML = "{{evarage.name}}";
-              
-                }
-
-
-                
+                   
+           
                 {% endif %}
 
               
@@ -338,7 +336,6 @@ var nav = $('.fixed-button');
             
      {% endfor %}  
 
-     
   
   
   });
