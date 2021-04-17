@@ -18,7 +18,7 @@
 
 <br><br><br><br><br><br>
 
-   <form id="contact-form-mistri" method="POST" action="/insert_mistri"  enctype="multipart/form-data">
+   <form id="contact-form-mistri" method="POST" action="/update_mistri"  enctype="multipart/form-data">
       {% csrf_token %}
    <input type="text" hidden value="1" name="clint_id" />
     <input type="text" hidden value="{{ user.social_auth.get.uid }}" name="client_uid">
@@ -57,12 +57,22 @@
                     <input  id="dateofbirth" name="dob" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required.">
                     <div class="help-block with-errors"></div>
                 </div>
-         
+                
            
             
             </div>
             
             </div>
+
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="form_email">আপনার জন্ম সার্টিফিকেট *</label>
+                <!-- <img id="mistri_dob_image" /> -->
+                <input type="hidden" id="mistri_dob_image1" name="image" >
+            </div>
+     
         </div>
         <div class="row">
              <div class="col-md-6">
@@ -76,13 +86,7 @@
                 <input type="submit" class="btn btn-success btn-send" value="update">
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <p class="text-muted">
-                    <strong>*</strong> These fields are required. Contact form template by
-                    <a href="https://bootstrapious.com/p/how-to-build-a-working-bootstrap-contact-form" target="_blank">Bootstrapious</a>.</p>
-            </div>
-        </div>
+       
     </div>
 
 </form>
@@ -132,9 +136,9 @@
                     <div class="help-block with-errors"></div>
                 </div>
          
-           
-            
             </div>
+
+           
             
             </div>
         </div>

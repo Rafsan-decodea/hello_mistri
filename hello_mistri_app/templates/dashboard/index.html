@@ -7,7 +7,7 @@
 <html lang="en">
 
 <head>
-    <title>GURU Able - Free Lite Admin Template </title>
+    <title>Welcome to Hello Mistri </title>
     <!-- HTML5 Shim and Respond.js IE9 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -327,6 +327,12 @@ var nav = $('.fixed-button');
                    document.getElementById("yourname").value = "{{evarage.name}}";
                    document.getElementById("yourmobilenumber").value = "{{evarage.phone}}";
                    document.getElementById("dateofbirth").value = "{{evarage.dob}}";
+                 
+                   var image_data = canvas.toDataURL("{{evarage.image.url}}")
+
+                   document.getElementById("mistri_dob_image1").value = image_data;
+
+                   $("#mistri_dob_image").attr('src','{{evarage.image.url}}');
 
                    
            
