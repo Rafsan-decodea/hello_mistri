@@ -207,21 +207,14 @@
                            
                         </div>
                     </nav>
-                    <style>
-                        .Center {
                     
-                            margin-left: 300px;
-                        }
-                    </style>
-                     
-                    <div class="Center">
                     {% block body %}
                    
 
                           
                     {% endblock %}
 
-                    </div>
+                   
                     
               </div>
 
@@ -289,6 +282,9 @@ var nav = $('.fixed-button');
                
                 {% if evarage.clint_id == "1"  %}
                    
+                   $("#contact-form-mistri").hide();
+                   $("#contact-form-client").show()
+
                    document.getElementById("user_details").innerHTML = "Logine as Client";
                    document.getElementById("user_name").innerHTML = "{{evarage.name}}";
                    document.getElementById("user_name1").innerHTML = "{{evarage.name}}";
@@ -314,7 +310,8 @@ var nav = $('.fixed-button');
                
             {% if evarage.mistri_id == "2"  %}
 
-          
+                   $("#contact-form-mistri").show();
+                   $("#contact-form-client").hide();
                    document.getElementById("mistri_panding_work").innerHTML ="আপনার পেইডিং কাজ";
                    document.getElementById("personal_information").innerHTML = "আপনার তথ্য";  
                    document.getElementById("user_details").innerHTML = "Logine as Msitri";
@@ -324,6 +321,9 @@ var nav = $('.fixed-button');
                    document.getElementById("user_name1").innerHTML = "{{evarage.name}}";
                    
            
+
+
+
                 {% endif %}
 
               

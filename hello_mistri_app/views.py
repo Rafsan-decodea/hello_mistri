@@ -53,12 +53,7 @@ def insert_clint_information(request):
          phone= request.POST.get('phone')
          address = request.POST.get('address')
          c = ClientInformation.objects.create(user=u ,uid=uid ,clint_id=clint_id,name=name,phone=phone,address=address)
-         c.save()
-       
-        
-         
-         
-         
+         c.save()     
         
     return render(request,"dashboard/personal_information.html")
 
@@ -73,10 +68,6 @@ def insert_mistri_information(request):
          address = request.POST.get('address')
          dob = request.POST.get('dob')
          MistriInformation.objects.create(user=u,mistri_id=mistri_id,uid=uid,name=name,phone=phone,image=image,address=address,dob=dob).save()
-         
-         
-         
-    
     return render(request,"dashboard/personal_information.html")
     
 
