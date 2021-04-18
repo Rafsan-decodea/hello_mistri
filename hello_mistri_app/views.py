@@ -67,18 +67,20 @@ def insert_mistri_information(request):
 def update_mistri_information(request):
     if  request.method == 'POST':
           u = User.objects.get(pk=request.user.id)
-        #   m = MistriInformation.objects.all()
-        #   global mid
-        #   for x in  m:
-        #        mid = x.id
-          mistri_id = request.POST.get('mistri_id')
-          uid = request.POST.get('mistri_uid')
-          name = request.POST.get('name')
-          phone = request.POST.get('number')
-          image = request.FILES['image']  
-          address = request.POST.get('address')
-          dob = request.POST.get('dob')
-          User.objects.filter(pk=request.user.id).update(mistri_id=mistri_id,uid=uid,name=name,phone=phone,image=image,address=address,dob=dob)
+          m = MistriInformation.objects.all()
+          global mid
+          for x in  m:
+               mid = x.id
+          m_data = MistriInformation.objects.get(pk=mid)
+          m_data.mistri_id = request.POST.get('mistri_id')
+          m_data.uid = request.POST.get('mistri_uid')
+          m_data.name = request.POST.get('name')
+          m_data.phone = request.POST.get('number')
+          m_data.image = request.FILES['image']  
+          m_data.address = request.POST.get('address')
+          m_data.dob = request.POST.get('dob') 
+#user=u,mistri_id=mistri_id,uid=uid,name=name,phone=phone,image=image,address=address,dob=dob
+          m_data.save()
     return render(request,"dashboard/personal_information.html")
 
 
