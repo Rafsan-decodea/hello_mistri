@@ -21,23 +21,16 @@ def dashboard(request):
    
      return render(request ,"dashboard/personal_information.html",context)
 
-# def insert_data(request):
-#      admin = Admin.objects.all()
-#      mistri = MistriInformation.objects.all()
-#      client = ClientInformation.objects.all()
 
-#      context = {
-#         "admin" : admin,
-#         "mistri_data":mistri,
-#         "client_data":client,
-#        }
-#      return render(request,"dashboard/data_entry.html",context)
 
 
 def information(request):
     #{{user.social_auth.get.provider}} {{ user.social_auth.get.uid }}
     mistri = MistriInformation.objects.all()
     client = ClientInformation.objects.all()
+    # user = User.objects.get(id=request.user.id)
+    # mistri = user.mistriinformation_set.all()
+    # client = user.clientinformation_set.all()
     context ={
         "mistri_data":mistri,
         "client_data":client,
@@ -74,8 +67,10 @@ def insert_mistri_information(request):
 def update_mistri_information(request):
     if  request.method == 'POST':
           u = User.objects.get(pk=request.user.id)
-          m = MistriInformation.objects.all()
-          print (m)
+        #   m = MistriInformation.objects.all()
+        #   global mid
+        #   for x in  m:
+        #        mid = x.id
           mistri_id = request.POST.get('mistri_id')
           uid = request.POST.get('mistri_uid')
           name = request.POST.get('name')
@@ -83,7 +78,7 @@ def update_mistri_information(request):
           image = request.FILES['image']  
           address = request.POST.get('address')
           dob = request.POST.get('dob')
-          MistriInformation.objects.filter(id=request.user.id).update(user=u,mistri_id=mistri_id,uid=uid,name=name,phone=phone,image=image,address=address,dob=dob)
+          User.objects.filter(pk=request.user.id).update(mistri_id=mistri_id,uid=uid,name=name,phone=phone,image=image,address=address,dob=dob)
     return render(request,"dashboard/personal_information.html")
 
 

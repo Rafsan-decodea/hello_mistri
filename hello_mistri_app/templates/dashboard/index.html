@@ -143,6 +143,7 @@
                                   {% for ass in backends.associated %}
                                     <img class="img-40 img-radius" src="{{ass.extra_data.picture.data.url}}" alt="User-Profile-Image">
                                  {% endfor %}
+                               
                                     <div class="user-details">
                                         <span id="user_name1"></span>
                                         <span id="user_details"><i class="ti-angle-down"></i></span>
@@ -207,6 +208,8 @@
                            
                         </div>
                     </nav>
+
+                 
                     
                     {% block body %}
                    
@@ -305,7 +308,7 @@ var nav = $('.fixed-button');
 
 
  
-   {% for evarage in mistri_data%}
+   {% for evarage in mistri_data %}
 
       
 
