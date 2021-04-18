@@ -74,6 +74,8 @@ def insert_mistri_information(request):
 def update_mistri_information(request):
     if  request.method == 'POST':
           u = User.objects.get(pk=request.user.id)
+          m = MistriInformation.objects.all()
+          print (m)
           mistri_id = request.POST.get('mistri_id')
           uid = request.POST.get('mistri_uid')
           name = request.POST.get('name')
@@ -81,7 +83,7 @@ def update_mistri_information(request):
           image = request.FILES['image']  
           address = request.POST.get('address')
           dob = request.POST.get('dob')
-          MistriInformation.objects.filter(pk=request.user.id).update(user=u,mistri_id=mistri_id,uid=uid,name=name,phone=phone,image=image,address=address,dob=dob)
+          MistriInformation.objects.filter(id=request.user.id).update(user=u,mistri_id=mistri_id,uid=uid,name=name,phone=phone,image=image,address=address,dob=dob)
     return render(request,"dashboard/personal_information.html")
 
 

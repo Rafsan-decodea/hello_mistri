@@ -20,8 +20,8 @@
 
    <form id="contact-form-mistri" method="POST" action="/update_mistri"  enctype="multipart/form-data">
       {% csrf_token %}
-   <input type="text" hidden value="1" name="clint_id" />
-    <input type="text" hidden value="{{ user.social_auth.get.uid }}" name="client_uid">
+   <input type="text" hidden value="1" name="mistri_id" />
+   <input type="text" hidden  id="mistri_uid" name="mistri_uid">
 
     <div class="controls">
 
@@ -174,37 +174,7 @@
 
 </div>
 
-<script>
-$(document).ready(function(){
- $('#upload').click(function(){
-  var image_url = $('#mistri_dob_image').val();
-  if(image_url == '')
-  {
-   alert("Please enter image url");
-   return false;
-  }
-  else
-  {
-  
-   $.ajax({
-    url:"{% url 'update_mistri' %}",
-    method:"POST",
-    data:{image:image},
-    dataType:"JSON",
-    beforeSend:function(){
-     $('#upload').val("Processing...");
-    },
-    success:function(data)
-    {
-     $('#image').val('');
-     $('#upload').val('update');
-     alert(data.message);
-    }
-   })
-  }
- });
-});
-</script>
+
 
 
 
