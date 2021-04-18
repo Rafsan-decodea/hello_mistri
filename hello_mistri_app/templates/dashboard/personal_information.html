@@ -69,8 +69,15 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="form_email">আপনার জন্ম সার্টিফিকেট *</label>
-                <!-- <img id="mistri_dob_image" /> -->
-                <input type="hidden" id="mistri_dob_image1" name="image" >
+                <input type="hidden" id="mistri_dob_image1" name="image" id="image" >
+            </div>
+
+            <div class="card" style="width: 18rem;">
+               <img class="card-img-top" id="mistri_dob_image"  alt="Card image cap">
+                 <div class="card-body">
+                     <p class="card-text">পরিবর্তন করুন</p>
+                     <input type="file" name="image" >
+                 </div>
             </div>
      
         </div>
@@ -78,12 +85,12 @@
              <div class="col-md-6">
                 <div class="form-group">
                     <label for="form_email">আপনার ঠিকানা  *</label>
-                    <input id="form_email"  name="address" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required.">
+                    <textarea  type="text" id="mistri_address"  name="address" class="form-control"  required="required" ></textarea>
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
             <div class="col-md-12">
-                <input type="submit" class="btn btn-success btn-send" value="update">
+                <input type="submit" class="btn btn-success btn-send" id="upload" value="update">
             </div>
         </div>
        
@@ -167,7 +174,37 @@
 
 </div>
 
-
+<script>
+$(document).ready(function(){
+ $('#upload').click(function(){
+  var image_url = $('#mistri_dob_image').val();
+  if(image_url == '')
+  {
+   alert("Please enter image url");
+   return false;
+  }
+  else
+  {
+  
+   $.ajax({
+    url:"{% url 'update_mistri' %}",
+    method:"POST",
+    data:{image:image},
+    dataType:"JSON",
+    beforeSend:function(){
+     $('#upload').val("Processing...");
+    },
+    success:function(data)
+    {
+     $('#image').val('');
+     $('#upload').val('update');
+     alert(data.message);
+    }
+   })
+  }
+ });
+});
+</script>
 
 
 

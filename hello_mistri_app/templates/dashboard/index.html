@@ -270,6 +270,7 @@ var nav = $('.fixed-button');
      
           $(location).attr('href',"{% url 'logout' %}");
            $(location).attr('href',"{% url 'dashboard' %}");
+     
    
 {% endif %} 
 
@@ -327,10 +328,7 @@ var nav = $('.fixed-button');
                    document.getElementById("yourname").value = "{{evarage.name}}";
                    document.getElementById("yourmobilenumber").value = "{{evarage.phone}}";
                    document.getElementById("dateofbirth").value = "{{evarage.dob}}";
-                 
-                   var image_data = canvas.toDataURL("{{evarage.image.url}}")
-
-                   document.getElementById("mistri_dob_image1").value = image_data;
+                   document.getElementById("mistri_address").value = "{{evarage.address}}";
 
                    $("#mistri_dob_image").attr('src','{{evarage.image.url}}');
 

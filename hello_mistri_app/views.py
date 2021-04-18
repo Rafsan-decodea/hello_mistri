@@ -45,6 +45,7 @@ def information(request):
     return render(request,"information.html",context)
 
 def insert_clint_information(request):
+    
     if request.method == 'POST':
          u = User.objects.get(pk=request.user.id)# get Authenticate id and insert data to it
          clint_id = request.POST.get('clint_id') 
