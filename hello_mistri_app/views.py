@@ -9,12 +9,10 @@ def index(request):
     return render(request,"index.html")
 
 def dashboard(request): 
-     admin = Admin.objects.all()
      mistri = MistriInformation.objects.all()
      client = ClientInformation.objects.all()
 
      context = {
-        "admin" : admin,
         "mistri_data":mistri,
         "client_data":client,
        }
@@ -57,11 +55,13 @@ def update_client_information(request):
        u = User.objects.get(pk=request.user.id)
        c = ClientInformation.objects.all()
        global cid
+       global cuid
        for x in c:
            cid = x.id   
+           cuid =x.uid
        c_data = ClientInformation.objects.get(pk=cid)  
        c_data.clint_id = 1 
-       c_data.uid =  request.POST.get('client_uid')
+       c_data.uid =  cuid
        c_data.name = request.POST.get('name')
        c_data.phone =request.POST.get('phone')
        c_data.address = request.POST.get('address')
@@ -86,11 +86,13 @@ def update_mistri_information(request):
           u = User.objects.get(pk=request.user.id)
           m = MistriInformation.objects.all()
           global mid
+          global muid
           for x in  m:
                mid = x.id
+               muid =x.uid
           m_data = MistriInformation.objects.get(pk=mid)
           m_data.mistri_id = 2
-          m_data.uid = request.POST.get('mistri_uid')
+          m_data.uid = muid
           m_data.name = request.POST.get('name')
           m_data.phone = request.POST.get('number')
           try:

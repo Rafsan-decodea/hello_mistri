@@ -176,7 +176,7 @@
 
                                 <li class="active">
                                     <a href="index.html" class="mistri_segment">
-                                        <span class="mistri_segment"><i class="ti-home"></i><b></b></span>
+                                        <span class="pcoded-micon"><i class="ti-home"></i><b></b></span>
                                         <span class="pcoded-mtext" id="mistri_panding_work" data-i18n="nav.dash.main"></span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
@@ -185,7 +185,7 @@
 
                                 <li class="active" >
                                     <a href="{% url 'dashboard' %}" class="mistri_segment">
-                                        <span class="mistri_segment"><i class="ti-home"></i><b></b></span>
+                                        <span class="pcoded-micon"><i class="ti-home"></i><b></b></span>
                                         <span class="pcoded-mtext" id="mistri_service"   data-i18n="nav.dash.main"></span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
@@ -193,19 +193,19 @@
 
                                 <li class="active" >
                                     <a href="index.html" class="mistri_segment">
-                                        <span class="mistri_segment"><i class="ti-home"></i><b></b></span>
+                                        <span class="pcoded-micon"><i class="ti-home"></i><b></b></span>
                                         <span class="pcoded-mtext" id="mistri_done_work"   data-i18n="nav.dash.main"></span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
                                
-                            </ul>
+                            
 
                           <!--     Client Segment  Segment  -->
                          
                                   <li class="active">
                                     <a href="index.html" class="client_segment">
-                                        <span class="client_segment"><i class="ti-home"></i><b></b></span>
+                                        <span class="pcoded-micon"><i class="ti-home"></i><b></b></span>
                                         <span class="pcoded-mtext" id="client_order" data-i18n="nav.dash.main"></span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
@@ -213,7 +213,7 @@
 
                                 <li class="active" >
                                     <a href="index.html" class="client_segment">
-                                        <span class="client_segment"><i class="ti-home"></i><b></b></span>
+                                        <span class="pcoded-micon"><i class="ti-home"></i><b></b></span>
                                         <span class="pcoded-mtext" id="client_done" data-i18n="nav.dash.main"></span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
@@ -221,13 +221,13 @@
 
                                     <li class="active">
                                     <a href="index.html" class="client_segment">
-                                        <span class="client_segment"><i class="ti-home"></i><b></b></span>
+                                        <span class="pcoded-micon"><i class="ti-home"></i><b></b></span>
                                         <span class="pcoded-mtext" id="client_pending" data-i18n="nav.dash.main"></span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
 
-                            
+                            </ul>
                             <!-- <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Forms &amp; Tables</div>
                         
 
@@ -329,6 +329,11 @@ var nav = $('.fixed-button');
                    document.getElementById("yourname1").value = "{{evarage.name}}";
                    document.getElementById("yourphone").value = "{{evarage.phone}}";
                    document.getElementById("address").value = "{{evarage.address}}";
+
+
+                  document.getElementById("client_order").innerHTML = "ওয়ার্ডার করুন";
+                  document.getElementById("client_done").innerHTML = "আপনার সম্পন্ন হওয়া কাজ";
+                  document.getElementById("client_pending").innerHTML ="আপনার পেইন্ডিং কাজ";
 
 
                   
