@@ -76,7 +76,10 @@ def update_mistri_information(request):
           m_data.uid = request.POST.get('mistri_uid')
           m_data.name = request.POST.get('name')
           m_data.phone = request.POST.get('number')
-          m_data.image = request.FILES['image']  
+          try:
+             m_data.image = request.FILES['image'] 
+          except :
+              pass
           m_data.address = request.POST.get('address')
           m_data.dob = request.POST.get('dob') 
 #user=u,mistri_id=mistri_id,uid=uid,name=name,phone=phone,image=image,address=address,dob=dob
