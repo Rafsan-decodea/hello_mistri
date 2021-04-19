@@ -16,7 +16,7 @@ from django.dispatch import receiver
 
 
 class ClientInformation(models.Model):  
-   user = models.OneToOneField(User, on_delete=models.CASCADE ,primary_key=True) # Relation With one to one User Model
+   user = models.OneToOneField(User, on_delete=models.CASCADE ) # Relation With one to one User Model
    clint_id = models.CharField(max_length=10)
    uid = models.CharField(max_length=1000)
    name = models.CharField(max_length=100)

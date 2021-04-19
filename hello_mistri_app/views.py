@@ -41,7 +41,7 @@ def insert_clint_information(request):
     
     if request.method == 'POST':
          u = User.objects.get(pk=request.user.id)# get Authenticate id and insert data to it
-         clint_id = request.POST.get('clint_id') 
+         clint_id = 1
          uid  = request.POST.get('client_uid')
          name= request.POST.get('name')
          phone= request.POST.get('phone')
@@ -51,10 +51,27 @@ def insert_clint_information(request):
         
     return render(request,"dashboard/personal_information.html")
 
+
+def update_client_information(request):
+    if request.method == "POST": 
+       u = User.objects.get(pk=request.user.id)
+       c = ClientInformation.objects.all()
+       global cid
+       for x in c:
+           cid = x.id   
+       c_data = ClientInformation.objects.get(pk=cid)  
+       c_data.clint_id = 1 
+       c_data.uid =  request.POST.get('client_uid')
+       c_data.name = request.POST.get('name')
+       c_data.phone =request.POST.get('phone')
+       c_data.address = request.POST.get('address')
+       c_data.save() 
+    return render(request,"dashboard/personal_information.html")
+
 def insert_mistri_information(request):
     if request.method == 'POST':
          u = User.objects.get(pk=request.user.id)
-         mistri_id = request.POST.get('mistri_id')
+         mistri_id = 2
          uid = request.POST.get('mistri_uid')
          name = request.POST.get('name')
          phone = request.POST.get('number')
@@ -72,7 +89,7 @@ def update_mistri_information(request):
           for x in  m:
                mid = x.id
           m_data = MistriInformation.objects.get(pk=mid)
-          m_data.mistri_id = request.POST.get('mistri_id')
+          m_data.mistri_id = 2
           m_data.uid = request.POST.get('mistri_uid')
           m_data.name = request.POST.get('name')
           m_data.phone = request.POST.get('number')
