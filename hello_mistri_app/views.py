@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth import backends, logout as user_logout
 from .models import *
-
+# from django.views.decorators.csrf import ensure_csrf_cookie
 
 def index(request):
     return render(request,"index.html")
@@ -49,9 +49,9 @@ def insert_clint_information(request):
         
     return render(request,"dashboard/personal_information.html")
 
-
+# @ensure_csrf_cookie
 def update_client_information(request):
-    if request.method == "POST": 
+    if request.is_ajax(): 
        u = User.objects.get(pk=request.user.id)
        c = ClientInformation.objects.all()
        global cid
@@ -66,10 +66,13 @@ def update_client_information(request):
        c_data.phone =request.POST.get('phone')
        c_data.address = request.POST.get('address')
        c_data.save() 
-    return render(request,"dashboard/personal_information.html")
+    # return render(request,"dashboard/personal_information.html")
+       return response.JsonResponse({
+             'msg' :'Success',
+      })
 
 def insert_mistri_information(request):
-    if request.method == 'POST':
+     if  request.method == 'POST':
          u = User.objects.get(pk=request.user.id)
          mistri_id = 2
          uid = request.POST.get('mistri_uid')
@@ -79,10 +82,10 @@ def insert_mistri_information(request):
          address = request.POST.get('address')
          dob = request.POST.get('dob')
          MistriInformation.objects.create(user=u,mistri_id=mistri_id,uid=uid,name=name,phone=phone,image=image,address=address,dob=dob).save()
-    return render(request,"dashboard/personal_information.html")
+     return render(request,"dashboard/personal_information.html")
 
 def update_mistri_information(request):
-    if  request.method == 'POST':
+       if request.is_ajax():
           u = User.objects.get(pk=request.user.id)
           m = MistriInformation.objects.all()
           global mid
@@ -103,7 +106,9 @@ def update_mistri_information(request):
           m_data.dob = request.POST.get('dob') 
 #user=u,mistri_id=mistri_id,uid=uid,name=name,phone=phone,image=image,address=address,dob=dob
           m_data.save()
-    return render(request,"dashboard/personal_information.html")
+       return response.JsonResponse({
+             'msg' :'Success',
+      })
 
 
 

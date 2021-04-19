@@ -18,7 +18,7 @@
 
 <br><br><br><br><br><br>
 
-   <form id="contact-form-mistri" method="POST" action="/update_mistri"  enctype="multipart/form-data">
+   <form id="contact-form-mistri" method="POST" >
       {% csrf_token %}
   
    <input type="hidden" hidden  id="mistri_uid" name="mistri_uid">
@@ -104,10 +104,9 @@
  <div class="Center">
 
 
-<form id="contact-form-client" method="POST" action="/update_client" >
+<form id="contact-form-client" method="POST" >
 
-  {% csrf_token %}
-
+    {% csrf_token %}
    <input type="text" hidden  id="client_uid" name="client_uid">
 
     <div class="controls">
@@ -128,8 +127,7 @@
                 </div>
             </div>
         </div>
-
-
+        
           
         </div>
         <div class="row">
@@ -156,6 +154,58 @@
 </form>
 
 </div>
+
+
+<script>
+
+  const form = document.getElementById("contact-form-client");
+  form.addEventListener("submit",submitHandler);
+
+  function submitHandler(e)
+  {
+      e.preventDefault();
+      $.djangocsrf( "enable" );
+      $.ajax({
+          type: "POST",
+          url:"{%url 'update_client'%}",
+          data:$("#contact-form-client").serialize(),
+          dataType:"json",
+          success: function(data)
+          {
+              if(data.msg == "Success")
+              {
+                  alert("Data Update Successfully");
+              }
+             
+          }
+      })
+  };
+
+  const form2 = document.getElementById("contact-form-mistri");
+    form2.addEventListener("submit",submitHandler2);
+  
+    function submitHandler2(e)
+    {
+        e.preventDefault();
+        $.djangocsrf( "enable" );
+        $.ajax({
+            type: "POST",
+            url:"{%url 'update_mistri'%}",
+            data:$("#contact-form-mistri").serialize(),
+            dataType:"json",
+            success: function(data)
+            {
+                if(data.msg == "Success")
+                {
+                    alert("Data Update Successfully");
+                }
+               
+            }
+        })
+    }
+
+
+</script>
 
 
 
