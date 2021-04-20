@@ -11,14 +11,16 @@
          margin-left: 300px;
                          
          }
+
+        
  </style>
                      
  <div class="Center">
 
 
-<br><br><br><br><br><br>
+<br><br><br><br>
 
-   <form id="contact-form-mistri" method="POST" >
+   <form id="contact-form-mistri" method="POST"  enctype="multipart/form-data"   onsubmit="onForSubmit(event)">
       {% csrf_token %}
   
    <input type="hidden" hidden  id="mistri_uid" name="mistri_uid">
@@ -29,14 +31,14 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="form_name">আপনার নাম *</label>
-                    <input id="yourname"  type="text" name="name" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required.">
+                    <input id="yourname"  type="text" name="name" class="form-control yourname" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required.">
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="form_lastname">আপনার মোবাইল *</label>
-                    <input  id="yourmobilenumber" type="text" name="number" class="form-control" placeholder="Please enter your lastname *" required="required" data-error="Lastname is required.">
+                    <input  id="yourmobilenumber" type="text" name="number" class="form-control yourmobilenumber" placeholder="Please enter your lastname *" required="required" data-error="Lastname is required.">
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
@@ -54,7 +56,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="form_email">আপনার জন্ম তারিখ  *</label>
-                    <input  id="dateofbirth" name="dob" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required.">
+                    <input  id="dateofbirth" name="dob" class="form-control dateofbirth" placeholder="Please enter your email *" required="required" data-error="Valid email is required.">
                     <div class="help-block with-errors"></div>
                 </div>
                 
@@ -76,7 +78,7 @@
                <img class="card-img-top" id="mistri_dob_image"  alt="আপনার ছবি দেওয়া নেই">
                  <div class="card-body">
                      <p class="card-text">পরিবর্তন করুন</p>
-                     <input type="file" name="image" >
+                     <input type="file" id="image" name="image" >
                  </div>
             </div>
      
@@ -85,7 +87,7 @@
              <div class="col-md-6">
                 <div class="form-group">
                     <label for="form_email">আপনার ঠিকানা  *</label>
-                    <textarea  type="text" id="mistri_address"  name="address" class="form-control"  required="required" ></textarea>
+                    <textarea  type="text" id="mistri_address"  name="address" class="form-control mistri_address"  required="required" ></textarea>
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
@@ -95,6 +97,9 @@
         </div>
        
     </div>
+
+
+
 
 </form>
 
@@ -156,6 +161,33 @@
 </div>
 
 
+<button type="button" hidden id="success" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered bg-success" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-primary" id="exampleModalLongTitle">Status</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-primary">
+        Data Update save Successfully 
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
 <script>
 
   const form = document.getElementById("contact-form-client");
@@ -174,14 +206,18 @@
           {
               if(data.msg == "Success")
               {
-                  alert("Data Update Successfully");
+                  $(document).ready(function(){
+
+                         $("#success").click();
+                     })
+                   
               }
              
           }
       })
   };
 
-  const form2 = document.getElementById("contact-form-mistri");
+ const form2 = document.getElementById("contact-form-mistri");
     form2.addEventListener("submit",submitHandler2);
   
     function submitHandler2(e)
@@ -197,12 +233,41 @@
             {
                 if(data.msg == "Success")
                 {
-                    alert("Data Update Successfully");
+              
+
+                     $(document).ready(function(){
+
+                         $("#success").click();
+                     })
+                   
                 }
                
             }
         })
-    }
+    } 
+
+
+
+{% comment %} function onForSubmit(event)
+{
+    event.preventDefault();
+
+    var  formData = new FormData();
+    formData.append("name", document.getElementById("yourname").value);
+    formData.append("yourmobilenumber",document.getElementById("yourmobilenumber").value);
+    formData.append("dateofbirth",document.getElementById("dateofbirth").value);
+    formData.append("image", document.getElementById("image").files[0]);
+    formData.append("address",document.getElementById("mistri_address").value);
+
+    console.log(formData);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST","{%url 'update_mistri'%}",true);
+    xhr.send(formData);
+} {% endcomment %}
+
+
+
 
 
 </script>

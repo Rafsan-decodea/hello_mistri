@@ -36,9 +36,10 @@
       <link rel="stylesheet" type="text/css" href="{%static 'assets/css/jquery.mCustomScrollbar.css' %}">
   </head>
 
+
   <body>
 
- 
+     
 
     <!-- Pre-loader start -->
 
@@ -238,7 +239,7 @@
                            
                         </div>
                     </nav>
-
+  
                  
                     
                     {% block body %}
@@ -375,20 +376,9 @@ var nav = $('.fixed-button');
                    document.getElementById("user_details").innerHTML = "Logine as Msitri";
                    document.getElementById("mistri_service").innerHTML = "আপনার সার্ভিস Select করুন";
                    document.getElementById("mistri_done_work").innerHTML = "আপনার কি কি  সার্ভিস সম্পন্ন করেছেন ";
-                //    document.getElementById("user_name").innerHTML = "{{evarage.name}}";
-                //    document.getElementById("user_name1").innerHTML = "{{evarage.name}}";
+                    document.getElementById("user_name").innerHTML = "{{evarage.name}}";
+                    document.getElementById("user_name1").innerHTML = "{{evarage.name}}";
 
-                   $.ajax({
-                      
-                       url:"{% url 'dashboard'%}",
-                       type: "POST",
-
-                       success:function()
-                       {
-                          document.getElementById("user_name").innerHTML = "{{evarage.name}}";
-                       }
-
-                   })
 
                    // This Segment Use For MIstri information Show
                    document.getElementById("yourname").value = "{{evarage.name}}";

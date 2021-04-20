@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import backends, logout as user_logout
 from .models import *
 # from django.views.decorators.csrf import ensure_csrf_cookie
+from django.views.decorators.csrf import csrf_exempt
 
 def index(request):
     return render(request,"index.html")
@@ -84,6 +85,8 @@ def insert_mistri_information(request):
          MistriInformation.objects.create(user=u,mistri_id=mistri_id,uid=uid,name=name,phone=phone,image=image,address=address,dob=dob).save()
      return render(request,"dashboard/personal_information.html")
 
+
+@csrf_exempt
 def update_mistri_information(request):
        if request.is_ajax():
           u = User.objects.get(pk=request.user.id)
@@ -100,10 +103,13 @@ def update_mistri_information(request):
           m_data.phone = request.POST.get('number')
           try:
              m_data.image = request.FILES['image'] 
+             print (request.FILES['image'])
+             print ("fuck From image")
           except :
-              pass
+              print ("fuck without  image")
           m_data.address = request.POST.get('address')
           m_data.dob = request.POST.get('dob') 
+         
 #user=u,mistri_id=mistri_id,uid=uid,name=name,phone=phone,image=image,address=address,dob=dob
           m_data.save()
        return response.JsonResponse({
