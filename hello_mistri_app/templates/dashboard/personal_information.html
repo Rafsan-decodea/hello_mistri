@@ -175,8 +175,8 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body text-primary">
-        Data Update save Successfully 
+      <div class="modal-body text-primary" id="show_massage" >
+      
       </div>
       
     </div>
@@ -206,9 +206,11 @@
           {
               if(data.msg == "Success")
               {
+                  
                   $(document).ready(function(){
 
-                         $("#success").click();
+                        $("#success").click();
+                         document.getElementById("show_massage").innerHTML = "Data Save Successfully .. Do Refresh to See Changes";
                      })
                    
               }
@@ -216,38 +218,6 @@
           }
       })
   };
-
- {% comment %} const form2 = document.getElementById("contact-form-mistri");
-    form2.addEventListener("submit",submitHandler2);
-  
-    function submitHandler2(e)
-    {
-        e.preventDefault();
-        $.djangocsrf( "enable" );
-        $.ajax({
-            type: "POST",
-            url:"{%url 'update_mistri'%}",
-            data:$("#contact-form-mistri").serialize(),
-            dataType:"json",
-            success: function(data)
-            {
-                if(data.msg == "Success")
-                {
-              
-
-                     $(document).ready(function(){
-
-                         $("#success").click();
-                     })
-                   
-                }
-               
-            }
-        })
-    }  {% endcomment %}
-
-
-
 
 
 
@@ -265,9 +235,13 @@ function onForSubmit(event){
         success  : function(data){
     
              $(document).ready(function(){
-
+                       
+                            
                          $("#success").click();
+                          document.getElementById("show_massage").innerHTML = "Data Save Successfully .. Do Refresh For See Changes";
+                    
                      });
+     
                    
         },
         error    : function(data){
