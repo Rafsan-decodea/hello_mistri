@@ -74,7 +74,7 @@
                
             </div>
 
-            <div class="card" style="width: 18rem;">
+            <div class="card" style="width: 15rem;">
                <img class="card-img-top" id="mistri_dob_image"  alt="আপনার ছবি দেওয়া নেই">
                  <div class="card-body">
                      <p class="card-text">পরিবর্তন করুন</p>
@@ -217,7 +217,7 @@
       })
   };
 
- const form2 = document.getElementById("contact-form-mistri");
+ {% comment %} const form2 = document.getElementById("contact-form-mistri");
     form2.addEventListener("submit",submitHandler2);
   
     function submitHandler2(e)
@@ -244,27 +244,40 @@
                
             }
         })
-    } 
+    }  {% endcomment %}
 
 
 
-{% comment %} function onForSubmit(event)
-{
+
+
+
+function onForSubmit(event){
+
     event.preventDefault();
 
-    var  formData = new FormData();
-    formData.append("name", document.getElementById("yourname").value);
-    formData.append("yourmobilenumber",document.getElementById("yourmobilenumber").value);
-    formData.append("dateofbirth",document.getElementById("dateofbirth").value);
-    formData.append("image", document.getElementById("image").files[0]);
-    formData.append("address",document.getElementById("mistri_address").value);
+    var formData  = new FormData(document.getElementById("contact-form-mistri"));
+    $.ajax({
+        method   : "POST",
+        url      : "{% url 'update_mistri' %}",
+        data     : formData,
+        processData:false,
+        contentType:false,
+        success  : function(data){
+    
+             $(document).ready(function(){
 
-    console.log(formData);
+                         $("#success").click();
+                     });
+                   
+        },
+        error    : function(data){
+            console.log("ERROR:CH0x2 while fetching after creation form submit");
+            console.log("data :",data.status, data.statusText);
+        }
+    });
 
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST","{%url 'update_mistri'%}",true);
-    xhr.send(formData);
-} {% endcomment %}
+
+}
 
 
 
