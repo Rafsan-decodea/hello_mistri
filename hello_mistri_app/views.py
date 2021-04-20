@@ -6,6 +6,12 @@ from .models import *
 # from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.decorators.csrf import csrf_exempt
 
+from django.contrib.auth import authenticate
+from django.contrib import auth
+from django.http import *
+from django.urls import reverse
+
+
 def index(request):
     return render(request,"index.html")
 
@@ -115,6 +121,27 @@ def update_mistri_information(request):
        return response.JsonResponse({
              'msg' :'Success',
       })
+
+
+def admin_dashboard(request): 
+    return render(request, "dashboard/admin/dashboard.html")
+
+def admin_login_page(request): 
+    return render(request,"dashboard/admin/login.html")
+
+def login(request):
+    
+    if request.method == "POST":
+         context = {}
+         username = request.POST.get("username")
+         password = request.POST.get("password")
+         user = authenticate(request, username=username ,password=password)
+         if user:
+             auth.login(request,user)
+             return HttpResponseRedirect(reverse("admin_dashboard"))
+         else:
+             return render(request, 'dashboard/admin/login.html',{'error':'User name or password not matching'})
+    return render(request,"dashboard/admin/login.html")
 
 
 
