@@ -48,7 +48,7 @@
         <div class="pcoded-overlay-box"></div>
         <div class="pcoded-container navbar-wrapper">
 
-            <nav class="navbar header-navbar pcoded-header">
+            <nav class="navbar header-navbar pcoded-header  bg-dark text-white">
                 <div class="navbar-wrapper">
 
                     <div class="navbar-logo">
@@ -82,7 +82,7 @@
                         <ul class="nav-right">
                             <li class="header-notification">
                                 <a href="#!">
-                                    <i class="ti-bell"></i>
+                                    <i class="ti-bell text-white"></i>
                                     <span class="badge bg-c-pink"></span>
                                 </a>
                                 <ul class="show-notification">
@@ -93,13 +93,13 @@
                                         <!--  Section For Notification  -->
                                 </ul>
                             </li>
-                            <li class="user-profile header-notification">
+                            <li class="user-profile header-notification ">
                                 <a href="#!">
                                    {% for ass in backends.associated %}
 
                                         <img src="{{ass.extra_data.picture.data.url}}" class="img-radius" alt="User-Profile-Image">
                                     {% endfor %}
-                                    <span id="user_name"> </span>
+                                    <span id="user_name" class ="text-white"> </span>
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
@@ -134,7 +134,7 @@
                     </div>
                 </div>
             </nav>
-            <div class="pcoded-main-container">
+            <div class="pcoded-main-container bg-secondary">
                 <div class="pcoded-wrapper">
                     <nav class="pcoded-navbar">
                         <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
@@ -155,15 +155,15 @@
 
                             
                             </div>
-                            <div class="pcoded-search">
+                            <div class="pcoded-search" >
                                 <span class="searchbar-toggle">  </span>
                                 {% comment %} <div class="pcoded-search-box ">
                                     <input type="text" placeholder="Search">
                                     <span class="search-icon"><i class="ti-search" aria-hidden="true"></i></span>
                                 </div> {% endcomment %}
                             </div>
-                            <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">information</div>
-                            <ul class="pcoded-item pcoded-left-item">
+                            <div class="pcoded-navigatio-lavel " data-i18n="nav.category.navigation">information</div>
+                            <ul class="pcoded-item pcoded-left-item ">
                                 <li class="active">
                                     <a href="{% url 'dashboard'%}">
                                         <span class="pcoded-micon"><i class="ti-home"></i><b></b></span>
