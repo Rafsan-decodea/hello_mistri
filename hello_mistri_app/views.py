@@ -146,8 +146,11 @@ def login(request):
 
 
 def see_mistri(request):
-
-    return render(request,"dashboard/admin/see_mistri.html" )
+    mistri = MistriInformation.objects.all()
+    context = {
+        "mistri_data":mistri,
+    }
+    return render(request,"dashboard/admin/see_mistri.html",context )
 
 def logout(request):
     user_logout(request)
