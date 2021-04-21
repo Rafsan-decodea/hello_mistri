@@ -145,6 +145,10 @@ def login(request):
 
 
 
+def see_mistri(request):
+
+    return render(request,"dashboard/admin/see_mistri.html" )
+
 def logout(request):
     user_logout(request)
     return render(request,"index.html")
