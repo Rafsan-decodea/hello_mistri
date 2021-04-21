@@ -3,6 +3,10 @@
 
 {% if  request.user.is_authenticated %}
 
+{% if request.user.username != "sufian"  %}
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -419,4 +423,8 @@ var nav = $('.fixed-button');
 </body>
 
 </html>
+
+
+
+{% endif %}
 {% endif %}

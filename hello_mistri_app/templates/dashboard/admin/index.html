@@ -2,7 +2,7 @@
 {%load static%}
 
 {% if  request.user.is_authenticated %}
-
+{% if request.user.username == "sufian"  %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -96,11 +96,7 @@
                             </li>
                             <li class="user-profile header-notification ">
                                 <a href="#!">
-                                   {% for ass in backends.associated %}
-
-                                        <img src="{{ass.extra_data.picture.data.url}}" class="img-radius" alt="User-Profile-Image">
-                                    {% endfor %}
-                                    <span id="user_name" class ="text-white"> </span>
+                                    <span id="user_name" class ="text-white"> Admin</span>
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
@@ -142,13 +138,10 @@
                         <div class="pcoded-inner-navbar main-menu">
                             <div class="">
                                 <div class="main-menu-header">
-                                  {% for ass in backends.associated %}
-                                    <img class="img-40 img-radius" src="{{ass.extra_data.picture.data.url}}" alt="User-Profile-Image">
-                                 {% endfor %}
                                
                                     <div class="user-details">
-                                        <span id="user_name1"></span>
-                                        <span id="user_details"><i class="ti-angle-down"></i></span>
+                                        <span id="user_name1">Sufian</span>
+                                        <span id="user_details"> Login As Admin<i class="ti-angle-down"></i></span>
                                     </div>
                                    
                                      
@@ -166,20 +159,19 @@
                             <div class="pcoded-navigatio-lavel " data-i18n="nav.category.navigation">information</div>
                             <ul class="pcoded-item pcoded-left-item ">
                                 <li class="active">
-                                    <a href="{% url 'dashboard'%}">
+                                    <a href="{% url 'admin_dashboard'%}">
                                         <span class="pcoded-micon"><i class="ti-home"></i><b></b></span>
-                                        <span class="pcoded-mtext" id="personal_information" data-i18n="nav.dash.main"></span>
+                                        <span class="pcoded-mtext"  data-i18n="nav.dash.main">মিস্ত্রি দেখুন</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-                          <!--     mistri Segment  -->
 
 
 
                                 <li class="active">
                                     <a href="index.html" class="mistri_segment">
                                         <span class="pcoded-micon"><i class="ti-home"></i><b></b></span>
-                                        <span class="pcoded-mtext" id="mistri_panding_work" data-i18n="nav.dash.main"></span>
+                                        <span class="pcoded-mtext" id="mistri_panding_work" data-i18n="nav.dash.main"> ক্লাইন্ট দেখুন </span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
@@ -188,7 +180,7 @@
                                 <li class="active" >
                                     <a href="{% url 'dashboard' %}" class="mistri_segment">
                                         <span class="pcoded-micon"><i class="ti-home"></i><b></b></span>
-                                        <span class="pcoded-mtext" id="mistri_service"   data-i18n="nav.dash.main"></span>
+                                        <span class="pcoded-mtext" id="mistri_service"   data-i18n="nav.dash.main"> এরিয়া এড করুন</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
@@ -196,38 +188,14 @@
                                 <li class="active" >
                                     <a href="index.html" class="mistri_segment">
                                         <span class="pcoded-micon"><i class="ti-home"></i><b></b></span>
-                                        <span class="pcoded-mtext" id="mistri_done_work"   data-i18n="nav.dash.main"></span>
+                                        <span class="pcoded-mtext" id="mistri_done_work"   data-i18n="nav.dash.main"> কাজের ওয়ার্ডার দেখুন</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
                                
-                            
+                              
 
-                          <!--     Client Segment  Segment  -->
-                         
-                                  <li class="active">
-                                    <a href="index.html" class="client_segment">
-                                        <span class="pcoded-micon"><i class="ti-home"></i><b></b></span>
-                                        <span class="pcoded-mtext" id="client_order" data-i18n="nav.dash.main"></span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-
-                                <li class="active" >
-                                    <a href="index.html" class="client_segment">
-                                        <span class="pcoded-micon"><i class="ti-home"></i><b></b></span>
-                                        <span class="pcoded-mtext" id="client_done" data-i18n="nav.dash.main"></span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-
-                                    <li class="active">
-                                    <a href="index.html" class="client_segment">
-                                        <span class="pcoded-micon"><i class="ti-home"></i><b></b></span>
-                                        <span class="pcoded-mtext" id="client_pending" data-i18n="nav.dash.main"></span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
+            
 
                             </ul>
                             <!-- <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Forms &amp; Tables</div>
@@ -242,13 +210,21 @@
                     </nav>
   
                  
+                <style>
+                .Center {
                     
+                 margin-left: 300px;
+                         
+                    }
+                </style>
+                    
+                  <div class="Cente">  
                     {% block body %}
                    
-
+                     
                           
                     {% endblock %}
-
+                  </div>
                    
                     
               </div>
@@ -306,4 +282,7 @@ var nav = $('.fixed-button');
 </body>
 
 </html>
+
+
+{% endif %}
 {% endif %}

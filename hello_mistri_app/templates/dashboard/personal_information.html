@@ -4,21 +4,33 @@
 
 {% block body %}
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-     .Center {
-                    
-         margin-left: 300px;
-                         
-         }
-
-        
- </style>
-                     
- <div class="Center">
+            
+ 
 
 
 <br><br><br><br>
+        <div class="pcoded-content  ">
+                        <div class="pcoded-inner-content ">
+
+                            <!-- Main-body start -->
+                            <div class="main-body ">
+                                <div class="page-wrapper ">
+                                <!-- Page-header start -->
+                                    <div class="page-body">
+
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <!-- Typography card start -->
+                                                <div class="card">
+                                                    <div class="card-header">
+                
+                                                    <div class="card-header-right">   
+                                                                                                                 <i class="icofont icofont-spinner-alt-5"></i>                                                         </div>
+                                                    </div>
+                                                    <div class="card-block typography">
+                                                        <div class="row">
+                                                            <div class="col-sm-12 col-xl-10">
+                                                               
 
    <form id="contact-form-mistri" method="POST"  enctype="multipart/form-data"   onsubmit="onForSubmit(event)">
       {% csrf_token %}
@@ -28,10 +40,10 @@
     <div class="controls">
 
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-10">
                 <div class="form-group">
                     <label for="form_name">আপনার নাম *</label>
-                    <input id="yourname"  type="text" name="name" class="form-control yourname" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required.">
+                    <input id="yourname"  type="text" name="name" class="form-control "  placeholder="Please enter your firstname *" required="required" data-error="Firstname is required.">
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
@@ -44,7 +56,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-10">
                 <div class="form-group">
                     <label for="form_email">আপনি কি কাজ করেন  *</label>
                     <input id="form_email"  name="email" class="form-control" placeholder="Please enter your email *"  data-error="Valid email is required.">
@@ -84,7 +96,7 @@
      
         </div>
         <div class="row">
-             <div class="col-md-6">
+             <div class="col-md-10">
                 <div class="form-group">
                     <label for="form_email">আপনার ঠিকানা  *</label>
                     <textarea  type="text" id="mistri_address"  name="address" class="form-control mistri_address"  required="required" ></textarea>
@@ -100,13 +112,15 @@
 
 
 
-
 </form>
 
 </div>
 
 
- <div class="Center">
+
+
+
+
 
 
 <form id="contact-form-client" method="POST" >
@@ -117,7 +131,7 @@
     <div class="controls">
 
         <div class="row">
-           <div class="col-md-6">
+           <div class="col-md-10">
                 <div class="form-group">
                     <label for="form_lastname">আপনার নাম *</label>
                     <input id="yourname1" type="text" name="name" class="form-control" required>
@@ -136,7 +150,7 @@
           
         </div>
         <div class="row">
-             <div class="col-md-6">
+             <div class="col-md-10">
                 <div class="form-group">
                     <label for="form_email">আপনার ঠিকানা  *</label>
                     <textarea id="address"  name="address" class="form-control" required ></textarea>
@@ -158,6 +172,19 @@
 
 </form>
 
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 
 
