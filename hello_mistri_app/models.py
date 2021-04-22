@@ -19,6 +19,8 @@ class ClientInformation(models.Model):
    user = models.OneToOneField(User, on_delete=models.CASCADE ) # Relation With one to one User Model
    clint_id = models.CharField(max_length=10)
    uid = models.CharField(max_length=1000)
+   profile_link = models.CharField(max_length=100)
+   profile_image_link = models.CharField(max_length=100)
    name = models.CharField(max_length=100)
    phone = PhoneField(blank=False, help_text='Contact phone number')
    address = models.CharField(max_length=500)
@@ -45,6 +47,8 @@ class MistriInformation(models.Model):
        user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)# Relation With one to one User Model And True Nullable
        mistri_id = models.CharField(max_length=10)
        uid = models.CharField(max_length=1000)
+       profile_link = models.CharField(max_length=100)
+       profile_image_link = models.CharField(max_length=100)
        name = models.CharField(max_length=100)
        phone = PhoneField(blank=False,help_text='Contact phone number')
        image = models.ImageField(upload_to='media')
