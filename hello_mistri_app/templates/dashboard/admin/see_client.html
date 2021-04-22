@@ -27,13 +27,12 @@
                                                     </div>
                                                     <div class="card-block typography">
                                                         <div class="row">
-                                                          <div class="col-sm-12 col-xl-10">
+                                                            <div class="col-sm-12 col-xl-10">
 <style>
-  .margin{
-    margin-left: 80px;
-  }
-</style>
-                                                            
+      .margin{
+          margin-left: 80px;
+              }
+</style>                                                               
 <div class="margin">
 <table class="table">
   <thead>
@@ -42,30 +41,28 @@
       <th scope="col">profile</th>
       <th scope="col">Name</th>
       <th scope="col">Phone</th>
-      <th scope="col">Date Of Birth</th>
       <th scope="col">Email</th>
 
     </tr>
   </thead>
-<center><h2>Here mistri List </h2></center>
+<center><h2>Here Client List </h2></center>
 
   <tbody>
-  {% for data  in mistri_data  %}
+  {% for data  in client_data  %}
     
     <tr>
       <th scope="row">{{data.id}}</th>
       <td><img src="{{data.profile_image_link}}" class="rounded-circle" height="50px" width="50px" ></td>
       <td>{{data.name}}</td>
       <td>{{data.phone}}</td>
-      <td>{{data.dob}}</td>
       <td>{{data.email}}</td>
     </tr>
     {% endfor %}
   </tbody>
 </table>
-
-   
 </div>
+   
+
 
 
 

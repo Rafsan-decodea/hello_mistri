@@ -168,6 +168,16 @@ def see_mistri(request):
     }
     return render(request,"dashboard/admin/see_mistri.html",context )
 
+def see_client(request):
+     client = ClientInformation.objects.all()
+     context = {
+         "client_data":client,
+     }
+     return render(request,"dashboard/admin/see_client.html",context )
+
+def add_area(request):
+    return render(request,"dashboard/admin/add_area.html")
+
 def logout(request):
     user_logout(request)
     return render(request,"index.html")

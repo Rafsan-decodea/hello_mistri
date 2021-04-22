@@ -14,6 +14,9 @@ urlpatterns = [
      path(r'admin_login',views.admin_login_page,name="admin_login"),
      path(r'admin_dashboard',views.admin_dashboard,name="admin_dashboard"),
      path(r'see_mistri',views.see_mistri, name="see_mistri"),
+     path(r'see_client',views.see_client,name="see_client"),
+
+     path(r'add_area',views.add_area,name="add_area"), 
      path(r'login',views.login,name="login"),
      path(r'logout', views.logout, name="logout"),
      
