@@ -49,12 +49,12 @@ def insert_clint_information(request):
          u = User.objects.get(pk=request.user.id)# get Authenticate id and insert data to it
          clint_id = 1
          uid  = request.POST.get('client_uid')
-         profile_link = request.POST.get('profile_link')
-         profile_image_link = request.POST.get('profile_image_link')
+         email = request.POST.get('client_email')
+         profile_image_link = request.POST.get('client_profile_image_link')
          name= request.POST.get('name')
          phone= request.POST.get('phone')
          address = request.POST.get('address')
-         c = ClientInformation.objects.create(user=u ,uid=uid ,profile_link=profile_link,profile_image_link=profile_image_link,clint_id=clint_id,name=name,phone=phone,address=address)
+         c = ClientInformation.objects.create(user=u ,uid=uid ,email=email,profile_image_link=profile_image_link,clint_id=clint_id,name=name,phone=phone,address=address)
          c.save()     
         
     return render(request,"dashboard/personal_information.html")
@@ -66,14 +66,17 @@ def update_client_information(request):
        c = ClientInformation.objects.all()
        global cid
        global cuid
+       global memail
        for x in c:
            cid = x.id   
            cuid =x.uid
+           cemail =x.email
+           cplink = x.profile_image_link
        c_data = ClientInformation.objects.get(pk=cid)  
        c_data.clint_id = 1 
        c_data.uid =  cuid
-       c_data.profile_link = request.POST.get('profile_link')
-       c_data.profile_image_link = request.POST.get('profile_image_link')
+       c_data.email = cemail
+       c_data.profile_image_link = cplink
        c_data.name = request.POST.get('name')
        c_data.phone =request.POST.get('phone')
        c_data.address = request.POST.get('address')
@@ -88,14 +91,14 @@ def insert_mistri_information(request):
          u = User.objects.get(pk=request.user.id)
          mistri_id = 2
          uid = request.POST.get('mistri_uid')
-         profile_link = request.POST.get('profile_link')
-         profile_image_link = request.POST.get('profile_image_link')
+         email = request.POST.get('mistri_email')
+         profile_image_link = request.POST.get('mistri_profile_image_link')
          name = request.POST.get('name')
          phone = request.POST.get('number')
          image = request.FILES['image']  
          address = request.POST.get('address')
          dob = request.POST.get('dob')
-         MistriInformation.objects.create(user=u,mistri_id=mistri_id,uid=ui,profile_link=profile_link,profile_image_link=profile_image_link, name=name,phone=phone,image=image,address=address,dob=dob).save()
+         MistriInformation.objects.create(user=u,mistri_id=mistri_id,uid=uid,email=email,profile_image_link=profile_image_link, name=name,phone=phone,image=image,address=address,dob=dob).save()
      return render(request,"dashboard/personal_information.html")
 
 
@@ -106,14 +109,18 @@ def update_mistri_information(request):
           m = MistriInformation.objects.all()
           global mid
           global muid
+          global memail
+          global mplink
           for x in  m:
                mid = x.id
                muid =x.uid
+               memail = x.email
+               mplink = x.profile_image_link
           m_data = MistriInformation.objects.get(pk=mid)
           m_data.mistri_id = 2
           m_data.uid = muid
-          m_data.profile_link = request.POST.get('profile_link')
-          m_data.profile_image_link = request.POST.get('profile_image_link')
+          m_data.email = memail
+          m_data.profile_image_link = mplink
           m_data.name = request.POST.get('name')
           m_data.phone = request.POST.get('number')
           try:

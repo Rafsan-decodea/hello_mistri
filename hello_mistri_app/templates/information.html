@@ -63,14 +63,7 @@
       
 
   </div>
-   
-   <h1>
-   
-  {{ user.social_auth.get.extra_data.email }}
-   
-   {{ user.social_auth.get.extra_data.url }}
-   
-   </h1>
+  
 
   <br><br>
   <div class="border border-light p-3 mb-4">
@@ -94,9 +87,14 @@
 
   
     <input type="text" hidden value="{{ user.social_auth.get.uid }}" name="client_uid">
+    <input type="text" hidden value="{{ user.social_auth.get.extra_data.email }}" name="client_email">
+ {% for ass in backends.associated %}
+    <input type="text" hidden value="{{ass.extra_data.picture.data.url}}" name="client_profile_image_link">
+ {% endfor %}
+
     <label for="Name"><b>Name</b></label>
     <input type="text" value="{{ request.user.first_name }} {{ request.user.last_name }}"  name="name" id="email" required>
-
+    
     <label for="email"><b>Phone Number </b></label>
     <input type="text" placeholder="Enter Phone Number " name="phone" id="email" required>
 
@@ -115,6 +113,12 @@
   {% csrf_token %}
  
   <input type="text" hidden value="{{ user.social_auth.get.uid }}" name="mistri_uid">
+
+   <input type="text" hidden value="{{ user.social_auth.get.extra_data.email }}" name="mistri_email">
+ {% for ass in backends.associated %}
+    <input type="text" hidden value="{{ass.extra_data.picture.data.url}}" name="mistri_profile_image_link">
+ {% endfor %}
+
   <div class="container" >
     <h1>Plese fillup Mistri  information </h1>
     <p>Please fill in this form to create an account.</p>
