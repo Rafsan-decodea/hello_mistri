@@ -176,6 +176,9 @@ def see_client(request):
      return render(request,"dashboard/admin/see_client.html",context )
 
 def add_area(request):
+    area  = City.objects.all()
+    for x in area:
+        print (x.id)
     return render(request,"dashboard/admin/add_area.html")
 
 def logout(request):

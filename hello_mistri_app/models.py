@@ -65,14 +65,23 @@ class MistriInformation(models.Model):
 
 
 
-# class Mistri_UID(models.Model):
-#       mistri = models.ForeignKey(MistriInformation,on_delete=models.CASCADE,primary_key=True)
-#       uid = models.CharField(max_length=1000)
+class City(models.Model):
+       city_name = models.CharField(max_length=100)
+       def __str__(self):
+              return 'City name ==>{0}'.format(self.city_name)
 
-# class Clint_UID(models.Model):
-#       clint = models.ForeignKey(ClientInformation,on_delete=models.CASCADE,primary_key=True)
-#       uid = models.CharField(max_length=1000)
+class Area(models.Model):
+       city_name = models.OneToOneField(City,on_delete=models.CASCADE, null=True, blank=True)
+       area_name = models.CharField(max_length=100)
+       def __str__(self):
+              return 'Area name ==>{0}'.format(self.area_name)
 
+class SubArea(models.Model):
+       area_name = models.OneToOneField(Area,on_delete=models.CASCADE, null=True, blank=True)
+       sub_area_name = models.CharField(max_length=100)
+
+       def __str__(self):
+              return 'Subarea name ==>{0}'.format(self.sub_area_name)
 
 
 
