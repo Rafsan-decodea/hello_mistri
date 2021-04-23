@@ -176,10 +176,15 @@ def see_client(request):
      return render(request,"dashboard/admin/see_client.html",context )
 
 def add_area(request):
-    area  = City.objects.all()
-    for x in area:
-        print (x.id)
-    return render(request,"dashboard/admin/add_area.html")
+    city  = City.objects.all()
+    area = Area.objects.all()
+    sub_area = SubArea.objects.all()
+    context = {
+        "city":city,
+        "area":area,
+        "sub_area":sub_area,
+    }
+    return render(request,"dashboard/admin/add_area.html",context)
 
 
 
