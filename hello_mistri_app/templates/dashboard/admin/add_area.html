@@ -35,35 +35,124 @@
         
  </style> 
 
-<div class="margin">
-
-    <form class="form-inline">
-        
-        <div class="form-group mx-sm-3 mb-2">
-          <label >input city</label>
+<form method="POST" id="add_data">
+  <div class="form-group">
+    <label for="usr">City</label>
+     <input type="text" class="form-control"  name="city" id="usr">
+  </div>
+  <div class="form-group">
+    <label for="usr">Area</label>
+    <input type="text" class="form-control" name="area" id="usr">
+  </div>
+  <div class="form-group">
+    <label for="usr">Sub Area</label>
+    <input type="text" class="form-control"  name="subarea" id="usr">
+  </div>
+  <br>
+  <div class="form-group">
          
-        </div>
-        <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
-        <div class="form-group mx-sm-3 mb-2">
-            <label>Area</label>
-         </div>
-         <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
-         <br> 
-          <div class="form-group mx-sm-3 mb-2">
-            <label>Sub Area</label>
-          </div>
-          <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
-          <div class="form-group mx-sm-3 mb-2">
-        <button type="submit" class="btn btn-primary mb-2">Add</button>
+    <button type="submit" class="btn btn-primary">Add</button>
+  </div>
+</form>
+
+
+
+<button type="button" hidden id="success" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+</button>
+<div class="modal fade " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered bg-success" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-primary" id="exampleModalLongTitle">Status</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-primary" id="show_massage" >
+      
+      </div>
+      
     </div>
-      </form>
-
-
-       
-
-
-
+  </div>
 </div>
+
+
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">City</th>
+      <th scope="col">Area</th>
+      <th scope="col">SubArea</th>
+
+    </tr>
+  </thead>
+<center><h2> Here  City List Client List </h2></center>
+
+  <tbody>
+
+    
+    <tr>
+      <th scope="row"></th>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+
+
+
+
+<script>
+const form = document.getElementById("add_data");
+  form.addEventListener("submit",submitHandler);
+
+  function submitHandler(e)
+  {
+      e.preventDefault();
+      $.djangocsrf( "enable" );
+      $.ajax({
+          type: "POST",
+          url:"{%url 'add_area_request'%}",
+          data:$("#add_data").serialize(),
+          dataType:"json",
+          success: function(data)
+          {
+              if(data.msg == "Success")
+              {
+                  
+                  $(document).ready(function(){
+
+                        $("#success").click();
+                         document.getElementById("show_massage").innerHTML = "Data Save Successfully .. Do Refresh to See Changes";
+                     })
+                   
+              }
+              if(data.msg == "city")
+              {
+                  $(document).ready(function(){
+
+                       $("#success").click(); 
+                       document.getElementById("show_massage").innerHTML = "City Already Exist";
+                  })
+              }
+             
+          }
+      })
+  };
+
+
+
+
+</script>
+
+
+
 
 
 </div>

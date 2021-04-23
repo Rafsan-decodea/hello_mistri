@@ -17,6 +17,7 @@ urlpatterns = [
      path(r'see_client',views.see_client,name="see_client"),
 
      path(r'add_area',views.add_area,name="add_area"), 
+     path(r'add_area_request',views.add_area_request,name="add_area_request"),
      path(r'login',views.login,name="login"),
      path(r'logout', views.logout, name="logout"),
      
