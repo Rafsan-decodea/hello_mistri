@@ -195,13 +195,14 @@ def add_area_request(request):
     #    sub_area = SubArea.objects.all()
        city_name =  request.POST.get("city")
        print(request.POST.get("city"))
-       for x in city:
-           if x.city_name == city_name:
-                return response.JsonResponse({
-                 'msg' :'city',
-              })
-           else:
-              city.create(city_name=city_name).save()
+       city.create(city_name=city_name).save()
+    #    for x in city:
+    #        if x.city_name == city_name:
+    #             return response.JsonResponse({
+    #              'msg' :'city',
+    #           })
+    #        else:
+    #           city.create(city_name=city_name).save()
       
       
        try:

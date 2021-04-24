@@ -90,21 +90,16 @@
     </tr>
   </thead>
 <center><h2> Here  City List Client List </h2></center>
-
+    {% for x in sub_area %}
   <tbody>
 
-    
     <tr>
-      <th scope="row"></th>
-      <td></td>
-      <td></td>
-      <td></td>
+         <th scope="row">{{x.area_name.area_name.city_name}}</th>    
     </tr>
-  
-  </tbody>
+
+ 
+  </tbody> {% endfor %}
 </table>
-
-
 
 
 
