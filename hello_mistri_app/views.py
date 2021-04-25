@@ -177,12 +177,8 @@ def see_client(request):
 
 def add_area(request):
     city  = City.objects.all()
-    area = Area.objects.all()
-    sub_area = SubArea.objects.all()
     context = {
         "city":city,
-        "area":area,
-        "sub_area":sub_area,
     }
     return render(request,"dashboard/admin/add_area.html",context)
 
@@ -190,44 +186,31 @@ def add_area(request):
 
 def add_area_request(request):
     if request.is_ajax():
+     try:
        city = City.objects.all()
-    #    area = Area.objects.all()
-    #    sub_area = SubArea.objects.all()
        city_name =  request.POST.get("city")
        print(request.POST.get("city"))
-       city.create(city_name=city_name).save()
-    #    for x in city:
-    #        if x.city_name == city_name:
-    #             return response.JsonResponse({
-    #              'msg' :'city',
-    #           })
-    #        else:
-    #           city.create(city_name=city_name).save()
-      
-      
-       try:
-           global cityid
-           for x in city:
-               cityid = x.id
-           getcity = City.objects.get(pk=cityid)
-           area_name = request.POST.get("area")
-           Area.objects.create(city_name=getcity,area_name=area_name).save()
-       except:
-              print ("not Trigger Area")
-        
-       try:
-            global areaid
-            for x in Area.objects.all():
-                 areaid = x.id
-            getarea = Area.objects.get(pk=areaid)
-            subarea_name = request.POST.get("subarea")
-            SubArea.objects.create(area_name=getarea, sub_area_name=subarea_name).save()
-       except :
-            print ("not Trigger Sub area")
-       
+       City.objects.create(city_name=city_name).save()
        return response.JsonResponse({
              'msg' :'Success',
-      })
+       })
+     except:
+        print ("City not Trigger")
+     
+     try:
+           city_id1 = request.POST.get("city_id")
+           city_name1 = City.objects.get(pk=city_id1)
+           area_name = request.POST.get("area")
+           subarea_name = request.POST.get("subarea")
+           Area.objects.create(city_name=city_name1,area_name=area_name,sub_area_name=subarea_name).save()
+           return response.JsonResponse({
+             'msg' :'Success',
+           })
+     except:
+              print ("not Trigger Area")
+       
+   
+    
 
 
 

@@ -35,11 +35,58 @@
         
  </style> 
 
+  <div class="border border-light p-3 mb-4">
+
+     
+  <div class="text-center" id="city_btn">
+      <button type="button" class="btn btn-primary btn-lg btn-block">Add City</button>
+    </div>
+      
+
+  </div>
+  
+
+  <br><br>
+  <div class="border border-light p-3 mb-4">
+
+
+    <div class="text-center" id="area_btn">
+      <button type="button" class="btn btn-primary btn-lg btn-block">Add Area</button>
+    </div>
+
+  </div>
+
+
+
+
 <form method="POST" id="add_data">
   <div class="form-group">
     <label for="usr">City</label>
      <input type="text" class="form-control"  name="city" id="usr">
   </div>
+  <br>
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary">Add</button>
+    </div>
+</form>
+
+
+
+<form method="POST" id="add_data2">
+
+
+
+ <label for="cars">Select City From There </label><br>
+  <select name="city_id" id="cars">
+  {% for data in city %}
+    <option value="{{data.id}}">{{data.city_name}}</option>
+  {% endfor %}
+  </select>
+
+
+<br><br><br>
+
+
   <div class="form-group">
     <label for="usr">Area</label>
     <input type="text" class="form-control" name="area" id="usr">
@@ -50,10 +97,11 @@
   </div>
   <br>
   <div class="form-group">
-         
-    <button type="submit" class="btn btn-primary">Add</button>
+       <button type="submit" class="btn btn-primary">Add</button>    
+  
   </div>
-</form>
+  </form>
+
 
 
 
@@ -77,8 +125,6 @@
 </div>
 
 
-
-
 <table class="table">
   <thead>
     <tr>
@@ -89,21 +135,62 @@
 
     </tr>
   </thead>
-<center><h2> Here  City List Client List </h2></center>
-    {% for x in sub_area %}
+<center><h2>Here Here City List </h2></center>
+
   <tbody>
-
+  {% for data  in city  %}
+    
     <tr>
-         <th scope="row">{{x.area_name.area_name.city_name}}</th>    
+      <th scope="row">{{data.id}}</th>
+      <td>{{data.city_name}}</td>
+      <td>{{data.area_name}}</td>
+      <td>{{data.sub_area_name}}</td>
     </tr>
-
- 
-  </tbody> {% endfor %}
+    {% endfor %}
+  </tbody>
 </table>
+
+<script type="text/javascript" src="{%static 'assets/js/jquery/jquery.min.js'%}"></script>
+
+<script>
+
+$(document).ready(function(){
+
+    $("#add_data").hide();
+    $("#add_data2").hide();
+
+
+    $("#city_btn").click(function(){
+       
+          $("#add_data").show();
+          $("#add_data2").hide();
+
+    });
+
+       $("#area_btn").click(function(){
+       
+          $("#add_data").hide();
+          $("#add_data2").show();
+
+    });
+
+
+
+
+  
+
+});
+
+
+</script>
 
 
 
 <script>
+
+
+
+
 const form = document.getElementById("add_data");
   form.addEventListener("submit",submitHandler);
 
@@ -124,7 +211,7 @@ const form = document.getElementById("add_data");
                   $(document).ready(function(){
 
                         $("#success").click();
-                         document.getElementById("show_massage").innerHTML = "Data Save Successfully .. Do Refresh to See Changes";
+                         document.getElementById("show_massage").innerHTML = "City Save Successfully .. Do Refresh to See Changes";
                      })
                    
               }
@@ -141,6 +228,44 @@ const form = document.getElementById("add_data");
       })
   };
 
+
+const form2 = document.getElementById("add_data2");
+  form2.addEventListener("submit",submitHandlerr);
+
+
+function submitHandlerr(e)
+  {
+      e.preventDefault();
+      $.djangocsrf( "enable" );
+      $.ajax({
+          type: "POST",
+          url:"{%url 'add_area_request'%}",
+          data:$("#add_data2").serialize(),
+          dataType:"json",
+          success: function(data)
+          {
+              if(data.msg == "Success")
+              {
+                  
+                  $(document).ready(function(){
+
+                        $("#success").click();
+                         document.getElementById("show_massage").innerHTML = "Area Save Successfully .. Do Refresh to See Changes";
+                     })
+                   
+              }
+              if(data.msg == "city")
+              {
+                  $(document).ready(function(){
+
+                       $("#success").click(); 
+                       document.getElementById("show_massage").innerHTML = "City Already Exist";
+                  })
+              }
+             
+          }
+      })
+  };
 
 
 

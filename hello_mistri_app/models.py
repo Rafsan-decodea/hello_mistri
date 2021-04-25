@@ -33,12 +33,7 @@ class ClientInformation(models.Model):
 
 
 
-# class Admin(models.Model):
-#        id = models.AutoField(primary_key=True)
-#        admin_id = models.IntegerField()
-#        name = models.CharField(max_length=100)
-#        def __str__(self):
-#             return 'Admin Name ==> {0}'.format(self.name)
+
 
 
 
@@ -71,18 +66,9 @@ class City(models.Model):
               return 'City name ==>{0}'.format(self.city_name)
 
 class Area(models.Model):
-       city_name = models.OneToOneField(City,on_delete=models.CASCADE, null=True, blank=True)
+       city_name =  models.OneToOneField(City, on_delete=models.CASCADE)
        area_name = models.CharField(max_length=100)
-       def __str__(self):
-              return 'Area name ==>{0}'.format(self.area_name)
-
-class SubArea(models.Model):
-       area_name = models.OneToOneField(Area,on_delete=models.CASCADE, null=True, blank=True)
        sub_area_name = models.CharField(max_length=100)
-
        def __str__(self):
-              return 'Subarea name ==>{0}'.format(self.sub_area_name)
-
-
-
+              return 'Area name ==>{0} {1}'.format(self.area_name,self.sub_area_name)
 
