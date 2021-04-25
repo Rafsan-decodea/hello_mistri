@@ -385,11 +385,14 @@ var nav = $('.fixed-button');
                     document.getElementById("user_name1").innerHTML = "{{evarage.name}}";
 
 
+
                    // This Segment Use For MIstri information Show
                    document.getElementById("yourname").value = "{{evarage.name}}";
                    document.getElementById("yourmobilenumber").value = "{{evarage.phone}}";
                    document.getElementById("dateofbirth").value = "{{evarage.dob}}";
-                   document.getElementById("mistri_address").value = "{{evarage.address}}";
+                   document.getElementById("city_name").innerHTML = "{{evarage.city}}";
+                   document.getElementById("area_name").innerHTML = "{{evarage.area}}";
+                   document.getElementById("sub_area_name").innerHTML = "{{evarage.sub_area}}";
                    document.getElementById("mistri_uid").value = "{{evarage.uid}}"
 
                    $("#mistri_dob_image").attr('src','{{evarage.image.url}}');

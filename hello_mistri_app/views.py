@@ -18,10 +18,14 @@ def index(request):
 def dashboard(request): 
      mistri = MistriInformation.objects.all()
      client = ClientInformation.objects.all()
+     city  = City.objects.all()
+     area =  Area.objects.all()
 
      context = {
         "mistri_data":mistri,
         "client_data":client,
+        "city":city,
+        "area":area,
        }
    
      return render(request ,"dashboard/personal_information.html",context)
