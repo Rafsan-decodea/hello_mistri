@@ -48,7 +48,10 @@ class MistriInformation(models.Model):
        phone = PhoneField(blank=False,help_text='Contact phone number')
        image = models.ImageField(upload_to='media')
        dob = models.CharField(max_length=500)
-       address =models.CharField(max_length=500)
+       city= models.CharField(max_length=100)
+       area = models.CharField(max_length=200)
+       sub_area =models.CharField(max_length=200)
+       
 
 
 
@@ -66,7 +69,7 @@ class City(models.Model):
               return 'City name ==>{0}'.format(self.city_name)
 
 class Area(models.Model):
-       city_name =  models.OneToOneField(City, on_delete=models.CASCADE)
+       city_name =  models.ForeignKey(City, on_delete=models.CASCADE)
        area_name = models.CharField(max_length=100)
        sub_area_name = models.CharField(max_length=100)
        def __str__(self):

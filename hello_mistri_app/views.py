@@ -33,13 +33,16 @@ def information(request):
     #{{user.social_auth.get.provider}} {{ user.social_auth.get.uid }}
     mistri = MistriInformation.objects.all()
     client = ClientInformation.objects.all()
-    
+    city  = City.objects.all()
+    area =  Area.objects.all()
     # user = User.objects.get(id=request.user.id)
     # mistri = user.mistriinformation_set.all()
     # client = user.clientinformation_set.all()
     context ={
         "mistri_data":mistri,
         "client_data":client,
+        "city":city,
+        "area":area,
     }
     return render(request,"information.html",context)
 
@@ -96,9 +99,11 @@ def insert_mistri_information(request):
          name = request.POST.get('name')
          phone = request.POST.get('number')
          image = request.FILES['image']  
-         address = request.POST.get('address')
          dob = request.POST.get('dob')
-         MistriInformation.objects.create(user=u,mistri_id=mistri_id,uid=uid,email=email,profile_image_link=profile_image_link, name=name,phone=phone,image=image,address=address,dob=dob).save()
+         city = request.POST.get('city')
+         area = request.POST.get('area')
+         sub_area = request.POST.get('sub_area')
+         MistriInformation.objects.create(user=u,mistri_id=mistri_id,uid=uid,email=email,profile_image_link=profile_image_link, name=name,phone=phone,image=image,dob=dob,city=city,area=area,sub_area=sub_area).save()
      return render(request,"dashboard/personal_information.html")
 
 
@@ -175,50 +180,42 @@ def see_client(request):
      }
      return render(request,"dashboard/admin/see_client.html",context )
 
-def add_area(request):
+def show_area(request):
     city  = City.objects.all()
+    area =  Area.objects.all()
     context = {
         "city":city,
+        "area" :area,
     }
     return render(request,"dashboard/admin/add_area.html",context)
 
 
 
-def add_area_request(request):
+def add_city(request):
     if request.is_ajax():
-     try:
        city = City.objects.all()
        city_name =  request.POST.get("city")
        print(request.POST.get("city"))
        City.objects.create(city_name=city_name).save()
-       return response.JsonResponse({
+    return response.JsonResponse({
              'msg' :'Success',
-       })
-     except:
-        print ("City not Trigger")
-     
-     try:
+           })
+    
+           
+
+def add_area(request):
+    if request.is_ajax():
            city_id1 = request.POST.get("city_id")
            city_name1 = City.objects.get(pk=city_id1)
            area_name = request.POST.get("area")
            subarea_name = request.POST.get("subarea")
            Area.objects.create(city_name=city_name1,area_name=area_name,sub_area_name=subarea_name).save()
-           return response.JsonResponse({
+    return response.JsonResponse({
              'msg' :'Success',
-           })
-     except:
-              print ("not Trigger Area")
-       
+            })
    
-    
-
-
-
 
         
-
-
-
 
 
 def logout(request):

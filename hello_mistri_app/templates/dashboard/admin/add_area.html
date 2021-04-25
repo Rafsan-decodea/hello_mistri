@@ -138,13 +138,14 @@
 <center><h2>Here Here City List </h2></center>
 
   <tbody>
-  {% for data  in city  %}
+  {% for data  in area  %}
     
     <tr>
       <th scope="row">{{data.id}}</th>
-      <td>{{data.city_name}}</td>
+      <td>{{data.city_name.city_name}}</td>
       <td>{{data.area_name}}</td>
       <td>{{data.sub_area_name}}</td>
+  
     </tr>
     {% endfor %}
   </tbody>
@@ -200,7 +201,7 @@ const form = document.getElementById("add_data");
       $.djangocsrf( "enable" );
       $.ajax({
           type: "POST",
-          url:"{%url 'add_area_request'%}",
+          url:"{%url 'add_city'%}",
           data:$("#add_data").serialize(),
           dataType:"json",
           success: function(data)
@@ -239,7 +240,7 @@ function submitHandlerr(e)
       $.djangocsrf( "enable" );
       $.ajax({
           type: "POST",
-          url:"{%url 'add_area_request'%}",
+          url:"{%url 'add_area'%}",
           data:$("#add_data2").serialize(),
           dataType:"json",
           success: function(data)
