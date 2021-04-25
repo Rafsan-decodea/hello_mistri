@@ -92,13 +92,13 @@
     <input type="text" hidden value="{{ass.extra_data.picture.data.url}}" name="client_profile_image_link">
  {% endfor %}
 
-    <label for="Name"><b>Name</b></label>
+    <label for="Name"><b>আপনার নাম দিন</b></label>
     <input type="text" value="{{ request.user.first_name }} {{ request.user.last_name }}"  name="name" id="email" required>
     
-    <label for="email"><b>Phone Number </b></label>
+    <label for="email"><b>।আপনার ফোন নম্বর দিন </b></label>
     <input type="text" placeholder="Enter Phone Number " name="phone" id="email" required>
 
-    <label for="inputlg">address</label>
+    <label for="inputlg">আপনার লোকেশন দিন</label>
     <input class="form-control input-lg" id="inputlg" name="address" type="text" required>
 
 
@@ -124,20 +124,20 @@
     <p>Please fill in this form to create an account.</p>
     <hr>
 
-    <label for="Name"><b>Name  </b></label>
+    <label for="Name"><b>আপনার নাম দিন </b></label>
     <input type="text" value="{{ request.user.first_name }} {{ request.user.last_name }}"  name="name" id="email" required>
     
-    <label for="phone"><b>Phone Number </b></label>
+    <label for="phone"><b>আপনার ফোন নাম্বার দিন </b></label>
     <input type="text" placeholder="phone" name="number" id="email" required>
 
-    <label class="form-label" for="customFile">Upload image </label>
+    <label class="form-label" for="customFile">আপনার আইডি কার্ড  এর ছবি দিন </label>
     <input type="file" class="form-control" name="image" id="customFile" required />
 <br><br>
-    <label class="form-label" for="customFile">date of Birth </label>
+    <label class="form-label" for="customFile">আপনার জন্ম তারিখ দিন </label>
     <input type="date" class="form-control" id="customFile"  name="dob" required />
 
  <br><br>
- <label for="inputlg">address</label>
+ <label for="inputlg">আপনার  কোন এরিয়াতে Service  দিতে চান </label>
  <input class="form-control input-lg" id="inputlg" name="address" type="text" required>
     <button type="submit" class="registerbtn">Next</button>
 
