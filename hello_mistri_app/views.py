@@ -219,7 +219,9 @@ def add_area(request):
             })
    
 
-        
+def show_service(request):
+
+    return render(request,"dashboard/admin/add_service.html")        
 
 
 def logout(request):
