@@ -61,7 +61,10 @@ def insert_clint_information(request):
          name= request.POST.get('name')
          phone= request.POST.get('phone')
          address = request.POST.get('address')
-         c = ClientInformation.objects.create(user=u ,uid=uid ,email=email,profile_image_link=profile_image_link,clint_id=clint_id,name=name,phone=phone,address=address)
+         city = request.POST.get('city')
+         area = request.POST.get('area')
+         sub_area = request.POST.get('sub_area')
+         c = ClientInformation.objects.create(user=u ,uid=uid ,email=email,profile_image_link=profile_image_link,clint_id=clint_id,name=name,phone=phone,address=address,city=city,area=area,sub_area=sub_area)
          c.save()     
         
     return render(request,"dashboard/personal_information.html")
@@ -107,7 +110,8 @@ def insert_mistri_information(request):
          city = request.POST.get('city')
          area = request.POST.get('area')
          sub_area = request.POST.get('sub_area')
-         MistriInformation.objects.create(user=u,mistri_id=mistri_id,uid=uid,email=email,profile_image_link=profile_image_link, name=name,phone=phone,image=image,dob=dob,city=city,area=area,sub_area=sub_area).save()
+         address = request.POST.get('address')
+         MistriInformation.objects.create(user=u,mistri_id=mistri_id,uid=uid,email=email,profile_image_link=profile_image_link, name=name,phone=phone,image=image,dob=dob,city=city,area=area,sub_area=sub_area,address=address).save()
      return render(request,"dashboard/personal_information.html")
 
 

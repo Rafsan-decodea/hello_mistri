@@ -77,6 +77,10 @@
   
  
 
+
+
+ 
+
 <form  id="ClintAccount" method="POST" action="/insert_client"  >
   {% csrf_token %}
   <div class="container" >
@@ -101,6 +105,31 @@
     <label for="inputlg">আপনার লোকেশন দিন</label>
     <input class="form-control input-lg" id="inputlg" name="address" type="text" required>
 
+
+ <label for="inputlg">আপনার  কোন এরিয়াতে Service  নিতে চান </label>
+ <br><br>
+ <label for="cars">আপনার সিটি র্নিবাচন করুন </label><br>
+ <select name="city" id="cars">
+ {% for data in city %}
+   <option value="{{data.city_name}}">{{data.city_name}}</option>
+ {% endfor %}
+ </select>
+ <br><br>
+ <label for="cars"> আপনার এরিয়া নির্বাচন করুন  </label><br>
+ <select name="area" id="cars">
+ {% for data in area %}
+   <option value="{{data.area_name}}">{{data.area_name}}</option>
+ {% endfor %}
+ </select>
+ <br><br>
+
+ <label for="cars"> আপনার সাব এরিয়া নির্বাচন করুন  </label><br>
+
+ <select name="sub_area" id="cars">
+  {% for data in area %}
+    <option value="{{data.sub_area_name}}">{{data.sub_area_name}}</option>
+  {% endfor %}
+  </select>
 
     <button type="submit" class="registerbtn">Next</button>
   </div>
@@ -161,7 +190,10 @@
     <option value="{{data.sub_area_name}}">{{data.sub_area_name}}</option>
   {% endfor %}
   </select>
-   
+   <br><br>
+   <label for="inputlg">আপনার লোকেশন দিন</label>
+   <input class="form-control input-lg" id="inputlg" name="address" type="text" required>
+
   
  <button type="submit" class="registerbtn">Next</button>
 

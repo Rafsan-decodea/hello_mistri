@@ -24,6 +24,9 @@ class ClientInformation(models.Model):
    name = models.CharField(max_length=100)
    phone = PhoneField(blank=False, help_text='Contact phone number')
    address = models.CharField(max_length=500)
+   city= models.CharField(max_length=100)
+   area = models.CharField(max_length=200)
+   sub_area =models.CharField(max_length=200)
 
 
    
@@ -51,6 +54,7 @@ class MistriInformation(models.Model):
        city= models.CharField(max_length=100)
        area = models.CharField(max_length=200)
        sub_area =models.CharField(max_length=200)
+       address = models.CharField(max_length=200)
        
 
 
@@ -88,3 +92,14 @@ class SubService(models.Model):
 
        def __str__(self):
               return 'Sub Service name ==>{0}'.format(self.sub_service_name)
+
+
+
+class MainWork(models.Model):
+       main_work_name = models.CharField(max_length=100)
+       def __str__(self):
+              return 'Main Work ==>{0}'.format(self.main_work)
+       
+class SubWork(models.Model):
+       main_work = models.ForeignKey(MainWork, on_delete=models.CASCADE)
+       sub_work_name =  models.CharField(max_length=100)
