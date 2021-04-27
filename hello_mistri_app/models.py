@@ -75,31 +75,47 @@ class City(models.Model):
 class Area(models.Model):
        city_name =  models.ForeignKey(City, on_delete=models.CASCADE)
        area_name = models.CharField(max_length=100)
-       sub_area_name = models.CharField(max_length=100)
-       def __str__(self):
-              return 'Area name ==>{0} {1}'.format(self.area_name,self.sub_area_name)
-
-
-
-class Service(models.Model):
-       service_name = models.CharField(max_length=100)
-       def __str__(self):
-              return 'Service name ==>{0}'.format(self.service_name)
-
-class SubService(models.Model):
-       service_name =  models.ForeignKey(Service, on_delete=models.CASCADE)
-       sub_service_name = models.CharField(max_length=100)
-
-       def __str__(self):
-              return 'Sub Service name ==>{0}'.format(self.sub_service_name)
-
-
-
-class MainWork(models.Model):
-       main_work_name = models.CharField(max_length=100)
-       def __str__(self):
-              return 'Main Work ==>{0}'.format(self.main_work)
        
-class SubWork(models.Model):
-       main_work = models.ForeignKey(MainWork, on_delete=models.CASCADE)
-       sub_work_name =  models.CharField(max_length=100)
+       def __str__(self):
+              return 'Area name ==>{0}'.format(self.area_name)
+
+
+class SubArea(models.Model):
+       area_name =  models.ForeignKey(Area, on_delete=models.CASCADE)
+       sub_area_name = models.CharField(max_length=100)
+       
+       def __str__(self):
+              return 'Sub Area name ==>{0}'.format(self.area_name)
+
+
+
+
+
+
+
+
+
+
+
+# class Service(models.Model):
+#        service_name = models.CharField(max_length=100)
+#        def __str__(self):
+#               return 'Service name ==>{0}'.format(self.service_name)
+
+# class SubService(models.Model):
+#        service_name =  models.ForeignKey(Service, on_delete=models.CASCADE)
+#        sub_service_name = models.CharField(max_length=100)
+
+#        def __str__(self):
+#               return 'Sub Service name ==>{0}'.format(self.sub_service_name)
+
+
+
+# class MainWork(models.Model):
+#        main_work_name = models.CharField(max_length=100)
+#        def __str__(self):
+#               return 'Main Work ==>{0}'.format(self.main_work)
+       
+# class SubWork(models.Model):
+#        main_work = models.ForeignKey(MainWork, on_delete=models.CASCADE)
+#        sub_work_name =  models.CharField(max_length=100)

@@ -5,8 +5,12 @@ admin.site.register(ClientInformation)
 admin.site.register(MistriInformation)
 admin.site.register(City)
 admin.site.register(Area)
-admin.site.register(Service)
-admin.site.register(SubService)
+admin.site.register(SubArea)
+
+
+
+# admin.site.register(Service)
+# admin.site.register(SubService)
 
 # admin.site.register(Admin)
 # admin.site.register(Mistri_UID)

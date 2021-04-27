@@ -79,7 +79,7 @@
 
 
 
- 
+
 
 <form  id="ClintAccount" method="POST" action="/insert_client"  >
   {% csrf_token %}
@@ -96,13 +96,13 @@
     <input type="text" hidden value="{{ass.extra_data.picture.data.url}}" name="client_profile_image_link">
  {% endfor %}
 
-    <label for="Name"><b>আপনার নাম দিন</b></label>
+    <label for="Name"><b>আপনার নাম </b></label>
     <input type="text" value="{{ request.user.first_name }} {{ request.user.last_name }}"  name="name" id="email" required>
     
-    <label for="email"><b>।আপনার ফোন নম্বর দিন </b></label>
+    <label for="email"><b>মোবাইল নাম্বার  </b></label>
     <input type="text" placeholder="Enter Phone Number " name="phone" id="email" required>
 
-    <label for="inputlg">আপনার লোকেশন দিন</label>
+    <label for="inputlg">আপনার আপনার ঠিকানা দিন</label>
     <input class="form-control input-lg" id="inputlg" name="address" type="text" required>
 
 
@@ -153,29 +153,23 @@
     <p>Please fill in this form to create an account.</p>
     <hr>
 
-    <label for="Name"><b>আপনার নাম দিন </b></label>
+    <label for="Name"><b>আপনার নাম  </b></label>
     <input type="text" value="{{ request.user.first_name }} {{ request.user.last_name }}"  name="name" id="email" required>
     
-    <label for="phone"><b>আপনার ফোন নাম্বার দিন </b></label>
+    <label for="phone"><b>মোবাইল নাম্বার  </b></label>
     <input type="text" placeholder="phone" name="number" id="email" required>
 
-    <label class="form-label" for="customFile">আপনার আইডি কার্ড  এর ছবি দিন </label>
-    <input type="file" class="form-control" name="image" id="customFile" required />
 <br><br>
-    <label class="form-label" for="customFile">আপনার জন্ম তারিখ দিন </label>
-    <input type="date" class="form-control" id="customFile"  name="dob" required />
-
+ <label for="inputlg">  আপনি কোন Service টি দিতে চান </label>
  <br><br>
- <label for="inputlg">আপনার  কোন এরিয়াতে Service  দিতে চান </label>
- <br><br>
- <label for="cars">আপনার সিটি র্নিবাচন করুন </label><br>
+ <label for="cars"> সার্ভিস ক্যাটাগরি </label><br>
  <select name="city" id="cars">
  {% for data in city %}
    <option value="{{data.city_name}}">{{data.city_name}}</option>
  {% endfor %}
  </select>
  <br><br>
- <label for="cars"> আপনার এরিয়া নির্বাচন করুন  </label><br>
+ <label for="cars">  সার্ভিস </label><br>
  <select name="area" id="cars">
  {% for data in area %}
    <option value="{{data.area_name}}">{{data.area_name}}</option>
@@ -183,7 +177,42 @@
  </select>
  <br><br>
 
- <label for="cars"> আপনার সাব এরিয়া নির্বাচন করুন  </label><br>
+ <label for="cars"> আপনার দক্ষতা  </label><br>
+
+ <select name="sub_area" id="cars">
+ 
+    <option value="high_expart">অতি দক্ষ</option>
+    <option value="mid_expart">দক্ষ</option>
+    <option value="normal_expart"> স্বাভাবিক</option>
+
+  </select>
+  
+   <br><br>
+   <label for="inputlg"> আপনার কাজ ও অভিঞ্জতা সম্পর্কে লিখুন  </label>
+   <input class="form-control input-lg" id="inputlg" name="address" type="text" required>
+
+
+
+
+ <br><br>
+ <label for="inputlg">  আপনার বর্তমান ঠিকানা </label>
+ <br><br>
+ <label for="cars"> সিটি র্নিবাচন করুন </label><br>
+ <select name="city" id="cars">
+ {% for data in city %}
+   <option value="{{data.city_name}}">{{data.city_name}}</option>
+ {% endfor %}
+ </select>
+ <br><br>
+ <label for="cars">  এরিয়া নির্বাচন করুন  </label><br>
+ <select name="area" id="cars">
+ {% for data in area %}
+   <option value="{{data.area_name}}">{{data.area_name}}</option>
+ {% endfor %}
+ </select>
+ <br><br>
+
+ <label for="cars"> সাব এরিয়া নির্বাচন করুন  </label><br>
 
  <select name="sub_area" id="cars">
   {% for data in area %}
@@ -191,10 +220,41 @@
   {% endfor %}
   </select>
    <br><br>
-   <label for="inputlg">আপনার লোকেশন দিন</label>
+   <label for="inputlg">এলাকা/ ব্লক/ রোড/বাড়ি নাম ও নাম্বার/ ফ্লাট নং </label>
    <input class="form-control input-lg" id="inputlg" name="address" type="text" required>
+   <br><br>
+
+
+
+    <label for="phone"><b> ইমার্জেন্সি  যোগাযোগের ব্যাক্তি  </b></label>
+    
+    <br><br>
+    
+ <select name="area" id="cars">
+
+   <option value="">পিতা</option>
+   <option value="">মাতা</option>
+    <option value="">স্ত্রী</option>
+     <option value="">ভাই</option>
+      <option value="">বোন</option>
+
+ </select>
+  <br><br>
+    <label for="phone"><b> ইমার্জেন্সি ব্যাক্তির  নাম </b></label>
+    <input type="text" placeholder="phone" name="number" id="email" required>
+    <br>
+     <label for="phone"><b> ইমার্জেন্সি  ব্যাক্তির নাম্বার  </b></label>
+       <input type="text" placeholder="phone" name="number" id="email" required>
+     <br><br>
+      <label class="form-label" for="customFile"> আইডি কার্ডের ছবি আপলোড   </label>
+    <input type="file" class="form-control" name="image" id="customFile" required />
+
+<br><br>
+    <label class="form-label" for="customFile">জন্ম তারিখ </label>
+    <input type="date" class="form-control" id="customFile"  name="dob" required />
 
   
+
  <button type="submit" class="registerbtn">Next</button>
 
 </form>

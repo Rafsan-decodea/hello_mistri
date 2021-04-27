@@ -222,6 +222,10 @@ def add_area(request):
              'msg' :'Success',
             })
    
+def add_subarea(request):
+    if request.is_ajax():
+        areaid1 = request.POST.get("area_id")
+        
 
 def show_service(request):
 
