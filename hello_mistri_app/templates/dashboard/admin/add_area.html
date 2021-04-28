@@ -56,6 +56,17 @@
 
   </div>
 
+  <br><br>
+
+    <div class="border border-light p-3 mb-4">
+
+
+    <div class="text-center" id="sub_area_btn">
+      <button type="button" class="btn btn-primary btn-lg btn-block">Add sub Aera</button>
+    </div>
+
+  </div>
+
 
 
 
@@ -91,10 +102,7 @@
     <label for="usr">Area</label>
     <input type="text" class="form-control" name="area" id="usr">
   </div>
-  <div class="form-group">
-    <label for="usr">Sub Area</label>
-    <input type="text" class="form-control"  name="subarea" id="usr">
-  </div>
+
   <br>
   <div class="form-group">
        <button type="submit" class="btn btn-primary">Add</button>    
@@ -103,6 +111,26 @@
   </form>
 
 
+
+<form  method="POST" id="add_data3">
+ <label for="cars">Select Area From There </label><br>
+<select name="sub_area_id" id="cars">
+  {% for data in area %}
+    <option value="{{data.id}}">{{data.area_name}}</option>
+  {% endfor %}
+ </select>
+
+    <div class="form-group">
+    <label for="usr">Sub Area</label>
+    <input type="text" class="form-control"  name="subarea" id="usr">
+  </div>
+
+   <div class="form-group">
+       <button type="submit" class="btn btn-primary">Add</button>    
+  
+  </div>
+
+</form>
 
 
 <button type="button" hidden id="success" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
@@ -138,12 +166,12 @@
 <center><h2>Here Here City List </h2></center>
 
   <tbody>
-  {% for data  in area  %}
+  {% for data  in sub_area  %}
     
     <tr>
       <th scope="row">{{data.id}}</th>
-      <td>{{data.city_name.city_name}}</td>
-      <td>{{data.area_name}}</td>
+      <td>{{data.area_name.city_name.city_name}}</td>
+      <td>{{data.area_name.area_name}}</td>
       <td>{{data.sub_area_name}}</td>
   
     </tr>
@@ -159,12 +187,14 @@ $(document).ready(function(){
 
     $("#add_data").hide();
     $("#add_data2").hide();
+    $("#add_data3").hide();
 
 
     $("#city_btn").click(function(){
        
           $("#add_data").show();
           $("#add_data2").hide();
+            $("#add_data3").hide();
 
     });
 
@@ -172,8 +202,19 @@ $(document).ready(function(){
        
           $("#add_data").hide();
           $("#add_data2").show();
+            $("#add_data3").hide();
 
     });
+
+    $("#sub_area_btn").click(function(){
+
+       
+          $("#add_data").hide();
+          $("#add_data2").hide();
+          $("#add_data3").show();
+        
+
+   });
 
 
 
@@ -267,6 +308,46 @@ function submitHandlerr(e)
           }
       })
   };
+
+
+  const form3 = document.getElementById("add_data3");
+  form3.addEventListener("submit",submitHandlerrr);
+
+
+function submitHandlerrr(e)
+  {
+      e.preventDefault();
+      $.djangocsrf( "enable" );
+      $.ajax({
+          type: "POST",
+          url:"{%url 'add_sub_area'%}",
+          data:$("#add_data3").serialize(),
+          dataType:"json",
+          success: function(data)
+          {
+              if(data.msg == "Success")
+              {
+                  
+                  $(document).ready(function(){
+
+                        $("#success").click();
+                         document.getElementById("show_massage").innerHTML = "Sub area Save Successfully .. Do Refresh to See Changes";
+                     })
+                   
+              }
+              if(data.msg == "city")
+              {
+                  $(document).ready(function(){
+
+                       $("#success").click(); 
+                       document.getElementById("show_massage").innerHTML = "City Already Exist";
+                  })
+              }
+             
+          }
+      })
+  };
+
 
 
 

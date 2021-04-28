@@ -19,6 +19,7 @@ urlpatterns = [
      path(r'show_area',views.show_area,name="show_area"), 
      path(r'add_city',views.add_city,name="add_city"),
      path(r'add_area',views.add_area,name="add_area"),
+     path(r'add_sub_area',views.add_subarea,name="add_sub_area"),
 
      path(r'show_service',views.show_service,name="show_service"),
      path(r'login',views.login,name="login"),

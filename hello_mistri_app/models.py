@@ -55,7 +55,18 @@ class MistriInformation(models.Model):
        area = models.CharField(max_length=200)
        sub_area =models.CharField(max_length=200)
        address = models.CharField(max_length=200)
+
+       ability = models.CharField(max_length=100)
+       expiriance = models.CharField(max_length=200)
+       emargency = models.CharField(max_length=100)
+       emargency_name = models.CharField(max_length=200)
+       emargency_number =  PhoneField(blank=False,help_text='emargency_contuct')
+       education = models.CharField(max_length=200)
+       is_bick = models.CharField(max_length=20)
+       is_instrument = models.CharField(max_length=20)
        
+
+
 
 
 
@@ -86,6 +97,7 @@ class SubArea(models.Model):
        
        def __str__(self):
               return 'Sub Area name ==>{0}'.format(self.area_name)
+              
 
 
 

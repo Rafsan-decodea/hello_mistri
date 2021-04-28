@@ -20,12 +20,14 @@ def dashboard(request):
      client = ClientInformation.objects.all()
      city  = City.objects.all()
      area =  Area.objects.all()
+     sub_area = SubArea.objects.all()
 
      context = {
         "mistri_data":mistri,
         "client_data":client,
         "city":city,
         "area":area,
+        "sub_area":sub_area,
        }
    
      return render(request ,"dashboard/personal_information.html",context)
@@ -39,6 +41,7 @@ def information(request):
     client = ClientInformation.objects.all()
     city  = City.objects.all()
     area =  Area.objects.all()
+    sub_area = SubArea.objects.all()
     # user = User.objects.get(id=request.user.id)
     # mistri = user.mistriinformation_set.all()
     # client = user.clientinformation_set.all()
@@ -47,6 +50,7 @@ def information(request):
         "client_data":client,
         "city":city,
         "area":area,
+        "sub_area":sub_area,
     }
     return render(request,"information.html",context)
 
@@ -191,9 +195,13 @@ def see_client(request):
 def show_area(request):
     city  = City.objects.all()
     area =  Area.objects.all()
+    sub_area = SubArea.objects.all()
+  
     context = {
         "city":city,
         "area" :area,
+        "sub_area":sub_area,
+       
     }
     return render(request,"dashboard/admin/add_area.html",context)
 
@@ -214,18 +222,25 @@ def add_city(request):
 def add_area(request):
     if request.is_ajax():
            city_id1 = request.POST.get("city_id")
+           print ("====>",city_id1)
            city_name1 = City.objects.get(pk=city_id1)
            area_name = request.POST.get("area")
-           subarea_name = request.POST.get("subarea")
-           Area.objects.create(city_name=city_name1,area_name=area_name,sub_area_name=subarea_name).save()
+           print ("====>",area_name)
+           Area.objects.create(city_name=city_name1,area_name=area_name).save()
     return response.JsonResponse({
              'msg' :'Success',
             })
-   
+ 
+
 def add_subarea(request):
-    if request.is_ajax():
-        areaid1 = request.POST.get("area_id")
-        
+      if request.is_ajax():
+          area_id= request.POST.get("sub_area_id")
+          area_name = Area.objects.get(pk=area_id)
+          subarea_name = request.POST.get("subarea")
+          SubArea.objects.create(area_name=area_name,sub_area_name=subarea_name).save()
+      return response.JsonResponse({
+             'msg' :'Success',
+            })
 
 def show_service(request):
 

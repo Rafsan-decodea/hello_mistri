@@ -126,7 +126,7 @@
  <label for="cars"> আপনার সাব এরিয়া নির্বাচন করুন  </label><br>
 
  <select name="sub_area" id="cars">
-  {% for data in area %}
+  {% for data in sub_area %}
     <option value="{{data.sub_area_name}}">{{data.sub_area_name}}</option>
   {% endfor %}
   </select>
@@ -153,6 +153,7 @@
     <p>Please fill in this form to create an account.</p>
     <hr>
 
+
     <label for="Name"><b>আপনার নাম  </b></label>
     <input type="text" value="{{ request.user.first_name }} {{ request.user.last_name }}"  name="name" id="email" required>
     
@@ -175,9 +176,18 @@
    <option value="{{data.area_name}}">{{data.area_name}}</option>
  {% endfor %}
  </select>
+
+ <br><br>
+  <label for="cars">  সার্ভিস এর ধরন </label><br>
+ <select name="area" id="cars">
+ {% for data in area %}
+   <option value="{{data.area_name}}">{{data.area_name}}</option>
+ {% endfor %}
+ </select>
+
  <br><br>
 
- <label for="cars"> আপনার দক্ষতা  </label><br>
+ <label > আপনার দক্ষতা  </label><br>
 
  <select name="sub_area" id="cars">
  
@@ -189,7 +199,7 @@
   
    <br><br>
    <label for="inputlg"> আপনার কাজ ও অভিঞ্জতা সম্পর্কে লিখুন  </label>
-   <input class="form-control input-lg" id="inputlg" name="address" type="text" required>
+   <input class="form-control input-lg" id="inputlg" name="expiriance" type="text" required>
 
 
 
@@ -215,7 +225,7 @@
  <label for="cars"> সাব এরিয়া নির্বাচন করুন  </label><br>
 
  <select name="sub_area" id="cars">
-  {% for data in area %}
+  {% for data in sub_area %}
     <option value="{{data.sub_area_name}}">{{data.sub_area_name}}</option>
   {% endfor %}
   </select>
@@ -230,13 +240,13 @@
     
     <br><br>
     
- <select name="area" id="cars">
+ <select name="emargency" id="cars">
 
-   <option value="">পিতা</option>
-   <option value="">মাতা</option>
-    <option value="">স্ত্রী</option>
-     <option value="">ভাই</option>
-      <option value="">বোন</option>
+   <option value="পিতা">পিতা</option>
+   <option value="মাতা">মাতা</option>
+    <option value="স্ত্রী">স্ত্রী</option>
+     <option value="ভাই">ভাই</option>
+      <option value="বোন">বোন</option>
 
  </select>
   <br><br>
@@ -252,9 +262,40 @@
 <br><br>
     <label class="form-label" for="customFile">জন্ম তারিখ </label>
     <input type="date" class="form-control" id="customFile"  name="dob" required />
+<br><br>
+  <label for="inputlg"> শিক্ষাগত যোগ্যতা/ কোর্স বা কারিগরিশিক্ষার নাম, মেয়াদ ও প্রতিষ্ঠানের নাম </label>
+   <input class="form-control input-lg" id="inputlg" name="education" type="text" required>
+<br><br>
+
+
+ <label ><b> আপনার বাইক আছে কিনা?  </b></label>
+    
+    <br><br>
+    <select name="is_bike" id="cars">
+
+   <option value="yes">হ্যা</option>
+   <option value="no">না</option>
+
+   </select>
+   <br><br>
+
+  <br><br> 
+   <label ><b> আপনার কাজের সরঞ্জাম বা যন্ত্রপাতি আছে কিনা?  </b></label>
+    
+    <br><br>
+    <select name="is_instrument" id="cars">
+
+   <option value="yes">হ্যা</option>
+   <option value="no">না</option>
+
+   </select>
+   <br><br>
+
+  <label for="inputlg"> আপনার সহযোগী মিস্ত্রি ও হেল্পারদের নাম ও মোবাইল নং লিখুন  </label>
+   <input class="form-control input-lg" placeholder="অন্তত ৫ জন" id="inputlg" name="note" type="text" required>
+
 
   
-
  <button type="submit" class="registerbtn">Next</button>
 
 </form>
