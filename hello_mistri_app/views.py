@@ -115,6 +115,7 @@ def insert_mistri_information(request):
          area = request.POST.get('area')
          sub_area = request.POST.get('sub_area')
          address = request.POST.get('address')
+         
          MistriInformation.objects.create(user=u,mistri_id=mistri_id,uid=uid,email=email,profile_image_link=profile_image_link, name=name,phone=phone,image=image,dob=dob,city=city,area=area,sub_area=sub_area,address=address).save()
      return render(request,"dashboard/personal_information.html")
 
@@ -192,6 +193,9 @@ def see_client(request):
      }
      return render(request,"dashboard/admin/see_client.html",context )
 
+
+
+
 def show_area(request):
     city  = City.objects.all()
     area =  Area.objects.all()
@@ -242,13 +246,21 @@ def add_subarea(request):
              'msg' :'Success',
             })
 
+
+
+
+
+
+
 def show_service(request):
     service = Service.objects.all()
     sub_service = SubService.objects.all()
+    service_type = ServiceType.objects.all()
 
     context = {
         "service":service,
         "sub_service":sub_service,
+        "service_type":service_type,
     }
     return render(request,"dashboard/admin/add_service.html",context)        
 

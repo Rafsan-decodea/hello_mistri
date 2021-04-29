@@ -150,22 +150,22 @@
   <thead>
     <tr>
       <th scope="col">id</th>
-      <th scope="col">City</th>
-      <th scope="col">Area</th>
-      <th scope="col">SubArea</th>
+      <th scope="col">Service</th>
+      <th scope="col">Sub Service </th>
+      <th scope="col">Service Type</th>
 
     </tr>
   </thead>
 <center><h2>Here Service List </h2></center>
 
   <tbody>
-  {% for data  in sub_area  %}
+  {% for data  in service_type  %}
     
     <tr>
       <th scope="row">{{data.id}}</th>
-      <td>{{data.area_name.city_name.city_name}}</td>
-      <td>{{data.area_name.area_name}}</td>
-      <td>{{data.sub_area_name}}</td>
+      <td>{{data.service_name.service_name.service_name}}</td>
+      <td>{{data.service_name.sub_service_name}}</td>
+      <td>{{data.service_type}}</td>
   
     </tr>
     {% endfor %}
