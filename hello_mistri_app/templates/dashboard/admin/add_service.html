@@ -37,7 +37,7 @@
 
 <div class="border border-light p-3 mb-4">
    
-  <div class="text-center" id="city_btn">
+  <div class="text-center" id="service_btn">
       <button type="button"  class="btn btn-primary btn-lg btn-block  sss">Add Service</button>
     </div>
       
@@ -49,7 +49,7 @@
   <div class="border border-light p-3 mb-4">
 
 
-    <div class="text-center" id="area_btn">
+    <div class="text-center" id="subservie_btn">
       <button type="button" class="btn btn-primary btn-lg btn-block">Add  SubService</button>
     </div>
 
@@ -60,7 +60,7 @@
     <div class="border border-light p-3 mb-4">
 
 
-    <div class="text-center" id="sub_area_btn">
+    <div class="text-center" id="serviceType_btn">
       <button type="button" class="btn btn-primary btn-lg btn-block">Add  Service Type</button>
     </div>
 
@@ -77,6 +77,49 @@
     <button type="submit" id class="btn btn-primary">Add</button>
     </div>
 </form>
+
+
+
+<form method="POST" id="add_data2">
+
+<label for="cars">Select Service From There </label><br>
+<select name="service_id" id="cars">
+  {% for data in service %}
+    <option value="{{data.id}}">{{data.service_name}}</option>
+  {% endfor %}
+ </select>
+
+  <div class="form-group">
+    <label for="usr">Add SubService </label>
+     <input type="text" class="form-control"  name="sub_service" id="usr">
+  </div>
+  <br>
+  <div class="form-group">
+    <button type="submit" id class="btn btn-primary">Add</button>
+    </div>
+</form>
+
+
+<form method="POST" id="add_data3">
+
+<label for="cars">Select Sub Service From There </label><br>
+<select name="subservice_id" id="cars">
+  {% for data in sub_service %}
+    <option value="{{data.id}}">{{data.sub_service_name}}</option>
+  {% endfor %}
+ </select>
+
+  <div class="form-group">
+    <label for="usr">Add Service Type </label>
+     <input type="text" class="form-control"  name="service_type" id="usr">
+  </div>
+  <br>
+  <div class="form-group">
+    <button type="submit" id class="btn btn-primary">Add</button>
+    </div>
+</form>
+
+
 
 
 
@@ -131,6 +174,50 @@
 
 <script type="text/javascript" src="{%static 'assets/js/jquery/jquery.min.js'%}"></script>
 
+<script>
+
+$(document).ready(function(){
+
+    $("#add_data").hide();
+    $("#add_data2").hide();
+    $("#add_data3").hide();
+
+
+    $("#service_btn").click(function(){
+       
+          $("#add_data").show();
+          $("#add_data2").hide();
+            $("#add_data3").hide();
+
+    });
+
+       $("#subservie_btn").click(function(){
+       
+          $("#add_data").hide();
+          $("#add_data2").show();
+            $("#add_data3").hide();
+
+    });
+
+    $("#serviceType_btn").click(function(){
+
+       
+          $("#add_data").hide();
+          $("#add_data2").hide();
+          $("#add_data3").show();
+        
+
+   });
+
+
+
+
+  
+
+});
+
+
+</script>
 
 
 
@@ -154,6 +241,9 @@
 
 
 <script>
+
+
+
 const form = document.getElementById("add_data");
   form.addEventListener("submit",submitHandler);
 
@@ -191,7 +281,90 @@ const form = document.getElementById("add_data");
       })
   };
 
+
+
+const form2 = document.getElementById("add_data2");
+  form2.addEventListener("submit",submitHandlerr);
+
+  function submitHandlerr(e)
+  {
+      e.preventDefault();
+      $.djangocsrf( "enable" );
+      $.ajax({
+          type: "POST",
+          url:"{%url 'add_subservice'%}",
+          data:$("#add_data2").serialize(),
+          dataType:"json",
+          success: function(data)
+          {
+              if(data.msg == "Success")
+              {
+                  
+                  $(document).ready(function(){
+
+                        $("#success").click();
+                         document.getElementById("show_massage").innerHTML = "Add Sub Service  Successfully .. Do Refresh to See Changes";
+                     })
+                   
+              }
+              if(data.msg == "city")
+              {
+                  $(document).ready(function(){
+
+                       $("#success").click(); 
+                       document.getElementById("show_massage").innerHTML = "City Already Exist";
+                  })
+              }
+             
+          }
+      })
+  };
+
+
+
+
+
+const form3 = document.getElementById("add_data3");
+  form3.addEventListener("submit",submitHandlerrr);
+
+  function submitHandlerrr(e)
+  {
+      e.preventDefault();
+      $.djangocsrf( "enable" );
+      $.ajax({
+          type: "POST",
+          url:"{%url 'add_servicetype'%}",
+          data:$("#add_data3").serialize(),
+          dataType:"json",
+          success: function(data)
+          {
+              if(data.msg == "Success")
+              {
+                  
+                  $(document).ready(function(){
+
+                        $("#success").click();
+                         document.getElementById("show_massage").innerHTML = "Add Sub Service Type  Successfully .. Do Refresh to See Changes";
+                     })
+                   
+              }
+              if(data.msg == "city")
+              {
+                  $(document).ready(function(){
+
+                       $("#success").click(); 
+                       document.getElementById("show_massage").innerHTML = "City Already Exist";
+                  })
+              }
+             
+          }
+      })
+  };
+
+
 </script>
+
+
 
 
 

@@ -243,8 +243,14 @@ def add_subarea(request):
             })
 
 def show_service(request):
+    service = Service.objects.all()
+    sub_service = SubService.objects.all()
 
-    return render(request,"dashboard/admin/add_service.html")        
+    context = {
+        "service":service,
+        "sub_service":sub_service,
+    }
+    return render(request,"dashboard/admin/add_service.html",context)        
 
 
 
@@ -255,6 +261,28 @@ def add_service(request):
     return response.JsonResponse({
              'msg' :'Success',
             })   
+
+def add_subservice(request):
+     if request.is_ajax():
+         service_id = request.POST.get("service_id")
+         print (service_id)
+         service_get = Service.objects.get(pk=service_id)
+         sub_service = request.POST.get("sub_service")
+         SubService.objects.create(service_name=service_get,sub_service_name=sub_service).save()
+     return response.JsonResponse({
+             'msg' :'Success',
+            })   
+
+def add_servicetype(request):
+     if request.is_ajax():
+         sub_service_id = request.POST.get("subservice_id")
+         subservice_get = SubService.objects.get(pk=sub_service_id)
+         service_type = request.POST.get("service_type")
+         ServiceType.objects.create(service_name=subservice_get,service_type=service_type).save()
+    
+     return response.JsonResponse({
+             'msg' :'Success',
+            }) 
 
 
 def logout(request):
