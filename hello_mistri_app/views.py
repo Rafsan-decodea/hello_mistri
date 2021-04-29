@@ -247,6 +247,16 @@ def show_service(request):
     return render(request,"dashboard/admin/add_service.html")        
 
 
+
+def add_service(request):
+    if request.is_ajax():
+        get_service = request.POST.get("service")
+        Service.objects.create( service_name=get_service).save()
+    return response.JsonResponse({
+             'msg' :'Success',
+            })   
+
+
 def logout(request):
     user_logout(request)
     return render(request,"index.html")

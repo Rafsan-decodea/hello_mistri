@@ -109,25 +109,20 @@ class SubArea(models.Model):
 
 
 
-# class Service(models.Model):
-#        service_name = models.CharField(max_length=100)
-#        def __str__(self):
-#               return 'Service name ==>{0}'.format(self.service_name)
+class Service(models.Model):
+       service_name = models.CharField(max_length=100)
+       def __str__(self):
+              return 'Service name ==>{0}'.format(self.service_name)
 
-# class SubService(models.Model):
-#        service_name =  models.ForeignKey(Service, on_delete=models.CASCADE)
-#        sub_service_name = models.CharField(max_length=100)
-
-#        def __str__(self):
-#               return 'Sub Service name ==>{0}'.format(self.sub_service_name)
-
-
-
-# class MainWork(models.Model):
-#        main_work_name = models.CharField(max_length=100)
-#        def __str__(self):
-#               return 'Main Work ==>{0}'.format(self.main_work)
+class SubService(models.Model):
+       service_name =  models.ForeignKey(Service, on_delete=models.CASCADE)
+       sub_service_name = models.CharField(max_length=100)
        
-# class SubWork(models.Model):
-#        main_work = models.ForeignKey(MainWork, on_delete=models.CASCADE)
-#        sub_work_name =  models.CharField(max_length=100)
+
+       def __str__(self):
+              return 'Sub Service name ==>{0}'.format(self.sub_service_name)
+
+class ServiceType(models.Model):
+       service_name = models.ForeignKey(SubService, on_delete=models.CASCADE)
+       service_type = models.CharField(max_length=100)
+

@@ -35,6 +35,102 @@
 
 
 
+<div class="border border-light p-3 mb-4">
+
+     
+  <div class="text-center" id="city_btn">
+      <button type="button" class="btn btn-primary btn-lg btn-block">Add Service</button>
+    </div>
+      
+
+  </div>
+  
+
+  <br><br>
+  <div class="border border-light p-3 mb-4">
+
+
+    <div class="text-center" id="area_btn">
+      <button type="button" class="btn btn-primary btn-lg btn-block">Add  SubService</button>
+    </div>
+
+  </div>
+
+  <br><br>
+
+    <div class="border border-light p-3 mb-4">
+
+
+    <div class="text-center" id="sub_area_btn">
+      <button type="button" class="btn btn-primary btn-lg btn-block">Add  Service Type</button>
+    </div>
+
+  </div>
+
+
+<form method="POST" id="add_data">
+  <div class="form-group">
+    <label for="usr">Service </label>
+     <input type="text" class="form-control"  name="service" id="usr">
+  </div>
+  <br>
+  <div class="form-group">
+    <button type="submit" id class="btn btn-primary">Add</button>
+    </div>
+</form>
+
+
+
+<button type="button" hidden id="success" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+</button>
+<div class="modal fade " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered bg-success" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-primary" id="exampleModalLongTitle">Status</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-primary" id="show_massage" >
+      
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">City</th>
+      <th scope="col">Area</th>
+      <th scope="col">SubArea</th>
+
+    </tr>
+  </thead>
+<center><h2>Here Service List </h2></center>
+
+  <tbody>
+  {% for data  in sub_area  %}
+    
+    <tr>
+      <th scope="row">{{data.id}}</th>
+      <td>{{data.area_name.city_name.city_name}}</td>
+      <td>{{data.area_name.area_name}}</td>
+      <td>{{data.sub_area_name}}</td>
+  
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script type="text/javascript" src="{%static 'assets/js/jquery/jquery.min.js'%}"></script>
 
 
 
@@ -42,7 +138,6 @@
 
 
 
-
 </div>
 </div>
 </div>
@@ -56,6 +151,48 @@
 </div>
 </div>
 
+
+
+
+<script>
+const form = document.getElementById("add_data");
+  form.addEventListener("submit",submitHandler);
+
+  function submitHandler(e)
+  {
+      e.preventDefault();
+      $.djangocsrf( "enable" );
+      $.ajax({
+          type: "POST",
+          url:"{%url 'add_service'%}",
+          data:$("#add_data").serialize(),
+          dataType:"json",
+          success: function(data)
+          {
+              if(data.msg == "Success")
+              {
+                  
+                  $(document).ready(function(){
+
+                        $("#succes").click();
+                         document.getElementById("show_massage").innerHTML = "Add Service  Successfully .. Do Refresh to See Changes";
+                     })
+                   
+              }
+              if(data.msg == "city")
+              {
+                  $(document).ready(function(){
+
+                       $("#success").click(); 
+                       document.getElementById("show_massage").innerHTML = "City Already Exist";
+                  })
+              }
+             
+          }
+      })
+  };
+
+</script>
 
 
 

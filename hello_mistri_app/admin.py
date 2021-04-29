@@ -8,9 +8,9 @@ admin.site.register(Area)
 admin.site.register(SubArea)
 
 
-
-# admin.site.register(Service)
-# admin.site.register(SubService)
+admin.site.register(Service)
+admin.site.register(SubService)
+admin.site.register(ServiceType)
 
 # admin.site.register(Admin)
 # admin.site.register(Mistri_UID)
