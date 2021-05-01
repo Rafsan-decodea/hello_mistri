@@ -117,27 +117,14 @@
  <br><br>
  <label for="cars">আপনার সিটি র্নিবাচন করুন </label><br>
 
-<select class="select_field_class" multiple="multiple"  id="option" name="city">
+<!--class="selectpicker" multiple-->
+
+<select  data-live-search="true" name="city">
 
  {% for data in city %}
    <option value="{{data.city_name}}">{{data.city_name}}</option>
  {% endfor %}
  </select>
-
-
-<script>
- 
- $(document).ready(function(){
-   $('select').selectpicker();
- })
-
-</script>
-
-<select class="selectpicker" multiple data-live-search="true">
-  <option>Mustard</option>
-  <option>Ketchup</option>
-  <option>Relish</option>
-</select>
 
 
 
@@ -189,27 +176,29 @@
     <input type="text" placeholder="phone" name="number" id="email" required>
 
 <br><br>
- <label for="inputlg">  আপনি কোন Service টি দিতে চান </label>
+ <label for="inputlg">  আপনি কি কি Service টি দিতে চান </label>
  <br><br>
+ 
+<!--class="selectpicker" multiple-->
  <label for="cars"> সার্ভিস ক্যাটাগরি </label><br>
- <select name="city" id="cars">
- {% for data in city %}
-   <option value="{{data.city_name}}">{{data.city_name}}</option>
+ <select class="selectpicker"  data-live-search="true"  multiple  name="service" id="cars">
+ {% for data in service %}
+   <option value="{{data.service_name}}">{{data.service_name}}</option>
  {% endfor %}
  </select>
  <br><br>
  <label for="cars">  সার্ভিস </label><br>
- <select name="area" id="cars">
- {% for data in area %}
-   <option value="{{data.area_name}}">{{data.area_name}}</option>
+ <select class="selectpicker"  data-live-search="true"  multiple  name="sub_service" id="cars">
+ {% for data in sub_service %}
+   <option value="{{data.sub_service_name}}">{{data.sub_service_name}}</option>
  {% endfor %}
  </select>
 
  <br><br>
   <label for="cars">  সার্ভিস এর ধরন </label><br>
  <select name="area" id="cars">
- {% for data in area %}
-   <option value="{{data.area_name}}">{{data.area_name}}</option>
+ {% for data in service_type %}
+   <option value="{{data.service_type}}">{{data.service_type}}</option>
  {% endfor %}
  </select>
 
@@ -336,12 +325,11 @@
 
 
 <script>
+ 
+ $(document).ready(function(){
+   $('select').selectpicker();
+ })
 
-
-var myDrop = new drop({
-    selector:  '#myMulti'
-    preselected: [0, 2]
-});
 </script>
         <!-- <meta http-equiv="refresh" content="0; URL={% url 'dashboard' %}" /> -->
      

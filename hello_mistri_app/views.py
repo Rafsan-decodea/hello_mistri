@@ -42,6 +42,10 @@ def information(request):
     city  = City.objects.all()
     area =  Area.objects.all()
     sub_area = SubArea.objects.all()
+
+    service = Service.objects.all()
+    sub_service = SubService.objects.all()
+    service_type = ServiceType.objects.all()
     # user = User.objects.get(id=request.user.id)
     # mistri = user.mistriinformation_set.all()
     # client = user.clientinformation_set.all()
@@ -51,6 +55,9 @@ def information(request):
         "city":city,
         "area":area,
         "sub_area":sub_area,
+        "service":service,
+        "sub_service":sub_service,
+        "service_type":service_type,
     }
     return render(request,"information.html",context)
 
@@ -115,7 +122,7 @@ def insert_mistri_information(request):
          area = request.POST.get('area')
          sub_area = request.POST.get('sub_area')
          address = request.POST.get('address')
-         
+
          MistriInformation.objects.create(user=u,mistri_id=mistri_id,uid=uid,email=email,profile_image_link=profile_image_link, name=name,phone=phone,image=image,dob=dob,city=city,area=area,sub_area=sub_area,address=address).save()
      return render(request,"dashboard/personal_information.html")
 
