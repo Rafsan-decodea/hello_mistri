@@ -56,8 +56,8 @@ class MistriInformation(models.Model):
        sub_area =models.CharField(max_length=200)
        address = models.CharField(max_length=200)
 
-       ability = models.CharField(max_length=100)
-       expiriance = models.CharField(max_length=200)
+       ability = models.CharField(max_length=100,null=True)
+       expiriance = models.CharField(max_length=200,null=True)
        emargency = models.CharField(max_length=100)
        emargency_name = models.CharField(max_length=200)
        emargency_number =  PhoneField(blank=False,help_text='emargency_contuct')
