@@ -153,6 +153,10 @@
 
 
 
+
+
+
+
 <form id="MistriAccount" method="POST" action="/insert_mistri"  enctype="multipart/form-data">
   {% csrf_token %}
  
@@ -173,7 +177,7 @@
     <input type="text" value="{{ request.user.first_name }} {{ request.user.last_name }}"  name="name" id="email" required>
     
     <label for="phone"><b>মোবাইল নাম্বার  </b></label>
-    <input type="text" placeholder="phone" name="number" id="email" required>
+    <input class="form-control"  type="number"  placeholder="phone" name="number"  required>
 
 <br><br>
  <label for="inputlg">  আপনি কি কি Service টি দিতে চান </label>
@@ -196,7 +200,7 @@
 
  <br><br>
   <label for="cars">  সার্ভিস এর ধরন </label><br>
- <select name="area" id="cars">
+ <select class="selectpicker"  data-live-search="true"  multiple name="service_type" id="cars">
  {% for data in service_type %}
    <option value="{{data.service_type}}">{{data.service_type}}</option>
  {% endfor %}
@@ -206,13 +210,14 @@
 
  <label> আপনার দক্ষতা  </label><br>
 
- <select name="sub_area" id="cars">
+ <select name="ability" id="cars">
  
     <option value="high_expart">অতি দক্ষ</option>
     <option value="mid_expart">দক্ষ</option>
     <option value="normal_expart"> স্বাভাবিক</option>
 
   </select>
+
   
    <br><br>
    <label for="inputlg"> আপনার কাজ ও অভিঞ্জতা সম্পর্কে লিখুন  </label>
@@ -268,10 +273,10 @@
  </select>
   <br><br>
     <label for="phone"><b> ইমার্জেন্সি ব্যাক্তির  নাম </b></label>
-    <input type="text" placeholder="phone" name="emergency_name" id="email" required>
+    <input type="text" placeholder="phone" name="emargency_name" id="email" required>
     <br>
      <label for="phone"><b> ইমার্জেন্সি  ব্যাক্তির নাম্বার  </b></label>
-       <input type="text" placeholder="phone" name="emergency_number" id="email" required>
+       <input class="form-control"  type="number" placeholder="phone" name="emargency_number" id="email" required>
      <br><br>
       <label class="form-label" for="customFile"> আইডি কার্ডের ছবি আপলোড   </label>
     <input type="file" class="form-control" name="image" id="customFile" required />
@@ -288,7 +293,7 @@
  <label ><b> আপনার বাইক আছে কিনা?  </b></label>
     
     <br><br>
-    <select name="is_bike" id="cars">
+  <select name="is_bike" id="cars">
 
    <option value="yes">হ্যা</option>
    <option value="no">না</option>
@@ -309,7 +314,7 @@
    <br><br>
 
   <label for="inputlg"> আপনার সহযোগী মিস্ত্রি ও হেল্পারদের নাম ও মোবাইল নং লিখুন  </label>
-   <input class="form-control input-lg" placeholder="অন্তত ৫ জন" id="inputlg" name="note" type="text" required>
+   <input class="form-control input-lg" placeholder="অন্তত ৫ জন" id="inputlg" name="helper_mistri" type="text" required>
 
 
   

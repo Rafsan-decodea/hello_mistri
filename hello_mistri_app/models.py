@@ -64,14 +64,18 @@ class MistriInformation(models.Model):
        education = models.CharField(max_length=200)
        is_bick = models.CharField(max_length=20)
        is_instrument = models.CharField(max_length=20)
+       helper_mistri = models.CharField(max_length=200)
+
+       service = models.CharField(max_length=200)
+       sub_service = models.CharField(max_length=200)
+       service_type =  models.CharField(max_length=200)
+
+       
+
        
 
 
 
-
-
-
- 
        def __str__(self):
               return 'Mistri name ==>{0}'.format(self.name)
 

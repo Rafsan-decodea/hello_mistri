@@ -123,7 +123,23 @@ def insert_mistri_information(request):
          sub_area = request.POST.get('sub_area')
          address = request.POST.get('address')
 
-         MistriInformation.objects.create(user=u,mistri_id=mistri_id,uid=uid,email=email,profile_image_link=profile_image_link, name=name,phone=phone,image=image,dob=dob,city=city,area=area,sub_area=sub_area,address=address).save()
+         ability = request.POST.get('ability')
+         expiriance = request.POST.get('expiriance')
+         emargency = request.POST.get('emargency')
+         emargency_name = request.POST.get('emargency_name')
+         emargency_number = request.POST.get('emargency_number')
+         education = request.POST.get('education')
+         is_bick = request.POST.get('is_bike')
+         is_instrument = request.POST.get('is_instrument')
+
+         service = request.POST.getlist('service')
+         sub_service = request.POST.getlist('sub_service')
+         service_type = request.POST.getlist('service_type')
+
+         helper_mistri = request.POST.get('helper_mistri')
+
+
+         MistriInformation.objects.create(user=u,mistri_id=mistri_id,uid=uid,email=email,profile_image_link=profile_image_link, name=name,phone=phone,image=image,dob=dob,city=city,area=area,sub_area=sub_area,address=address,ability=ability,expiriance=expiriance,emargency=emargency,emargency_name=emargency_name,emargency_number=emargency_number,education=education,is_bick=is_bick,is_instrument=is_instrument,service=service,sub_service=sub_service,service_type=service_type, helper_mistri=helper_mistri).save()
      return render(request,"dashboard/personal_information.html")
 
 
@@ -154,7 +170,7 @@ def update_mistri_information(request):
              print ("fuck From image")
           except :
               print ("fuck without  image")
-          m_data.address = request.POST.get('address')
+        #   m_data.address = request.POST.get('address')
           m_data.dob = request.POST.get('dob') 
          
 #user=u,mistri_id=mistri_id,uid=uid,name=name,phone=phone,image=image,address=address,dob=dob
