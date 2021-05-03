@@ -42,6 +42,10 @@ def information(request):
     city  = City.objects.all()
     area =  Area.objects.all()
     sub_area = SubArea.objects.all()
+    
+    # c = City.objects.get(pk=1)
+    # for a in c.area_set.all():
+    #     print ("Area is ====>",a.area_name)
 
     service = Service.objects.all()
     sub_service = SubService.objects.all()
@@ -223,7 +227,6 @@ def show_area(request):
     city  = City.objects.all()
     area =  Area.objects.all()
     sub_area = SubArea.objects.all()
-  
     context = {
         "city":city,
         "area" :area,
