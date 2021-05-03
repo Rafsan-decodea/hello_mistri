@@ -40,12 +40,28 @@ def information(request):
     mistri = MistriInformation.objects.all()
     client = ClientInformation.objects.all()
     city  = City.objects.all()
-    area =  Area.objects.all()
-    sub_area = SubArea.objects.all()
+    c = City.objects.get(pk=1)
+    area =[]
+    area_id = []
+    for data in c.area_set.all():
+       area.append(data.area_name)
+       area_id.append(data.id)
+    
+    fetch_area = zip(area,area_id)
+    a = Area.objects.get(pk=1)
+    sub_area = []
+    sub_area_id=[]
+    for data in a.subarea_set.all():
+        sub_area.append(data.sub_area_name)
+        sub_area_id.append(data.id)
+    fetch_sub_area = zip(sub_area,sub_area_id)
+
+
     
     # c = City.objects.get(pk=1)
     # for a in c.area_set.all():
     #     print ("Area is ====>",a.area_name)
+
 
     service = Service.objects.all()
     sub_service = SubService.objects.all()
@@ -57,8 +73,8 @@ def information(request):
         "mistri_data":mistri,
         "client_data":client,
         "city":city,
-        "area":area,
-        "sub_area":sub_area,
+        "fetch_area":fetch_area,
+        "fetch_sub_area":fetch_sub_area,
         "service":service,
         "sub_service":sub_service,
         "service_type":service_type,

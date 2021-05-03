@@ -240,17 +240,19 @@
  <br><br>
  <label for="cars">  এরিয়া নির্বাচন করুন  </label><br>
  <select name="area" id="cars">
- {% for data in area %}
-   <option value="{{data.area_name}}">{{data.area_name}}</option>
- {% endfor %}
+ {% for data in fetch_area %}
+ 
+    <option value="{{data.0}}">{{data.0}}</option>
+
+  {% endfor %}
  </select>
  <br><br>
 
  <label for="cars"> সাব এরিয়া নির্বাচন করুন  </label><br>
 
  <select name="sub_area" id="cars">
-  {% for data in sub_area %}
-    <option value="{{data.sub_area_name}}">{{data.sub_area_name}}</option>
+  {% for data in fetch_sub_area  %}
+    <option value="{{data.0}}">{{data.0}}</option>
   {% endfor %}
   </select>
    <br><br>
