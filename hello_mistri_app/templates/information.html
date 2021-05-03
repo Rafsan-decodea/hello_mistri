@@ -127,6 +127,14 @@
  </select>
 
 
+ <br><br>
+  <label for="cars">  সার্ভিস এর ধরন </label><br>
+ <select class="selectpicker"  data-live-search="true"  multiple name="service_type" id="cars">
+ {% for data in service_type %}
+   <option value="{{data.service_type}}">{{data.service_type}}</option>
+ {% endfor %}
+ </select>
+
 
 
  <br><br>
@@ -198,13 +206,7 @@
  {% endfor %}
  </select>
 
- <br><br>
-  <label for="cars">  সার্ভিস এর ধরন </label><br>
- <select class="selectpicker"  data-live-search="true"  multiple name="service_type" id="cars">
- {% for data in service_type %}
-   <option value="{{data.service_type}}">{{data.service_type}}</option>
- {% endfor %}
- </select>
+
 
  <br><br>
 

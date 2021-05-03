@@ -130,3 +130,7 @@ class ServiceType(models.Model):
        service_name = models.ForeignKey(SubService, on_delete=models.CASCADE)
        service_type = models.CharField(max_length=100)
 
+       def __str__(self):
+              return 'Service Type name ==>{0}'.format(self.service_name)
+
+
