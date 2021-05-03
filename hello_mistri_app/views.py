@@ -46,8 +46,8 @@ def information(request):
     for data in c.area_set.all():
        area.append(data.area_name)
        area_id.append(data.id)
-    
     fetch_area = zip(area,area_id)
+
     a = Area.objects.get(pk=1)
     sub_area = []
     sub_area_id=[]
