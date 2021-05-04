@@ -34,28 +34,23 @@ def dashboard(request):
 
 
 
-
 def information(request):
     #{{user.social_auth.get.provider}} {{ user.social_auth.get.uid }}
     mistri = MistriInformation.objects.all()
     client = ClientInformation.objects.all()
     city  = City.objects.all()
-    c = City.objects.get(pk=1)
-    area =[]
-    area_id = []
-    for data in c.area_set.all():
-       area.append(data.area_name)
-       area_id.append(data.id)
+ 
+    get_cityid = request.POST.get("id")
+    print (get_cityid)
+    a = City.objects.get(pk=get_cityid)
+    
+    area = []
+    area_id=[]
+    for data in a.area_set.all():
+          area.append(data.area_name)
+          area_id.append(data.id)
     fetch_area = zip(area,area_id)
-
-    a = Area.objects.get(pk=1)
-    sub_area = []
-    sub_area_id=[]
-    for data in a.subarea_set.all():
-        sub_area.append(data.sub_area_name)
-        sub_area_id.append(data.id)
-    fetch_sub_area = zip(sub_area,sub_area_id)
-
+    print (fetch_area)
 
     
     # c = City.objects.get(pk=1)
@@ -74,7 +69,7 @@ def information(request):
         "client_data":client,
         "city":city,
         "fetch_area":fetch_area,
-        "fetch_sub_area":fetch_sub_area,
+        # "fetch_sub_area":fetch_sub_area,
         "service":service,
         "sub_service":sub_service,
         "service_type":service_type,
