@@ -41,16 +41,18 @@ def information(request):
     city  = City.objects.all()
  
     get_cityid = request.POST.get("id")
-    print (get_cityid)
-    a = City.objects.get(pk=get_cityid)
+    if get_cityid != None:
+      a = City.objects.get(pk=get_cityid)
     
-    area = []
-    area_id=[]
-    for data in a.area_set.all():
+      area = []
+      area_id=[]
+      for data in a.area_set.all():
           area.append(data.area_name)
           area_id.append(data.id)
-    fetch_area = zip(area,area_id)
-    print (fetch_area)
+      fetch_area = zip(area,area_id)
+      print (fetch_area)
+    if get_cityid == None:
+        fetch_area = zip("asdasd","aasdsad")
 
     
     # c = City.objects.get(pk=1)
