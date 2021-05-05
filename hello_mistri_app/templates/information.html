@@ -235,17 +235,28 @@
  <br><br>
  <label for="cars"> সিটি র্নিবাচন করুন </label><br>
  <select name="city" id="city">
+   <option value=""  disabled hidden>Choose here</option>
  {% for data in city %}
    <option value="{{data.city_name}}" data-id="{{data.id}}">{{data.city_name}}</option>
  {% endfor %}
  </select>
  <br><br>
 
+
+ <label for="cars">  এরিয়া নির্বাচন করুন  </label><br>
+ <select name="area" id="area_get">
+  <option value="" selected disabled hidden>Choose here</option>
+
+ </select>
+ <br><br>
+
+
+
+
 <script>
 
 $(document).ready(function(){
- 
-    
+
 
     $.djangocsrf( "enable" );
   
@@ -257,52 +268,34 @@ $(document).ready(function(){
      
      $.ajax({
     
-      url:"{% url 'information' %}",
+      url:"{% url 'get_cityinformation' %}",
       method:"POST",
       data:{id:id},
       success:function(data)
       {
-         alert("success");
+         for(i=0;i<data.fetch_area.length;i++)
+            {
+               var [name,id1] = data.fetch_area[i];
+               console.log(name)
+             $("#area_get").append($("<option>",{
+                   text:"Hello WOrl",
+                 })); 
+                
+            }      
+         
+
+       
       }
 
      });
-
-
-   })
+    
+ 
+   });
+   $("#area_get").append($("<option>",{
+                   text:"Hello WOrl",
+                 })); 
 
 })
-
-</script>
-
-
- <label for="cars">  এরিয়া নির্বাচন করুন  </label><br>
- <select name="area" id="area_get">
- {% comment %} {% for data in fetch_area %}
- 
-    <option value="{{data.0}}">{{data.0}}</option>
-
-  {% endfor %}  {% endcomment %}
- </select>
- <br><br>
-
-<script>
-
-    $(document).ready(function(){
-         $.djangocsrf( "enable" );
-
-         $("#city").change(function(){ 
-     
-      {% for data in fetch_area  %}
-         var d = "{{data.0}}";
-         alert(d);
-         $("#area_get").append("<option value='{{data.0}}'>{{data.0}}</option>");
-
-         {% endfor %}
-
-
-   });
-
-    });
 
 </script>
 
@@ -311,6 +304,7 @@ $(document).ready(function(){
  <label for="cars"> সাব এরিয়া নির্বাচন করুন  </label><br>
 
  <select name="sub_area" id="cars">
+   <option value="" selected disabled hidden>Choose here</option>
   {% for data in fetch_sub_area  %}
     <option  value="{{data.0}}">{{data.0}}</option>
   {% endfor %}

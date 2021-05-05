@@ -40,19 +40,19 @@ def information(request):
     client = ClientInformation.objects.all()
     city  = City.objects.all()
  
-    get_cityid = request.POST.get("id")
-    if get_cityid != None:
-      a = City.objects.get(pk=get_cityid)
+    # get_cityid = request.POST.get("id")
+    # if get_cityid != None:
+    #   a = City.objects.get(pk=get_cityid)
     
-      area = []
-      area_id=[]
-      for data in a.area_set.all():
-          area.append(data.area_name)
-          area_id.append(data.id)
-      fetch_area = zip(area,area_id)
-      print (fetch_area)
-    if get_cityid == None:
-        fetch_area = zip("asdasd","aasdsad")
+    #   area = []
+    #   area_id=[]
+    #   for data in a.area_set.all():
+    #       area.append(data.area_name)
+    #       area_id.append(data.id)
+    #   fetch_area = zip(area,area_id)
+    #   print (fetch_area)
+    # if get_cityid == None:
+    #     fetch_area = zip("asdasd","aasdsad")
 
     
     # c = City.objects.get(pk=1)
@@ -70,13 +70,33 @@ def information(request):
         "mistri_data":mistri,
         "client_data":client,
         "city":city,
-        "fetch_area":fetch_area,
-        # "fetch_sub_area":fetch_sub_area,
         "service":service,
         "sub_service":sub_service,
         "service_type":service_type,
     }
     return render(request,"information.html",context)
+
+
+def get_cityinformation(request):
+    if request.is_ajax(): 
+       get_cityid = request.POST.get("id")
+       getcity = City.objects.get(pk=get_cityid)
+
+       area = []
+       area_id = []
+
+       for data in getcity.area_set.all():
+           area.append(data.area_name)
+           area_id.append(data.id)
+        
+       get_area = list(zip(area,area_id))
+
+
+       return response.JsonResponse({
+             'msg' :'Success',
+             'fetch_area':get_area,
+        })
+
 
 def insert_clint_information(request):
     

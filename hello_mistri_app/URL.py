@@ -25,7 +25,9 @@ urlpatterns = [
      path(r'add_subservice',views.add_subservice,name="add_subservice"),
      path('add_servicetype',views.add_servicetype,name="add_servicetype"),
      path(r'show_service',views.show_service,name="show_service"),
-
+     
+     #--------------------Fetch information Segment ------------------------
+     path(r'get_cityinformation',views.get_cityinformation,name="get_cityinformation"),
      
      path(r'login',views.login,name="login"),
      path(r'logout', views.logout, name="logout"),
