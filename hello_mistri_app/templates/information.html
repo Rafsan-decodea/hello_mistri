@@ -235,7 +235,7 @@
  <br><br>
  <label for="cars"> সিটি র্নিবাচন করুন </label><br>
  <select name="city" id="city">
-   <option value=""  disabled hidden>Choose here</option>
+   <option  selected  disabled hidden>Choose here</option>
  {% for data in city %}
    <option value="{{data.city_name}}" data-id="{{data.id}}">{{data.city_name}}</option>
  {% endfor %}
@@ -245,23 +245,26 @@
 
  <label for="cars">  এরিয়া নির্বাচন করুন  </label><br>
  <select name="area" id="area_get">
-  <option value="" selected disabled hidden>Choose here</option>
+  <option  selected disabled hidden>Choose here</option>
+  
 
  </select>
  <br><br>
 
-
+<div id="testy"></div>
 
 
 <script>
 
 $(document).ready(function(){
 
-
+ 
     $.djangocsrf( "enable" );
-  
+   
    $("#city").change(function(){
 
+      $('#area_get').append('<option value="1">One</option>');
+  
      var control = $(this);
 
      var id = control.find(":selected").data("id");
@@ -273,17 +276,15 @@ $(document).ready(function(){
       data:{id:id},
       success:function(data)
       {
+       
          for(i=0;i<data.fetch_area.length;i++)
             {
                var [name,id1] = data.fetch_area[i];
-               console.log(name)
-             $("#area_get").append($("<option>",{
-                   text:"Hello WOrl",
-                 })); 
-                
-            }      
-         
+               console.log(name);
 
+            
+            }      
+        
        
       }
 
@@ -291,11 +292,8 @@ $(document).ready(function(){
     
  
    });
-   $("#area_get").append($("<option>",{
-                   text:"Hello WOrl",
-                 })); 
 
-})
+});
 
 </script>
 
