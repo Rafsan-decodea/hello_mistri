@@ -244,29 +244,34 @@
 
 
  <label for="cars">  এরিয়া নির্বাচন করুন  </label><br>
- <select name="area" id="area_get">
+ <select name="area" id="areaGet">
   <option  selected disabled hidden>Choose here</option>
   
 
  </select>
  <br><br>
 
-<div id="testy"></div>
 
 
 <script>
 
 $(document).ready(function(){
 
- 
+var x = document.getElementById("areaGet");
+
+
     $.djangocsrf( "enable" );
-   
+    
    $("#city").change(function(){
 
-      $('#area_get').append('<option value="1">One</option>');
-  
+      var area = document.getElementById("areaGet");
+     var option = document.createElement("option");
+               option.text = "Kiwi";
+               x.add(option);
+     
+     
+     
      var control = $(this);
-
      var id = control.find(":selected").data("id");
      
      $.ajax({
@@ -275,14 +280,15 @@ $(document).ready(function(){
       method:"POST",
       data:{id:id},
       success:function(data)
-      {
-       
+      {  
+  
          for(i=0;i<data.fetch_area.length;i++)
             {
                var [name,id1] = data.fetch_area[i];
                console.log(name);
+              
 
-            
+               
             }      
         
        
@@ -292,6 +298,7 @@ $(document).ready(function(){
     
  
    });
+
 
 });
 
