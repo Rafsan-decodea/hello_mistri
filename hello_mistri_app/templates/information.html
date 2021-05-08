@@ -24,12 +24,12 @@
     <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
     <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/css/bootstrap-select.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/js-cookie/js-cookie@1.5.1/src/js.cookie.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/bfontaine/jquery-djangocsrf@0.1.1/jquery.djangocsrf.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/js-cookie/js-cookie@1.5.1/src/js.cookie.js"></script> 
+<script src="https://cdn.jsdelivr.net/gh/bfontaine/jquery-djangocsrf@0.1.1/jquery.djangocsrf.js"></script> 
 
    <script src="{%static 'custom.js'%}"></script>
     <title>Welcome to Hello Mistri  </title>
@@ -247,30 +247,24 @@
  <select name="area" id="areaGet">
   <option  selected disabled hidden>Choose here</option>
   
-
- </select>
+</select>
+ 
  <br><br>
 
-
+<div id="test"></div>
 
 <script>
 
 $(document).ready(function(){
 
-var x = document.getElementById("areaGet");
 
+var name_all =[];
 
-    $.djangocsrf( "enable" );
+  $.djangocsrf( "enable" );
     
-   $("#city").change(function(){
+  $("#city").change(function(){
 
-      var area = document.getElementById("areaGet");
-     var option = document.createElement("option");
-               option.text = "Kiwi";
-               x.add(option);
-     
-     
-     
+  
      var control = $(this);
      var id = control.find(":selected").data("id");
      
@@ -281,26 +275,34 @@ var x = document.getElementById("areaGet");
       data:{id:id},
       success:function(data)
       {  
-  
+         document.getElementById("test").innerHTML="";
+        $('#areaGet').html("");
+
          for(i=0;i<data.fetch_area.length;i++)
             {
-               var [name,id1] = data.fetch_area[i];
-               console.log(name);
-              
-
-               
+               var   [name,id1] = data.fetch_area[i];
+               document.getElementById("test").append(name+" ");
+                name_all[i] = name;     
+             
             }      
-        
+      
        
       }
-
+        
      });
-    
- 
+      
+     
+    console.log(name_all);
+     
    });
 
 
+     console.log(name_all);
+  
+
+
 });
+
 
 </script>
 
