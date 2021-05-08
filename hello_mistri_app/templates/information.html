@@ -258,7 +258,7 @@
 $(document).ready(function(){
 
 
-var name_all =[];
+   
 
   $.djangocsrf( "enable" );
     
@@ -267,7 +267,7 @@ var name_all =[];
   
      var control = $(this);
      var id = control.find(":selected").data("id");
-     
+     var area_html= "";
      $.ajax({
     
       url:"{% url 'get_cityinformation' %}",
@@ -282,23 +282,21 @@ var name_all =[];
             {
                var   [name,id1] = data.fetch_area[i];
                document.getElementById("test").append(name+" ");
-                name_all[i] = name;     
-             
-            }      
-      
-       
-      }
+
+                area_html += "<option value='"+name+"'>"+name+"</option>";
         
-     });
-      
+            }      
+
+            $("#areaGet").html(area_html);
+        }
      
-    console.log(name_all);
+     });
+     
+ 
+    
      
    });
 
-
-     console.log(name_all);
-  
 
 
 });
