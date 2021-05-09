@@ -351,6 +351,18 @@ def add_service(request):
              'msg' :'Success',
             })   
 
+def fetch_service(request):
+    if request.is_ajax():
+          service_id = request.POST.get("id")
+
+          return response.JsonResponse({
+             'msg' :'Success',
+             'fetch_service':service_id,
+            }) 
+
+
+
+
 def add_subservice(request):
      if request.is_ajax():
          service_id = request.POST.get("service_id")

@@ -195,7 +195,7 @@
  
 <!--class="selectpicker" multiple-->
  <label for="cars"> সার্ভিস ক্যাটাগরি </label><br>
- <select class="selectpicker"  data-live-search="true"  multiple  name="service" id="cars">
+ <select class="selectpicker"  data-live-search="true"  multiple  name="service" id="serviceGet">
  {% for data in service %}
    <option value="{{data.service_name}}" data-id="{{data.id}}" >{{data.service_name}}</option>
  {% endfor %}
@@ -204,13 +204,55 @@
  <label for="cars">  সার্ভিস </label><br>
  <select class="selectpicker"  data-live-search="true"  multiple  name="sub_service" id="cars">
 
-
-
  </select>
 
+<br><br>
+
+<script>
+
+$(document).ready(function(){
 
 
- <br><br>
+   
+
+  $.djangocsrf( "enable" );
+    
+  $("#serviceGet").change(function(){
+
+  
+     var control = $(this);
+     var id = control.find(":selected").data("id");
+   
+     $.ajax({
+    
+      url:"{% url 'fetch_service' %}",
+      method:"POST",
+      data:{id:id},
+      success:function(data)
+      {  
+      
+     
+          console.log(data);
+           
+        }
+     
+     });
+     
+ 
+    
+     
+   });
+
+
+
+});
+
+
+
+</script>
+
+
+
 
  <label> আপনার দক্ষতা  </label><br>
 
