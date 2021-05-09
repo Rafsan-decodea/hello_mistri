@@ -28,6 +28,7 @@ urlpatterns = [
      
      #--------------------Fetch information Segment ------------------------
      path(r'get_cityinformation',views.get_cityinformation,name="get_cityinformation"),
+     path(r'get_areainformation',views.get_areainformation,name="get_areainformation"),
      
      path(r'login',views.login,name="login"),
      path(r'logout', views.logout, name="logout"),

@@ -6,8 +6,6 @@
 {% if user.is_authenticated %}
 
 
-
-
 <!doctype html>
 <html>
 
@@ -21,15 +19,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" >
     <link href="{%static 'information.css'%}" rel="stylesheet"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
-    <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
-    <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
+   <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+    {% comment %} <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/css/bootstrap-select.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> {% endcomment %}
+
 <script src="https://cdn.jsdelivr.net/gh/js-cookie/js-cookie@1.5.1/src/js.cookie.js"></script> 
 <script src="https://cdn.jsdelivr.net/gh/bfontaine/jquery-djangocsrf@0.1.1/jquery.djangocsrf.js"></script> 
+
 
    <script src="{%static 'custom.js'%}"></script>
     <title>Welcome to Hello Mistri  </title>
@@ -197,15 +197,15 @@
  <label for="cars"> সার্ভিস ক্যাটাগরি </label><br>
  <select class="selectpicker"  data-live-search="true"  multiple  name="service" id="cars">
  {% for data in service %}
-   <option value="{{data.service_name}}">{{data.service_name}}</option>
+   <option value="{{data.service_name}}" data-id="{{data.id}}" >{{data.service_name}}</option>
  {% endfor %}
  </select>
  <br><br>
  <label for="cars">  সার্ভিস </label><br>
  <select class="selectpicker"  data-live-search="true"  multiple  name="sub_service" id="cars">
- {% for data in sub_service %}
-   <option value="{{data.sub_service_name}}">{{data.sub_service_name}}</option>
- {% endfor %}
+
+
+
  </select>
 
 
@@ -244,14 +244,14 @@
 
 
  <label for="cars">  এরিয়া নির্বাচন করুন  </label><br>
- <select name="area" id="areaGet">
+ <select name="area" id="areaGet" >
   <option  selected disabled hidden>Choose here</option>
   
 </select>
  
  <br><br>
 
-<div id="test"></div>
+
 
 <script>
 
@@ -275,15 +275,14 @@ $(document).ready(function(){
       data:{id:id},
       success:function(data)
       {  
-         document.getElementById("test").innerHTML="";
+      
         $('#areaGet').html("");
 
          for(i=0;i<data.fetch_area.length;i++)
             {
                var   [name,id1] = data.fetch_area[i];
-               document.getElementById("test").append(name+" ");
-
-                area_html += "<option value='"+name+"'>"+name+"</option>";
+               console.log(name);
+                area_html += "<option value='"+name+"' data-id='"+id1+"'>"+name+"</option>";
         
             }      
 
@@ -308,13 +307,68 @@ $(document).ready(function(){
 
  <label for="cars"> সাব এরিয়া নির্বাচন করুন  </label><br>
 
- <select name="sub_area" id="cars">
-   <option value="" selected disabled hidden>Choose here</option>
-  {% for data in fetch_sub_area  %}
-    <option  value="{{data.0}}">{{data.0}}</option>
-  {% endfor %}
+ <select name="sub_area" id="subArea">
+ <option  selected disabled hidden>Choose here</option>
+
+    
+
   </select>
    <br><br>
+
+<script>
+
+$(document).ready(function(){
+
+
+  $.djangocsrf( "enable" );
+    
+  $("#areaGet").change(function(){
+
+  
+     var control = $(this);
+     var id = control.find(":selected").data("id");
+     var subarea_html= "";
+     $.ajax({
+    
+      url:"{% url 'get_areainformation' %}",
+      method:"POST",
+      data:{id:id},
+      success:function(data)
+      {  
+        
+        $('#subArea').html("");
+
+       
+         for(i=0;i<data.fetch_subarea.length;i++)
+            {
+              
+
+               var   [name1,id2] = data.fetch_subarea[i];
+               console.log(name);
+              subarea_html += "<option value='"+name1+"'>"+name1+"</option>";
+        
+            }      
+
+           $("#subArea").html(subarea_html);
+        }
+     
+     });
+     
+ 
+    
+     
+   });
+
+
+
+});
+
+
+</script>
+
+
+
+
    <label for="inputlg">এলাকা/ ব্লক/ রোড/বাড়ি নাম ও নাম্বার/ ফ্লাট নং </label>
    <input class="form-control input-lg" id="inputlg" name="address" type="text" required>
    <br><br>

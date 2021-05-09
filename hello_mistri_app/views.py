@@ -97,6 +97,24 @@ def get_cityinformation(request):
              'fetch_area':get_area,
         })
 
+def get_areainformation(request):
+    if request.is_ajax():
+        get_area_id = request.POST.get("id")
+        getarea = Area.objects.get(pk=get_area_id)
+   
+        subarea = []
+        subarea_id = []
+
+        for data in getarea.subarea_set.all():
+             subarea.append(data.sub_area_name)
+             subarea_id.append(data.id)
+        print (subarea)
+        get_subarea = list(zip(subarea,subarea_id))
+
+        return response.JsonResponse({
+             'msg' :'Success',
+             'fetch_subarea':get_subarea,
+        })
 
 def insert_clint_information(request):
     
