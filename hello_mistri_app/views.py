@@ -351,13 +351,21 @@ def add_service(request):
              'msg' :'Success',
             })   
 
-def fetch_service(request):
+def fetch_subservice(request):
     if request.is_ajax():
           service_id = request.POST.get("id")
+          get_service = Service.objects.get(pk=service_id)
+          sub_service= []
+          sub_serviceid =[]
 
+          for data in get_service.subservice_set.all():
+              sub_service.append(data.sub_service_name)
+              sub_serviceid.append(data.id)
+          get_subservice = list(zip(sub_service,sub_serviceid))
+          
           return response.JsonResponse({
              'msg' :'Success',
-             'fetch_service':service_id,
+             'fetch_subservice':get_subservice,
             }) 
 
 

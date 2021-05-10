@@ -30,7 +30,7 @@ urlpatterns = [
      path(r'get_cityinformation',views.get_cityinformation,name="get_cityinformation"),
      path(r'get_areainformation',views.get_areainformation,name="get_areainformation"),
 
-     path(r'fetch_service',views.fetch_service,name="fetch_service"),
+     path(r'fetch_subservice',views.fetch_subservice,name="fetch_subservice"),
      
      path(r'login',views.login,name="login"),
      path(r'logout', views.logout, name="logout"),
