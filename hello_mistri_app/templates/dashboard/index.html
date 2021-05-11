@@ -402,7 +402,8 @@ var nav = $('.fixed-button');
 
                    document.getElementById("address").value = "{{evarage.address}}";
                  
-                   document.getElementById("service_list").value = "Hello World";
+                   document.getElementById("service_list").innerHTML = "{{evarage.service}}";
+                   document.getElementById("sub_service").innerHTML = "{{evarage.sub_service}}";
              
                    $("#mistri_dob_image").attr('src','{{evarage.image.url}}');
                   

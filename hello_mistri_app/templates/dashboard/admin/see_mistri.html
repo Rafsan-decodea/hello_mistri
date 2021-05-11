@@ -7,7 +7,7 @@
 
 
 
-  <div class="pcoded-content  ">
+  <div class="pcoded-content  "  style="overflow-x:auto;">
                         <div class="pcoded-inner-content ">
 
                             <!-- Main-body start -->
@@ -33,8 +33,8 @@
     margin-left: 80px;
   }
 </style>
-                                                            
-<div class="margin">
+     <center><h2>Here mistri List </h2></center>                                                       
+<div class="margin"  style="overflow-x:auto;">
 <table class="table">
   <thead>
     <tr>
@@ -47,11 +47,20 @@
       <th scope="col">City</th>
       <th scope="col">area</th>
       <th scope="col">Subarea</th>
+      <th scope="col">Ability</th>
+      <th scope="col">Emargency People Name</th>
+      <th scope="col">Education</th>
+      <th scope="col">Have Bike ??</th>
+      <th scope="col">Have is_instrument ??</th>
+      <th scope="col">Able To give Service</th>
+      <th scope="col">Able To give Sub Service</th>
+      
+
       
 
     </tr>
   </thead>
-<center><h2>Here mistri List </h2></center>
+
 
   <tbody>
   {% for data  in mistri_data  %}
@@ -66,6 +75,15 @@
       <td>{{data.city}}</td>
       <td>{{data.area}}</td>
       <td>{{data.sub_area}}</td>
+      <td>{{data.ability}}</td>
+      <td>{{data.emargency_name}} ({{data.emargency}}) ({{data.emargency_number}})</td>
+      <td>{{data.education}}</td>
+      <td>{{data.is_bick}}</td>
+      <td>{{data.is_instrument}}</td>
+      <td>{{data.service}}</td>
+      <td>{{data.sub_service}}</td>
+
+
     </tr>
     {% endfor %}
   </tbody>
