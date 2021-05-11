@@ -394,6 +394,14 @@ def add_servicetype(request):
             }) 
 
 
+def delete_service(request):
+    if request.method == "POST":
+        service_id = request.POST.get("delete_service_id")
+        service = Service.objects.get(pk=service_id)
+        service.delete()
+        return render(request,"dashboard/admin/add_service.html") 
+
+
 def logout(request):
     user_logout(request)
     return render(request,"index.html")

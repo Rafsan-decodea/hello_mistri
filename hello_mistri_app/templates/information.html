@@ -109,52 +109,169 @@
     <input type="text" value="{{ request.user.first_name }} {{ request.user.last_name }}"  name="name" id="email" required>
     
     <label for="email"><b>মোবাইল নাম্বার  </b></label>
-    <input type="text" placeholder="Enter Phone Number " name="phone" id="email" required>
-
-    <label for="inputlg">আপনার আপনার ঠিকানা দিন</label>
+    <input class="form-control"  type="number"  placeholder="phone" name="number"  required>
+ <br><br>
+    <label for="inputlg">আপনার ঠিকানা দিন</label>
     <input class="form-control input-lg" id="inputlg" name="address" type="text" required>
 
 
  <label for="inputlg">আপনার  কোন এরিয়াতে Service  নিতে চান </label>
  <br><br>
- <label for="cars">আপনার সিটি র্নিবাচন করুন </label><br>
+ 
 
 <!--class="selectpicker" multiple-->
-
-<select  data-live-search="true" name="city">
-
+ <label for="cars"> সিটি র্নিবাচন করুন </label><br>
+ <select name="city_client" id="city_client">
+   <option  selected  disabled hidden>Choose here</option>
  {% for data in city %}
-   <option value="{{data.city_name}}">{{data.city_name}}</option>
- {% endfor %}
- </select>
-
-
- <br><br>
-  <label for="cars">  সার্ভিস এর ধরন </label><br>
- <select class="selectpicker"  data-live-search="true"  multiple name="service_type" id="cars">
- {% for data in service_type %}
-   <option value="{{data.service_type}}">{{data.service_type}}</option>
- {% endfor %}
- </select>
-
-
-
- <br><br>
- <label for="cars"> আপনার এরিয়া নির্বাচন করুন  </label><br>
- <select name="area" id="cars">
- {% for data in area %}
-   <option value="{{data.area_name}}">{{data.area_name}}</option>
+   <option value="{{data.city_name}}" data-id="{{data.id}}">{{data.city_name}}</option>
  {% endfor %}
  </select>
  <br><br>
 
- <label for="cars"> আপনার সাব এরিয়া নির্বাচন করুন  </label><br>
 
- <select name="sub_area" id="cars">
-  {% for data in sub_area %}
-    <option value="{{data.sub_area_name}}">{{data.sub_area_name}}</option>
-  {% endfor %}
+ <label for="cars">  এরিয়া নির্বাচন করুন  </label><br>
+ <select name="area_client" id="areaGet_client" >
+  <option  selected disabled hidden>Choose here</option>
+  
+</select>
+ 
+ <br><br>
+
+
+
+<script>
+
+$(document).ready(function(){
+
+
+   
+
+  $.djangocsrf( "enable" );
+    
+  $("#city_client").change(function(){
+
+  
+     var control = $(this);
+     var id = control.find(":selected").data("id");
+     var area_html= "";
+     $.ajax({
+    
+      url:"{% url 'get_cityinformation' %}",
+      method:"POST",
+      data:{id:id},
+      success:function(data)
+      {  
+      
+        $('#areaGet_client').html("");
+
+         for(i=0;i<data.fetch_area.length;i++)
+            {
+               var   [name,id1] = data.fetch_area[i];
+               console.log(name);
+                area_html += "<option value='"+name+"' data-id='"+id1+"'>"+name+"</option>";
+        
+            }      
+
+            $("#areaGet_client").html(area_html);
+        }
+     
+     });
+     
+ 
+    
+     
+   });
+
+
+
+});
+
+
+</script>
+
+
+
+ <label for="cars"> সাব এরিয়া নির্বাচন করুন  </label><br>
+
+ <select name="sub_area_client" id="subArea_client">
+ <option  selected disabled hidden>Choose here</option>
+
+    
+
   </select>
+   <br><br>
+
+<script>
+
+$(document).ready(function(){
+
+
+  $.djangocsrf( "enable" );
+    
+  $("#areaGet_client").change(function(){
+
+  
+     var control = $(this);
+     var id = control.find(":selected").data("id");
+     var subarea_html= "";
+     $.ajax({
+    
+      url:"{% url 'get_areainformation' %}",
+      method:"POST",
+      data:{id:id},
+      success:function(data)
+      {  
+        
+        $('#subArea_client').html("");
+
+       
+         for(i=0;i<data.fetch_subarea.length;i++)
+            {
+              
+
+               var   [name1,id2] = data.fetch_subarea[i];
+               console.log(name);
+              subarea_html += "<option value='"+name1+"'>"+name1+"</option>";
+        
+            }      
+
+           $("#subArea_client").html(subarea_html);
+        }
+     
+     });
+     
+ 
+    
+     
+   });
+
+
+
+});
+
+
+</script>
+
+
+
+
+   <label for="inputlg">এলাকা/ ব্লক/ রোড/বাড়ি নাম ও নাম্বার/ ফ্লাট নং </label>
+   <input class="form-control input-lg" id="inputlg" name="address" type="text" required>
+   <br><br>
+
+
+
+
+
+
+
+
+ 
+
+
+
+
 
     <button type="submit" class="registerbtn">Next</button>
   </div>

@@ -31,6 +31,9 @@ urlpatterns = [
      path(r'get_areainformation',views.get_areainformation,name="get_areainformation"),
 
      path(r'fetch_subservice',views.fetch_subservice,name="fetch_subservice"),
+
+     #----------------------Delete Segment ------------------------------
+     path(r'delete_service',views.delete_service,name="delete_service"),
      
      path(r'login',views.login,name="login"),
      path(r'logout', views.logout, name="logout"),
