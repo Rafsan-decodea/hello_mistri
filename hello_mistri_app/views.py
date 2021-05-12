@@ -125,12 +125,12 @@ def insert_clint_information(request):
          email = request.POST.get('client_email')
          profile_image_link = request.POST.get('client_profile_image_link')
          name= request.POST.get('name')
-         phone= request.POST.get('phone')
-         address = request.POST.get('address')
-         city = request.POST.get('city')
-         area = request.POST.get('area')
-         sub_area = request.POST.get('sub_area')
-         c = ClientInformation.objects.create(user=u ,uid=uid ,email=email,profile_image_link=profile_image_link,clint_id=clint_id,name=name,phone=phone,address=address,city=city,area=area,sub_area=sub_area)
+         phone= request.POST.get('number')
+         city = request.POST.get('city_client')
+         area = request.POST.get('area_client')
+         sub_area = request.POST.get('sub_area_client')
+         home_address = request.POST.get('home_address')
+         c = ClientInformation.objects.create(user=u ,uid=uid ,email=email,profile_image_link=profile_image_link,clint_id=clint_id,name=name,phone=phone,city=city,area=area,sub_area=sub_area,home_address=home_address)
          c.save()     
         
     return render(request,"dashboard/personal_information.html")
@@ -347,9 +347,12 @@ def add_service(request):
     if request.is_ajax():
         get_service = request.POST.get("service")
         Service.objects.create( service_name=get_service).save()
-    return response.JsonResponse({
+        return response.JsonResponse({
              'msg' :'Success',
             })   
+    return response.JsonResponse({
+             'msg' :'error',
+            })
 
 def fetch_subservice(request):
     if request.is_ajax():
@@ -378,9 +381,13 @@ def add_subservice(request):
          service_get = Service.objects.get(pk=service_id)
          sub_service = request.POST.get("sub_service")
          SubService.objects.create(service_name=service_get,sub_service_name=sub_service).save()
-     return response.JsonResponse({
+         return response.JsonResponse({
              'msg' :'Success',
             })   
+     return response.JsonResponse({
+             'msg' :'error',
+            })
+
 
 def add_servicetype(request):
      if request.is_ajax():
@@ -389,9 +396,12 @@ def add_servicetype(request):
          service_type = request.POST.get("service_type")
          ServiceType.objects.create(service_name=subservice_get,service_type=service_type).save()
     
-     return response.JsonResponse({
+         return response.JsonResponse({
              'msg' :'Success',
             }) 
+     return response.JsonResponse({
+             'msg' :'error',
+            })
 
 
 def delete_service(request):

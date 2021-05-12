@@ -23,10 +23,10 @@ class ClientInformation(models.Model):
    profile_image_link = models.CharField(max_length=400)
    name = models.CharField(max_length=100)
    phone = PhoneField(blank=False, help_text='Contact phone number')
-   address = models.CharField(max_length=500)
    city= models.CharField(max_length=100)
    area = models.CharField(max_length=200)
    sub_area =models.CharField(max_length=200)
+   home_address = models.CharField(max_length=500)
 
 
    

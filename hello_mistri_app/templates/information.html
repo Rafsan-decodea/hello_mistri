@@ -67,7 +67,7 @@
 
      
   <div class="text-center" id="MistriAccountBTN">
-      <button type="button" class="btn btn-primary btn-lg btn-block">Register As a Mistri</button>
+      <button type="button" class="btn btn-primary btn-lg btn-block"> Mistri</button>
     </div>
       
 
@@ -79,7 +79,7 @@
 
 
     <div class="text-center" id="ClintAccountBTN">
-      <button type="button" class="btn btn-primary btn-lg btn-block">Register as a Client </button>
+      <button type="button" class="btn btn-primary btn-lg btn-block"> Client </button>
     </div>
 
   </div>
@@ -111,11 +111,7 @@
     <label for="email"><b>মোবাইল নাম্বার  </b></label>
     <input class="form-control"  type="number"  placeholder="phone" name="number"  required>
  <br><br>
-    <label for="inputlg">আপনার ঠিকানা দিন</label>
-    <input class="form-control input-lg" id="inputlg" name="address" type="text" required>
-
-
- <label for="inputlg">আপনার  কোন এরিয়াতে Service  নিতে চান </label>
+  <label for="inputlg">আপনার  কোন এরিয়াতে Service  নিতে চান </label>
  <br><br>
  
 
@@ -229,8 +225,7 @@ $(document).ready(function(){
          for(i=0;i<data.fetch_subarea.length;i++)
             {
               
-
-               var   [name1,id2] = data.fetch_subarea[i];
+              var   [name1,id2] = data.fetch_subarea[i];
                console.log(name);
               subarea_html += "<option value='"+name1+"'>"+name1+"</option>";
         
@@ -253,16 +248,13 @@ $(document).ready(function(){
 
 </script>
 
-
+<br><br>
+  
 
 
    <label for="inputlg">এলাকা/ ব্লক/ রোড/বাড়ি নাম ও নাম্বার/ ফ্লাট নং </label>
-   <input class="form-control input-lg" id="inputlg" name="client_address" type="text" required>
+   <input class="form-control input-lg" id="inputlg" name="home_address" type="text" required>
    <br><br>
-
-
-
-
 
 
 
