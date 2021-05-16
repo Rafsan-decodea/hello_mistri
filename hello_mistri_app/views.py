@@ -387,6 +387,7 @@ def add_subservice(request):
      return response.JsonResponse({
              'msg' :'error',
             })
+    
 
 
 def add_servicetype(request):

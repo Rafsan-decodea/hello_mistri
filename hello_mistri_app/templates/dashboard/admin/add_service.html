@@ -164,49 +164,16 @@
 
 
 
+<center><h2> Show Service </h2> </center>
 
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">id</th>
-      <th scope="col">Service</th>
-      <th scope="col">Sub Service </th>
-      <th scope="col">Service Type</th>
 
-    </tr>
-  </thead>
-<center><h2>Here Service List </h2></center>
 
-  <tbody>
-  {% for data  in service_type  %}
-    
-    <tr>
-      <th scope="row"  >{{data.id}}</th>
-      <td>{{data.service_name.service_name.service_name}}</td>
-      <td>{{data.service_name.sub_service_name}}</td>
-      <td>{{data.service_type}}</td>
-      <td> <a  class="btn btn-primary a-btn-slide-text" data-toggle="modal" data-target="#exampleModal2" data-whatever="@mdo">
-        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-        <span><strong>Edit</strong></span>  </td>
 
-      <td>
-    
-     <form method="POST" action="{% url 'delete_service' %}">
-     
-      <input hidden value={{data.id}} name="delete_service_id">
-      <a  class="btn btn-danger a-btn-slide-text" data-toggle="modal" data-target="#exampleModal1">
-       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-        <span><strong>Delete</strong></span>  
 
-        </form>
-        
-        
-     </td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+
+
+
 
 <!-- ----------------------- This is Delete Segment------------------------ --> 
 

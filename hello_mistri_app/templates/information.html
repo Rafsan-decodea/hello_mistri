@@ -21,11 +21,11 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
    <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
   <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/> 
-    {% comment %} <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/css/bootstrap-select.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>  {% endcomment %}
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> 
 
 <script src="https://cdn.jsdelivr.net/gh/js-cookie/js-cookie@1.5.1/src/js.cookie.js"></script> 
 <script src="https://cdn.jsdelivr.net/gh/bfontaine/jquery-djangocsrf@0.1.1/jquery.djangocsrf.js"></script> 
@@ -127,11 +127,14 @@
 
 
  <label for="cars">  এরিয়া নির্বাচন করুন  </label><br>
- <select name="area_client" id="areaGet_client" >
-  <option  selected disabled hidden>Choose here</option>
+<div>
+  <select name="area_client" id="areaGet_client" >
+  <option  selected disabled hidden>Choose </option>
+ 
+
   
 </select>
- 
+</div>
  <br><br>
 
 
@@ -165,11 +168,12 @@ $(document).ready(function(){
             {
                var   [name,id1] = data.fetch_area[i];
                console.log(name);
-                area_html += "<option value='"+name+"' data-id='"+id1+"'>"+name+"</option>";
+                area_html += "<option value='"+name+"' data-id='"+id1+"' >"+name+"</option>";
         
             }      
 
             $("#areaGet_client").html(area_html);
+            $('#areaGet_client').selectpicker('refresh');
         }
      
      });
@@ -179,7 +183,7 @@ $(document).ready(function(){
      
    });
 
-
+   $("#areaGet_client").html("<option value='data'>hello</option>");
 
 });
 
@@ -232,6 +236,7 @@ $(document).ready(function(){
             }      
 
            $("#subArea_client").html(subarea_html);
+           $('#subArea_client').selectpicker('refresh');
         }
      
      });
@@ -345,13 +350,10 @@ $(document).ready(function(){
           
             } 
 
-            var value  =  $("#subService").text();
-                for(var j=0 ; j<value.length; j++)
-                {
-                   console.log(j);
-                }
+        
        
-           $("#subService").append(sub_service);    
+           $("#subService").append(sub_service);  
+           $('#subService').selectpicker('refresh');  
            
         }
      
@@ -407,7 +409,7 @@ $(document).ready(function(){
  <label for="cars">  এরিয়া নির্বাচন করুন  </label><br>
  <select name="area" id="areaGet" >
   <option  selected disabled hidden>Choose here</option>
-  
+ 
 </select>
  
  <br><br>
@@ -448,6 +450,7 @@ $(document).ready(function(){
             }      
 
             $("#areaGet").html(area_html);
+            $('#areaGet').selectpicker('refresh');
         }
      
      });
@@ -511,6 +514,7 @@ $(document).ready(function(){
             }      
 
            $("#subArea").html(subarea_html);
+           $('#subArea').selectpicker('refresh');
         }
      
      });
@@ -671,3 +675,4 @@ $(document).ready(function(){
 
 
 
+<!-- nondini.dasgupta -->
