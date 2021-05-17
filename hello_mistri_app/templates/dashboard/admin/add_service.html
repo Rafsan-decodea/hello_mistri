@@ -83,7 +83,7 @@
 <form method="POST" id="add_data2">
 
 <label for="cars">Select Service From There </label><br>
-<select name="service_id" id="cars">
+<select name="service_id" class="form-control" style="height:35px;" id="cars">
   {% for data in service %}
     <option value="{{data.id}}">{{data.service_name}}</option>
   {% endfor %}
@@ -101,14 +101,13 @@
 
 
 <form method="POST" id="add_data3">
-
 <label for="cars">Select Sub Service From There </label><br>
-<select name="subservice_id" id="cars">
+<select  class="form-control" style="height:35px;" name="subservice_id" id="cars">
   {% for data in sub_service %}
     <option value="{{data.id}}">{{data.sub_service_name}}</option>
   {% endfor %}
  </select>
-
+<br>
   <div class="form-group">
     <label for="usr">Add Service Type </label>
      <input type="text" class="form-control"  name="service_type" id="usr">
@@ -164,23 +163,39 @@
 
 
 
-<center><h2> Show Service </h2> </center>
 
 <div class="container">
   <div class="row">
     <div class="col-sm">
-      <h1>Service</h1>
-       {% for data  in service  %}
-         
-        {{data.service_name}}<br>
-         
-       {% endfor %}
+      <h3>Service</h3>
+       <div class="form-group">
+        <select multiple class="form-control" id="exampleFormControlSelect2">
+          {% for data  in service  %}
+          <option>{{data.service_name}}</option>
+          {% endfor %}
+        </select>
+      </div>
+
     </div>
     <div class="col-sm">
-      One of three columns
+      <h3>See SubService</h3>
+      <div class="form-group">
+        <select multiple class="form-control" id="exampleFormControlSelect2">
+          {% for data  in service  %}
+          <option>{{data.service_name}}</option>
+          {% endfor %}
+        </select>
+      </div>
     </div>
     <div class="col-sm">
-      One of three columns
+   <h3>See SubService Type</h3>
+        <div class="form-group">
+          <select multiple class="form-control" id="exampleFormControlSelect2">
+            {% for data  in service  %}
+            <option>{{data.service_name}}</option>
+            {% endfor %}
+          </select>
+      
     </div>
   </div>
 </div>

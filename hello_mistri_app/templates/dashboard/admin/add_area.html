@@ -91,7 +91,7 @@
 
 
  <label for="cars">Select City From There </label><br>
-  <select name="city_id" id="cars">
+  <select name="city_id" class="form-control" style="height:35px;" id="cars">
   {% for data in city %}
     <option value="{{data.id}}">{{data.city_name}}</option>
   {% endfor %}
@@ -119,7 +119,7 @@
 
 <form  method="POST" id="add_data3">
  <label for="cars">Select Area From There </label><br>
-<select name="sub_area_id" id="cars">
+<select name="sub_area_id" class="form-control" style="height:35px;" id="cars">
   {% for data in area %}
     <option value="{{data.id}}">{{data.area_name}}</option>
   {% endfor %}
