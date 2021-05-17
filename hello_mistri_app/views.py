@@ -78,7 +78,9 @@ def information(request):
 
 
 def get_cityinformation(request):
-    if request.is_ajax(): 
+    
+     if request.is_ajax(): 
+   
        get_cityid = request.POST.get("id")
        getcity = City.objects.get(pk=get_cityid)
 
@@ -96,9 +98,11 @@ def get_cityinformation(request):
              'msg' :'Success',
              'fetch_area':get_area,
         })
+   
 
 def get_areainformation(request):
-    if request.is_ajax():
+    
+     if request.is_ajax():
         get_area_id = request.POST.get("id")
         getarea = Area.objects.get(pk=get_area_id)
    
@@ -115,6 +119,7 @@ def get_areainformation(request):
              'msg' :'Success',
              'fetch_subarea':get_subarea,
         })
+   
 
 def insert_clint_information(request):
     
@@ -355,8 +360,10 @@ def add_service(request):
             })
 
 def fetch_subservice(request):
+
     if request.is_ajax():
           service_id = request.POST.get("id")
+          print (service_id)
           get_service = Service.objects.get(pk=service_id)
           sub_service= []
           sub_serviceid =[]
@@ -370,7 +377,8 @@ def fetch_subservice(request):
              'msg' :'Success',
              'fetch_subservice':get_subservice,
             }) 
-
+            
+ 
 
 
 
