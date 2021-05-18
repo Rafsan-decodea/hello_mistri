@@ -35,6 +35,8 @@ urlpatterns = [
 
      #----------------------Delete Segment ------------------------------
      path(r'delete_service',views.delete_service,name="delete_service"),
+     path(r'delete_subservice',views.delete_subservice,name="delete_subservice"),
+     path(r'delete_subservicetype',views.delete_subservicetype,name="delete_subservicetype"),
      
      path(r'login',views.login,name="login"),
      path(r'logout', views.logout, name="logout"),

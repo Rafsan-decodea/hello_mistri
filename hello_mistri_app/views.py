@@ -427,11 +427,31 @@ def add_servicetype(request):
 
 
 def delete_service(request):
-    if request.method == "POST":
-        service_id = request.POST.get("delete_service_id")
+     if request.is_ajax():
+        service_id = request.POST.get("id")
         service = Service.objects.get(pk=service_id)
         service.delete()
-        return render(request,"dashboard/admin/add_service.html") 
+        return response.JsonResponse({
+             'msg' :'Success',
+            }) 
+
+def delete_subservice(request):
+    if request.is_ajax():
+        sub_service_id = request.POST.get("id")
+        subservice = SubService.objects.get(pk=sub_service_id)
+        subservice.delete()
+        return response.JsonResponse({
+             'msg' :'Success',
+            }) 
+
+def delete_subservicetype(request):
+    if request.is_ajax():
+        sub_service_type = request.POST.get("id")
+        subservicetype = ServiceType.objects.get(pk=sub_service_type)
+        subservicetype.delete()
+        return response.JsonResponse({
+             'msg' :'Success',
+            })
 
 
 def logout(request):

@@ -308,25 +308,28 @@
 </div>
 
 
-<div class="container">
+
   <div class="row">
     <div class="col-sm-3">
-      <button id="service_remove">
+      <button  class="btn btn-danger btn-block"  id="service_remove">
+            Remove
+     </button>
+     <button  class="btn btn-primary btn-block"  >
+     edit
+   </button>
+    </div>
+    <div class="col-sm-3">
+      <button class="btn btn-danger btn-block" id="sub_service_remove" >
         Remove option
     </button>
     </div>
     <div class="col-sm-3">
-      <button onclick="removeOption();">
-        Remove option
-    </button>
-    </div>
-    <div class="col-sm-3">
-      <button onclick="removeOption()">
+      <button class="btn btn-danger btn-block" id="sub_servicetype_remove">
         Remove option
     </button>
     </div>
   </div>
-</div>
+
 
 
 <script>
@@ -336,10 +339,23 @@
      
       $("#service_remove").click(function(){
              
-        var data = $("#service_id").val();
-        var control = $(this);
+        var value = $("#service_id").val();
+        var control = $("#service_id");
         var id = control.find(":selected").data("id");
-        alert(id);
+        $.ajax({
+          
+          url:"{% url 'delete_service' %}",
+          method:"POST",
+          data:{id:id},
+          success:function(data)
+          {  
+          
+                alert("success");
+                location.reload();
+               
+            }
+         
+         });
 
       });
 
@@ -348,6 +364,72 @@
 
 </script>
 
+
+<script>
+
+
+  $(document).ready(function(){
+     
+      $("#sub_service_remove").click(function(){
+             
+        var value = $("#subservice_id").val();
+        var control = $("#subservice_id");
+        var id = control.find(":selected").data("id");
+        $.ajax({
+          
+          url:"{% url 'delete_subservice' %}",
+          method:"POST",
+          data:{id:id},
+          success:function(data)
+          {  
+          
+                alert("success");
+                location.reload();
+               
+            }
+         
+         });
+
+      });
+
+   });
+
+
+</script>
+
+
+
+<script>
+
+
+  $(document).ready(function(){
+     
+      $("#sub_servicetype_remove").click(function(){
+             
+        var value = $("#servicetype_id").val();
+        var control = $("#servicetype_id");
+        var id = control.find(":selected").data("id");
+        $.ajax({
+          
+          url:"{% url 'delete_subservicetype' %}",
+          method:"POST",
+          data:{id:id},
+          success:function(data)
+          {  
+          
+                alert("success");
+                location.reload();
+               
+            }
+         
+         });
+
+      });
+
+   });
+
+
+</script>
 
 
 
@@ -515,9 +597,11 @@ const form = document.getElementById("add_data");
 
                         $("#success").click();
                          document.getElementById("show_massage").innerHTML = "Add Service  Successfully .. Do Refresh to See Changes";
-                     })
+                         window.setTimeout(function(){location.reload()},500) 
+                        })
                    
               }
+        
                if(data.msg == "error"){
                   $(document).ready(function(){
 
@@ -565,8 +649,9 @@ const form2 = document.getElementById("add_data2");
                   $(document).ready(function(){
 
                         $("#success").click();
-                         document.getElementById("show_massage").innerHTML = "Add Sub Service  Successfully .. Do Refresh to See Changes";
-                     })
+                        document.getElementById("show_massage").innerHTML = "Add Sub Service  Successfully .. Do Refresh to See Changes";
+                        window.setTimeout(function(){location.reload()},500) 
+                      })
                    
               }
               if(data.msg == "city")
@@ -607,7 +692,8 @@ const form3 = document.getElementById("add_data3");
 
                         $("#success").click();
                          document.getElementById("show_massage").innerHTML = "Add Sub Service Type  Successfully .. Do Refresh to See Changes";
-                     })
+                         window.setTimeout(function(){location.reload()},500) 
+                        })
                    
               }
               if(data.msg == "city")

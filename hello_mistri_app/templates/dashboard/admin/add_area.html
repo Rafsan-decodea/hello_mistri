@@ -259,7 +259,8 @@ const form = document.getElementById("add_data");
 
                         $("#success").click();
                          document.getElementById("show_massage").innerHTML = "City Save Successfully .. Do Refresh to See Changes";
-                     })
+                         window.setTimeout(function(){location.reload()},500) 
+                        })
                    
               }
               if(data.msg == "city")
@@ -268,7 +269,8 @@ const form = document.getElementById("add_data");
 
                        $("#success").click(); 
                        document.getElementById("show_massage").innerHTML = "City Already Exist";
-                  })
+                       window.setTimeout(function(){location.reload()},500) 
+                      })
               }
              
           }
@@ -298,7 +300,8 @@ function submitHandlerr(e)
 
                         $("#success").click();
                          document.getElementById("show_massage").innerHTML = "Area Save Successfully .. Do Refresh to See Changes";
-                     })
+                         window.setTimeout(function(){location.reload()},500) 
+                        })
                    
               }
               if(data.msg == "city")
@@ -307,7 +310,8 @@ function submitHandlerr(e)
 
                        $("#success").click(); 
                        document.getElementById("show_massage").innerHTML = "City Already Exist";
-                  })
+                       window.setTimeout(function(){location.reload()},500) 
+                      })
               }
              
           }
@@ -337,7 +341,8 @@ function submitHandlerrr(e)
 
                         $("#success").click();
                          document.getElementById("show_massage").innerHTML = "Sub area Save Successfully .. Do Refresh to See Changes";
-                     })
+                         window.setTimeout(function(){location.reload()},500) 
+                        })
                    
               }
               if(data.msg == "city")
