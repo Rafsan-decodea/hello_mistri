@@ -435,6 +435,17 @@ def delete_service(request):
              'msg' :'Success',
             }) 
 
+def edit_service(request):
+    if request.is_ajax():
+        service_id = request.POST.get("id")
+        service =  Service.objects.get(pk=service_id)
+        service.service_name = request.POST.get("change_name_service")
+        service.save()
+        return response.JsonResponse({
+             'msg' :'Success',
+            }) 
+
+
 def delete_subservice(request):
     if request.is_ajax():
         sub_service_id = request.POST.get("id")
