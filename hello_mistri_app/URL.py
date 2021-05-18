@@ -31,6 +31,7 @@ urlpatterns = [
      path(r'get_areainformation',views.get_areainformation,name="get_areainformation"),
 
      path(r'fetch_subservice',views.fetch_subservice,name="fetch_subservice"),
+     path(r'fetch_servicetype',views.fetch_servicetype,name="fetch_servicetype"),
 
      #----------------------Delete Segment ------------------------------
      path(r'delete_service',views.delete_service,name="delete_service"),

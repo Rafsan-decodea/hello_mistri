@@ -363,7 +363,6 @@ def fetch_subservice(request):
 
     if request.is_ajax():
           service_id = request.POST.get("id")
-          print (service_id)
           get_service = Service.objects.get(pk=service_id)
           sub_service= []
           sub_serviceid =[]
@@ -378,7 +377,21 @@ def fetch_subservice(request):
              'fetch_subservice':get_subservice,
             }) 
             
- 
+def fetch_servicetype(request):
+    if request.is_ajax():
+        servicetype_id = request.POST.get("id")
+        get_subservice = SubService.objects.get(pk=servicetype_id)
+        subservice = []
+        subservice_id = []
+        
+        for data in get_subservice.servicetype_set.all():
+              subservice.append(data.service_type)
+              subservice_id.append(data.id)
+        get_servicetype = list(zip(subservice,subservice_id))
+        return response.JsonResponse({
+             'msg' :'Success',
+             'fetch_servicetype':get_servicetype,
+            }) 
 
 
 
