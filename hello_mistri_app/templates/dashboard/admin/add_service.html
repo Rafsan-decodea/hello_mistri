@@ -491,14 +491,29 @@
 
 <div class="modal fade service_edit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
-   <center> <h1>Edit Service information </h1></center>
+   <center> <h1 style="color:white;">Edit Service information </h1></center>
     <div class="modal-content">
       <form>
       <div class="form-group column container justify-content-center">
         <br>
         <div class="col-xs-7">
           <label for="ex3">Edit Current Service</label>
-          <input class="form-control" id="ex3" type="text"><br>
+          <input class="form-control" id="current_service_data" type="text"><br>
+<script>
+
+  $(document).ready(function(){
+            
+    $("#service_edit").click(function(){
+
+       var value = $("#service_id").val();
+       document.getElementById("current_service_data").value = value;
+    });
+       
+
+  });
+
+</script>
+
           <button type="submit" id class="btn btn-primary">Update</button>
         </div>
    
@@ -514,7 +529,7 @@
 
 <div class="modal fade sub_service_edit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
-   <center> <h1>Edit Sub Service information </h1></center>
+   <center> <h1  style="color:white;">Edit Sub Service information </h1></center>
     <div class="modal-content">
       
       <form>    
@@ -522,10 +537,23 @@
         <br>
         <div class="col-xs-7">
           <label for="ex3">Edit Current SubService</label>
-          <input class="form-control" id="ex3" type="text"><br>
+          <input class="form-control" id="current_subservice_data" type="text"><br>
           <button type="submit" id class="btn btn-primary">Update</button>
         </div>
+        <script>
+
+          $(document).ready(function(){
+                    
+            $("#sub_service_edit").click(function(){
         
+               var value = $("#subservice_id").val();
+               document.getElementById("current_subservice_data").value = value;
+            });
+               
+        
+          });
+        
+        </script>
       </div>
     </form>
 
@@ -537,7 +565,7 @@
 
 <div class="modal fade servicetype_edit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
-   <center> <h1>Edit Service Type information </h1></center>
+   <center> <h1  style="color:white;">Edit Service Type information </h1></center>
     <div class="modal-content">
         
       <form>
@@ -545,9 +573,23 @@
         <br>
         <div class="col-xs-7">
           <label for="ex3">Edit Current sub-Service</label>
-          <input class="form-control" id="ex3" type="text"><br>
+          <input class="form-control" id="current_servicetype_data" type="text"><br>
           <button type="submit" id class="btn btn-primary">Update</button>
         </div>
+        <script>
+
+          $(document).ready(function(){
+                    
+            $("#servicetype_edit").click(function(){
+        
+               var value = $("#servicetype_id").val();
+               document.getElementById("current_servicetype_data").value = value;
+            });
+               
+        
+          });
+        
+        </script>
         
       </div>
     </form>
