@@ -183,6 +183,7 @@
       </div>
 
     </div>
+    
     <div class="col-sm-3">
       <h3>See SubService</h3>
       <div class="form-group">
@@ -231,8 +232,6 @@
            
            });
            
-       
-          
            
          });
       
@@ -309,7 +308,45 @@
 </div>
 
 
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+      <button id="service_remove">
+        Remove option
+    </button>
+    </div>
+    <div class="col-sm-3">
+      <button onclick="removeOption();">
+        Remove option
+    </button>
+    </div>
+    <div class="col-sm-3">
+      <button onclick="removeOption()">
+        Remove option
+    </button>
+    </div>
+  </div>
+</div>
 
+
+<script>
+
+
+  $(document).ready(function(){
+     
+      $("#service_remove").click(function(){
+             
+        var data = $("#service_id").val();
+        var control = $(this);
+        var id = control.find(":selected").data("id");
+        alert(id);
+
+      });
+
+   });
+
+
+</script>
 
 
 
