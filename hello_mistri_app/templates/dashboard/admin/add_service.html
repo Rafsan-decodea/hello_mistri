@@ -514,9 +514,39 @@
 
 </script>
 
-          <button type="submit" id class="btn btn-primary">Update</button>
+          <button type="submit" id="service_edit_submit" class="btn btn-primary">Update</button>
         </div>
    
+
+<script>
+     $(document).ready(function(){
+         
+      $("#service_edit_submit").click(function(){
+             
+        var value = $("#service_id").val();
+        var control = $("#service_id");
+        var id = control.find(":selected").data("id"); 
+        var data = $("#current_service_data").val();
+    $.ajax({
+          
+          url:"{% url 'edit_service' %}",
+          method:"POST",
+          data:{id:id,change_name_service:data},
+          success:function(data)
+          {   
+                alert("success");
+                
+               
+            }
+         
+         });
+   
+      });
+
+     })  
+
+</script>
+
       </div>
     </form>
 
@@ -538,7 +568,7 @@
         <div class="col-xs-7">
           <label for="ex3">Edit Current SubService</label>
           <input class="form-control" id="current_subservice_data" type="text"><br>
-          <button type="submit" id class="btn btn-primary">Update</button>
+          <button type="submit" id="subservice_edit_submit" class="btn btn-primary">Update</button>
         </div>
         <script>
 
@@ -554,6 +584,37 @@
           });
         
         </script>
+
+        <script>
+          $(document).ready(function(){
+              
+           $("#subservice_edit_submit").click(function(){
+                  
+            var value = $("#subservice_id").val();
+            var control = $("#subservice_id");
+            var id = control.find(":selected").data("id");
+             var data = $("#current_subservice_data").val();
+             alert(data);
+         $.ajax({
+               
+               url:"{% url 'edit_subservice' %}",
+               method:"POST",
+               data:{id:id,change_name_subservice:data},
+               success:function(data)
+               {   
+                     alert("success");
+                     
+                    
+                 }
+              
+              });
+        
+           });
+     
+          })  
+     
+     </script>
+
       </div>
     </form>
 
@@ -590,6 +651,8 @@
           });
         
         </script>
+
+
         
       </div>
     </form>
