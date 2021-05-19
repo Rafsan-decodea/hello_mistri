@@ -311,7 +311,7 @@
 
   <div class="row">
     <div class="col-sm-3">
-      <button  class="btn btn-danger btn-block"  id="service_remove">
+      <button  class="btn btn-danger btn-block"   data-toggle="modal" data-target="#delete_servcie_modal">
             Remove
      </button>
      <button  class="btn btn-primary btn-block" id="service_edit_button" onClick="edit_service();" >
@@ -326,7 +326,7 @@
    </script>
     </div>
     <div class="col-sm-3">
-      <button class="btn btn-danger btn-block" id="sub_service_remove" >
+      <button class="btn btn-danger btn-block" data-toggle="modal" data-target="#delete_subservcie_modal"   >
         Remove 
     </button>
     <button  class="btn btn-primary btn-block"  onClick="edit_subservice();" >
@@ -340,7 +340,7 @@
     </script>
     </div>
     <div class="col-sm-3">
-      <button class="btn btn-danger btn-block" id="sub_servicetype_remove">
+      <button class="btn btn-danger btn-block" data-toggle="modal" data-target="#delete_servicetype_modal" >
         Remove
     </button>
     <button  class="btn btn-primary btn-block" onClick="edit_servicetype();" >
@@ -375,7 +375,7 @@
           success:function(data)
           {  
           
-                alert("success");
+     
                 location.reload(); 
                 
                
@@ -409,7 +409,7 @@
           success:function(data)
           {  
           
-                alert("success");
+            
                 location.reload();
                
             }
@@ -443,7 +443,7 @@
           success:function(data)
           {  
           
-                alert("success");
+           
                 location.reload();
                
             }
@@ -463,7 +463,11 @@
 
 <!-- ----------------------- This is Delete Segment------------------------ --> 
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="delete_servcie_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -473,11 +477,53 @@
         </button>
       </div>
       <div class="modal-body">
-        Area You Sure About Delete This Entry This Will Be Totally Undone ?
+        Are You Sure For Remove This ?? This will be totally Undone!!
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger">Delete</button>
+        <button type="button" class="btn btn-danger" id="service_remove" >Yes I Want Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="delete_subservcie_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are You Sure For Remove This ?? This will be totally Undone!!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" id="sub_service_remove" >Yes I Want Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="delete_servicetype_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are You Sure For Remove This ?? This will be totally Undone!!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" id="sub_servicetype_remove" >Yes I Want Delete</button>
       </div>
     </div>
   </div>
