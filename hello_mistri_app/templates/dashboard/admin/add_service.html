@@ -599,7 +599,7 @@
             var control = $("#subservice_id");
             var id = control.find(":selected").data("id");
              var data = $("#current_subservice_data").val();
-             
+
          $.ajax({
                
                url:"{% url 'edit_subservice' %}",
@@ -640,7 +640,7 @@
         <div class="col-xs-7">
           <label for="ex3">Edit Current sub-Service</label>
           <input class="form-control" id="current_servicetype_data" type="text"><br>
-          <button type="submit" id class="btn btn-primary">Update</button>
+          <button type="submit" id="servicetype_edit_submit" class="btn btn-primary">Update</button>
         </div>
         <script>
 
@@ -657,6 +657,41 @@
         
         </script>
 
+ <script>
+ 
+    $(document).ready(function(){
+        
+     $("#servicetype_edit_submit").click(function(){
+
+
+      var subservice_value = $("#subservice_id").val();
+      var subservice_control = $("#subservice_id");
+      var subservice_id = subservice_control.find(":selected").data("id");
+            
+      var value = $("#servicetype_id").val();
+      var control = $("#servicetype_id");
+      var id = control.find(":selected").data("id");
+       var data = $("#current_servicetype_data").val();
+       
+   $.ajax({
+         
+         url:"{% url 'edit_subservicetype' %}",
+         method:"POST",
+         data:{subservice_id:subservice_id,id:id,change_name_servicetype:data},
+         success:function(data)
+         {   
+               alert("success");
+               
+              
+           }
+        
+        });
+  
+     });
+
+    })  
+
+ </script>
 
         
       </div>

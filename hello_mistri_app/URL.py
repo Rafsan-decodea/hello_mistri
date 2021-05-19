@@ -41,7 +41,8 @@ urlpatterns = [
      #----------------------Edi Segment ---------------------------------
      path(r'edit_service',views.edit_service,name="edit_service"),
      path(r'edit_subservice',views.edit_subservice,name="edit_subservice"),
-     
+     path(r'edit_subservicetype',views.edit_subservicetype,name="edit_subservicetype"),
+
      path(r'login',views.login,name="login"),
      path(r'logout', views.logout, name="logout"),
      
