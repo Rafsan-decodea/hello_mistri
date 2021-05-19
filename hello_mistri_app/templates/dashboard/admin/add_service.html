@@ -589,17 +589,22 @@
           $(document).ready(function(){
               
            $("#subservice_edit_submit").click(function(){
+
+
+            var service_value = $("#service_id").val();
+            var service_control = $("#service_id");
+            var service_id = service_control.find(":selected").data("id");
                   
             var value = $("#subservice_id").val();
             var control = $("#subservice_id");
             var id = control.find(":selected").data("id");
              var data = $("#current_subservice_data").val();
-             alert(data);
+             
          $.ajax({
                
                url:"{% url 'edit_subservice' %}",
                method:"POST",
-               data:{id:id,change_name_subservice:data},
+               data:{service_id:service_id,id:id,change_name_subservice:data},
                success:function(data)
                {   
                      alert("success");

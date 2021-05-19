@@ -437,6 +437,7 @@ def delete_service(request):
 
 def edit_service(request):
     if request.is_ajax():
+        
         service_id = request.POST.get("id")
         service =  Service.objects.get(pk=service_id)
         service.service_name = request.POST.get("change_name_service")
@@ -448,15 +449,24 @@ def edit_service(request):
 
 def edit_subservice(request):
     if request.is_ajax():
+        service_id = request.POST.get("service_id")
+        fetch_service = Service.objects.get(pk=service_id) 
         subservice_id = request.POST.get("id")
         subservice =  SubService.objects.get(pk=subservice_id)
-        subservice.service_name = request.POST.get("change_name_subservice")
-        print ("====>",subservice_id,"======>",subservice.service_name)
+        subservice.service_name = fetch_service
+        subservice.sub_service_name  = request.POST.get("change_name_subservice")
+ 
         subservice.save()
         return response.JsonResponse({
              'msg' :'Success',
             }) 
 
+
+def edit_subservicetype(request):
+      if request.is_ajax():
+            subservice_id = request.POST.get("subservice_id")
+            fetch_subservice = SubService.objects.get(pk=subservice_id)
+            
 
 
 def delete_subservice(request):
