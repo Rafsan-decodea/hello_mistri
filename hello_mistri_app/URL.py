@@ -50,6 +50,10 @@ urlpatterns = [
      path(r'edit_subservice',views.edit_subservice,name="edit_subservice"),
      path(r'edit_subservicetype',views.edit_subservicetype,name="edit_subservicetype"),
 
+     path(r'edit_city',views.edit_city,name="edit_city"),
+     path(r'edit_area',views.edit_area,name="edit_area"),
+     path(r'edit_subarea',views.edit_subarea,name="edit_subarea"),
+
      path(r'login',views.login,name="login"),
      path(r'logout', views.logout, name="logout"),
      

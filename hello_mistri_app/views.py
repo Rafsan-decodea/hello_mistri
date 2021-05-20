@@ -351,6 +351,46 @@ def delete_subarea(request):
              
            })
 
+def  edit_city(request):
+    if request.is_ajax():
+         city_id = request.POST.get("id")
+         city_get = City.objects.get(pk=city_id)
+         city_get.city_name = request.POST.get("edit_city_name")
+         city_get.save()
+         return response.JsonResponse({
+             'msg' :'Success',
+             
+           })
+
+def edit_area(request):
+    if request.is_ajax():
+         city_id  = request.POST.get("get_cityid")
+         city_get = City.objects.get(pk=city_id)
+         area_id = request.POST.get("id")
+         get_area = Area.objects.get(pk=area_id)
+         get_area.city_name = city_get
+         get_area.area_name = request.POST.get("edit_area_name")
+         get_area.save()
+         return response.JsonResponse({
+             'msg' :'Success',
+             
+           })
+
+def edit_subarea(request):
+    if request.is_ajax():
+         area_id = request.POST.get("get_areaid")
+         area_get = Area.objects.get(pk=area_id)
+         subarea_id =  request.POST.get("id")
+         subarea_get = SubArea.objects.get(pk=subarea_id)
+         subarea_get.area_name = area_get
+         subarea_get.sub_area_name = request.POST.get("edit_subarea_name")
+         subarea_get.save()
+         return response.JsonResponse({
+             'msg' :'Success',
+             
+           })
+
+
 def add_city(request):
     if request.is_ajax():
        city = City.objects.all()

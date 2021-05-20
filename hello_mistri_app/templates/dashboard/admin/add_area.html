@@ -531,14 +531,14 @@
 
 <div class="modal fade city_edit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
-   <center> <h1 style="color:white;">Edit Service information </h1></center>
+   <center> <h1 style="color:white;">Edit City information </h1></center>
     <div class="modal-content">
       <form>
       <div class="form-group column container justify-content-center">
         <br>
         <div class="col-xs-7">
-          <label for="ex3">Edit Current Service</label>
-          <input class="form-control" id="current_service_data" type="text"><br>
+          <label for="ex3">Edit Current City</label>
+          <input class="form-control" id="current_city_data" type="text"><br>
 <script>
 
   $(document).ready(function(){
@@ -546,7 +546,7 @@
     $("#city_edit").click(function(){
 
        var value = $("#city_id").val();
-       document.getElementById("current_service_data").value = value;
+       document.getElementById("current_city_data").value = value;
     });
        
 
@@ -554,26 +554,27 @@
 
 </script>
 
-          <button type="submit" id="service_edit_submit" class="btn btn-primary">Update</button>
+          <button type="submit" id="city_edit_submit" class="btn btn-primary">Update</button>
         </div>
    
 
 <script>
      $(document).ready(function(){
          
-      $("#service_edit_submit").click(function(){
-             
-        var value = $("#service_id").val();
-        var control = $("#service_id");
+      $("#city_edit_submit").click(function(){
+  
+        var value = $("#city_id").val();
+        var control = $("#city_id");
         var id = control.find(":selected").data("id"); 
-        var data = $("#current_service_data").val();
+        var data = $("#current_city_data").val();
     $.ajax({
           
-          url:"{% url 'edit_service' %}",
+          url:"{% url 'edit_city' %}",
           method:"POST",
-          data:{id:id,change_name_service:data},
+          data:{id:id,edit_city_name:data},
           success:function(data)
           {   
+               
                 alert("success");
                 
                
@@ -608,7 +609,7 @@
         <div class="col-xs-7">
           <label for="ex3">Edit Current SubService</label>
           <input class="form-control" id="current_area_data" type="text"><br>
-          <button type="submit" id="subservice_edit_submit" class="btn btn-primary">Update</button>
+          <button type="submit" id="area_edit_submit" class="btn btn-primary">Update</button>
         </div>
         <script>
 
@@ -628,23 +629,23 @@
         <script>
           $(document).ready(function(){
               
-           $("#subservice_edit_submit").click(function(){
+           $("#area_edit_submit").click(function(){
+            
 
-
-            var service_value = $("#service_id").val();
-            var service_control = $("#service_id");
-            var service_id = service_control.find(":selected").data("id");
+            var city_value = $("#city_id").val();
+            var city_control = $("#city_id");
+            var city_id = city_control.find(":selected").data("id");
                   
-            var value = $("#subservice_id").val();
-            var control = $("#subservice_id");
+            var value = $("#area_id").val();
+            var control = $("#area_id");
             var id = control.find(":selected").data("id");
-             var data = $("#current_subservice_data").val();
+             var data = $("#current_area_data").val();
 
          $.ajax({
                
-               url:"{% url 'edit_subservice' %}",
+               url:"{% url 'edit_area' %}",
                method:"POST",
-               data:{service_id:service_id,id:id,change_name_subservice:data},
+               data:{get_cityid:city_id,id:id,edit_area_name:data},
                success:function(data)
                {   
                      alert("success");
@@ -680,7 +681,7 @@
         <div class="col-xs-7">
           <label for="ex3">Edit Current sub-Service</label>
           <input class="form-control" id="current_subarea_data" type="text"><br>
-          <button type="submit" id="servicetype_edit_submit" class="btn btn-primary">Update</button>
+          <button type="submit" id="subarea_edit_submit" class="btn btn-primary">Update</button>
         </div>
         <script>
 
@@ -701,23 +702,23 @@
  
     $(document).ready(function(){
         
-     $("#servicetype_edit_submit").click(function(){
+     $("#subarea_edit_submit").click(function(){
 
 
-      var subservice_value = $("#subservice_id").val();
-      var subservice_control = $("#subservice_id");
-      var subservice_id = subservice_control.find(":selected").data("id");
+      var subarea_value = $("#area_id").val();
+      var subarea_control = $("#area_id");
+      var subarea_id = subarea_control.find(":selected").data("id");
             
-      var value = $("#servicetype_id").val();
-      var control = $("#servicetype_id");
+      var value = $("#subarea_id").val();
+      var control = $("#subarea_id");
       var id = control.find(":selected").data("id");
-       var data = $("#current_servicetype_data").val();
+       var data = $("#current_subarea_data").val();
        
    $.ajax({
          
-         url:"{% url 'edit_subservicetype' %}",
+         url:"{% url 'edit_subarea' %}",
          method:"POST",
-         data:{subservice_id:subservice_id,id:id,change_name_servicetype:data},
+         data:{get_areaid:subarea_id,id:id,edit_subarea_name:data},
          success:function(data)
          {   
                alert("success");
