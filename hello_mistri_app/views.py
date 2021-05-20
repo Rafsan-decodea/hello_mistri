@@ -597,6 +597,15 @@ def delete_subservicetype(request):
             })
 
 
+
+#------------------client Dashboard Part -------------------------
+
+def client_service_select(request):
+
+      return render(request,"dashboard/client_service_select.html" )
+
+
+
 def logout(request):
     user_logout(request)
     return render(request,"index.html")

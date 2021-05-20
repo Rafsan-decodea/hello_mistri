@@ -53,6 +53,9 @@ urlpatterns = [
      path(r'edit_city',views.edit_city,name="edit_city"),
      path(r'edit_area',views.edit_area,name="edit_area"),
      path(r'edit_subarea',views.edit_subarea,name="edit_subarea"),
+    
+    #--------------client Dashboard part----------------------
+    path(r'client_service_select',views.client_service_select,name="client_service_select"),
 
      path(r'login',views.login,name="login"),
      path(r'logout', views.logout, name="logout"),
