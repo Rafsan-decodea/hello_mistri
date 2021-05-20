@@ -308,14 +308,14 @@
       <button  class="btn btn-danger btn-block"   data-toggle="modal" data-target="#delete_city_modal">
             Remove
      </button>
-     <button  class="btn btn-primary btn-block" id="service_edit_button" onClick="edit_service();" >
+     <button  class="btn btn-primary btn-block" id="service_edit_button" onClick="edit_city();" >
      edit
    </button>
    <script>
      
-     function edit_service(){
+     function edit_city(){
            
-          $("#service_edit").click();
+          $("#city_edit").click();
      }
    </script>
     </div>
@@ -323,27 +323,27 @@
       <button class="btn btn-danger btn-block" data-toggle="modal" data-target="#delete_area_modal"   >
         Remove 
     </button>
-    <button  class="btn btn-primary btn-block"  onClick="edit_subservice();" >
+    <button  class="btn btn-primary btn-block"  onClick="edit_area();" >
       edit
     </button>
     <script>
-      function edit_subservice()
+      function edit_area()
       {
-        $("#sub_service_edit").click();
+        $("#area_edit").click();
       }
     </script>
     </div>
     <div class="col-sm-3">
-      <button class="btn btn-danger btn-block" data-toggle="modal" data-target="#delete_servicetype_modal" >
+      <button class="btn btn-danger btn-block" data-toggle="modal" data-target="#delete_subarea_modal" >
         Remove
     </button>
-    <button  class="btn btn-primary btn-block" onClick="edit_servicetype();" >
+    <button  class="btn btn-primary btn-block" onClick="edit_subarea();" >
       edit
     </button>
     <script>
-      function edit_servicetype()
+      function edit_subarea()
       {
-         $("#servicetype_edit").click();
+         $("#edit_subarea").click();
       }
     </script>
     </div>
@@ -424,14 +424,14 @@
 
   $(document).ready(function(){
      
-      $("#sub_servicetype_remove").click(function(){
+      $("#subarea_remove").click(function(){
              
-        var value = $("#servicetype_id").val();
-        var control = $("#servicetype_id");
+        var value = $("#subarea_id").val();
+        var control = $("#subarea_id");
         var id = control.find(":selected").data("id");
         $.ajax({
           
-          url:"{% url 'delete_subservicetype' %}",
+          url:"{% url 'delete_subarea' %}",
           method:"POST",
           data:{id:id},
           success:function(data)
@@ -503,7 +503,7 @@
 </div>
 
 
-<div class="modal fade" id="delete_servicetype_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="delete_subarea_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -517,7 +517,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger" id="sub_servicetype_remove" >Yes I Want Delete</button>
+        <button type="button" class="btn btn-danger" id="subarea_remove" >Yes I Want Delete</button>
       </div>
     </div>
   </div>
@@ -527,9 +527,9 @@
 
 
 <!-- ----------------------- This is Edit Segment------------------------ --> 
-<button type="button" hidden id="service_edit" class="btn btn-primary" data-toggle="modal" data-target=".service_edit"></button>
+<button type="button" hidden id="city_edit" class="btn btn-primary" data-toggle="modal" data-target=".city_edit"></button>
 
-<div class="modal fade service_edit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade city_edit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
    <center> <h1 style="color:white;">Edit Service information </h1></center>
     <div class="modal-content">
@@ -543,9 +543,9 @@
 
   $(document).ready(function(){
             
-    $("#service_edit").click(function(){
+    $("#city_edit").click(function(){
 
-       var value = $("#service_id").val();
+       var value = $("#city_id").val();
        document.getElementById("current_service_data").value = value;
     });
        
@@ -595,9 +595,9 @@
 </div>
 
 
-<button type="button" hidden id="sub_service_edit" class="btn btn-primary" data-toggle="modal" data-target=".sub_service_edit"></button>
+<button type="button" hidden id="area_edit" class="btn btn-primary" data-toggle="modal" data-target=".area_edit"></button>
 
-<div class="modal fade sub_service_edit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade area_edit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
    <center> <h1  style="color:white;">Edit Sub Service information </h1></center>
     <div class="modal-content">
@@ -607,17 +607,17 @@
         <br>
         <div class="col-xs-7">
           <label for="ex3">Edit Current SubService</label>
-          <input class="form-control" id="current_subservice_data" type="text"><br>
+          <input class="form-control" id="current_area_data" type="text"><br>
           <button type="submit" id="subservice_edit_submit" class="btn btn-primary">Update</button>
         </div>
         <script>
 
           $(document).ready(function(){
                     
-            $("#sub_service_edit").click(function(){
+            $("#area_edit").click(function(){
         
-               var value = $("#subservice_id").val();
-               document.getElementById("current_subservice_data").value = value;
+               var value = $("#area_id").val();
+               document.getElementById("current_area_data").value = value;
             });
                
         
@@ -667,9 +667,9 @@
   </div>
 </div>
 
-<button type="button" hidden id="servicetype_edit" class="btn btn-primary" data-toggle="modal" data-target=".servicetype_edit"></button>
+<button type="button" hidden id="edit_subarea" class="btn btn-primary" data-toggle="modal" data-target=".edit_subarea"></button>
 
-<div class="modal fade servicetype_edit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade edit_subarea" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
    <center> <h1  style="color:white;">Edit Service Type information </h1></center>
     <div class="modal-content">
@@ -679,17 +679,17 @@
         <br>
         <div class="col-xs-7">
           <label for="ex3">Edit Current sub-Service</label>
-          <input class="form-control" id="current_servicetype_data" type="text"><br>
+          <input class="form-control" id="current_subarea_data" type="text"><br>
           <button type="submit" id="servicetype_edit_submit" class="btn btn-primary">Update</button>
         </div>
         <script>
 
           $(document).ready(function(){
                     
-            $("#servicetype_edit").click(function(){
+            $("#edit_subarea").click(function(){
         
-               var value = $("#servicetype_id").val();
-               document.getElementById("current_servicetype_data").value = value;
+               var value = $("#subarea_id").val();
+               document.getElementById("current_subarea_data").value = value;
             });
                
         

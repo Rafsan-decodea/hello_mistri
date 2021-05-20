@@ -42,7 +42,8 @@ urlpatterns = [
 
      path(r'delete_city',views.delete_city,name="delete_city"),
      path(r'delete_area',views.delete_area,name="delete_area"),
-     
+     path(r'delete_subarea',views.delete_subarea,name="delete_subarea"),
+
 
      #----------------------Edi Segment ---------------------------------
      path(r'edit_service',views.edit_service,name="edit_service"),
