@@ -33,10 +33,15 @@ urlpatterns = [
      path(r'fetch_subservice',views.fetch_subservice,name="fetch_subservice"),
      path(r'fetch_servicetype',views.fetch_servicetype,name="fetch_servicetype"),
 
+     path(r'fetch_area',views.fetch_area,name="fetch_area"),
+     path(r'fetch_subarea',views.fetch_subarea,name="fetch_subarea"),
      #----------------------Delete Segment ------------------------------
      path(r'delete_service',views.delete_service,name="delete_service"),
      path(r'delete_subservice',views.delete_subservice,name="delete_subservice"),
      path(r'delete_subservicetype',views.delete_subservicetype,name="delete_subservicetype"),
+
+     path(r'delete_city',views.delete_city,name="delete_city"),
+     
 
      #----------------------Edi Segment ---------------------------------
      path(r'edit_service',views.edit_service,name="edit_service"),

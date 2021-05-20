@@ -72,9 +72,6 @@ class MistriInformation(models.Model):
 
        
 
-       
-
-
 
        def __str__(self):
               return 'Mistri name ==>{0}'.format(self.name)

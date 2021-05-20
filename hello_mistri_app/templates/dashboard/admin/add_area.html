@@ -4,7 +4,13 @@
 
 
 {% block body %}
-
+<script src="https://cdn.jsdelivr.net/gh/js-cookie/js-cookie@1.5.1/src/js.cookie.js"></script> 
+<script src="https://cdn.jsdelivr.net/gh/bfontaine/jquery-djangocsrf@0.1.1/jquery.djangocsrf.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/css/bootstrap-select.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>  
 
 <div class="pcoded-content  ">
     <div class="pcoded-inner-content ">
@@ -158,31 +164,589 @@
 </div>
 
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">id</th>
-      <th scope="col">City</th>
-      <th scope="col">Area</th>
-      <th scope="col">SubArea</th>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+      <h3>See City</h3>
+       <div class="form-group">
+        <select multiple  class="form-control" id="city_id" name="city_name"   style="width:250px; height:400px;">
+          {% for data  in city  %}
+          <option value="{{data.city_name}}" data-id="{{data.id}}" >{{data.city_name}}</option>
+          {% endfor %}
+        </select>
+      </div>
 
-    </tr>
-  </thead>
-<center><h2>Here Here City List </h2></center>
-
-  <tbody>
-  {% for data  in sub_area  %}
+    </div>
     
-    <tr>
-      <th scope="row">{{data.id}}</th>
-      <td>{{data.area_name.city_name.city_name}}</td>
-      <td>{{data.area_name.area_name}}</td>
-      <td>{{data.sub_area_name}}</td>
+    <div class="col-sm-3">
+      <h3>See Area</h3>
+      <div class="form-group">
+        <select multiple class="form-control" id="area_id" name="area_name"   style="width:250px; height:400px;"  >   
+     
+        </select>
+      </div>
+    </div>
+
+    <script>
+
+      $(document).ready(function(){
+           
+        $.djangocsrf( "enable" );
+          
+        $("#city_id").change(function(){
+      
+        
+           var control = $(this);
+           var id = control.find(":selected").data("id");
+            var area = "";
+           $.ajax({
+          
+            url:"{% url 'fetch_area' %}",
+            method:"POST",
+            data:{id:id},
+            success:function(data)
+            {  
+            
+                $("#area_id").html("");
+                 for(i=0;i<data.fetch_area.length;i++)
+                  {
+                     var   [name,id] = data.fetch_area[i];
+                      area += "<option value='"+name+"' data-id='"+id+"'>"+name+"</option>";      
+                      
+                
+                  } 
+             
+                  console.log(area);
+              
+             
+                 $("#area_id").html(area);  
+                 $('#area_id').selectpicker('refresh');  
+                 
+              }
+           
+           });
+           
+           
+         });
+      
+      
+      
+      });
+      
+      
+      
+      </script>
   
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+    <div class="col-sm-3">
+   <h3>See SubArea</h3>
+        <div class="form-group">
+          <select multiple class="form-control"  style="width:250px; height:400px;" id="subarea_id">
+          
+          </select>
+      
+          <script>
+
+            $(document).ready(function(){
+                 
+              $.djangocsrf( "enable" );
+                
+              $("#area_id").change(function(){
+            
+              
+                 var control = $(this);
+                 var id = control.find(":selected").data("id");
+                   var subarea = "";
+                 $.ajax({
+                
+                  url:"{% url 'fetch_subarea' %}",
+                  method:"POST",
+                  data:{id:id},
+                  success:function(data)
+                  {  
+                  
+                      $("#subarea_id").html("");
+                       for(i=0;i<data.fetch_subarea.length;i++)
+                        {
+                           var   [name,id] = data.fetch_subarea[i];
+                           subarea += "<option value='"+name+"' data-id='"+id+"'>"+name+"</option>";      
+                            
+                      
+                        } 
+                   
+                        console.log(subarea);
+                    
+                   
+                       $("#subarea_id").html(subarea);  
+                       $('#subarea_id').selectpicker('refresh');  
+                       
+                    }
+                 
+                 });
+                 
+             
+                
+                 
+               });
+            
+            
+            
+            });
+            
+            
+            
+            </script>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+  <div class="row">
+    <div class="col-sm-3">
+      <button  class="btn btn-danger btn-block"   data-toggle="modal" data-target="#delete_city_modal">
+            Remove
+     </button>
+     <button  class="btn btn-primary btn-block" id="service_edit_button" onClick="edit_service();" >
+     edit
+   </button>
+   <script>
+     
+     function edit_service(){
+           
+          $("#service_edit").click();
+     }
+   </script>
+    </div>
+    <div class="col-sm-3">
+      <button class="btn btn-danger btn-block" data-toggle="modal" data-target="#delete_subservcie_modal"   >
+        Remove 
+    </button>
+    <button  class="btn btn-primary btn-block"  onClick="edit_subservice();" >
+      edit
+    </button>
+    <script>
+      function edit_subservice()
+      {
+        $("#sub_service_edit").click();
+      }
+    </script>
+    </div>
+    <div class="col-sm-3">
+      <button class="btn btn-danger btn-block" data-toggle="modal" data-target="#delete_servicetype_modal" >
+        Remove
+    </button>
+    <button  class="btn btn-primary btn-block" onClick="edit_servicetype();" >
+      edit
+    </button>
+    <script>
+      function edit_servicetype()
+      {
+         $("#servicetype_edit").click();
+      }
+    </script>
+    </div>
+  </div>
+
+
+
+<script>
+
+
+  $(document).ready(function(){
+     
+      $("#delete_city").click(function(){
+             
+        var value = $("#city_id").val();
+        var control = $("#city_id");
+        var id = control.find(":selected").data("id");
+        $.ajax({
+          
+          url:"{% url 'delete_city' %}",
+          method:"POST",
+          data:{id:id},
+          success:function(data)
+          {  
+          
+     
+                location.reload(); 
+                
+               
+            }
+         
+         });
+
+      });
+
+   });
+
+
+</script>
+
+
+<script>
+
+
+  $(document).ready(function(){
+     
+      $("#sub_service_remove").click(function(){
+             
+        var value = $("#subservice_id").val();
+        var control = $("#subservice_id");
+        var id = control.find(":selected").data("id");
+        $.ajax({
+          
+          url:"{% url 'delete_subservice' %}",
+          method:"POST",
+          data:{id:id},
+          success:function(data)
+          {  
+          
+            
+                location.reload();
+               
+            }
+         
+         });
+
+      });
+
+   });
+
+
+</script>
+
+
+
+<script>
+
+
+  $(document).ready(function(){
+     
+      $("#sub_servicetype_remove").click(function(){
+             
+        var value = $("#servicetype_id").val();
+        var control = $("#servicetype_id");
+        var id = control.find(":selected").data("id");
+        $.ajax({
+          
+          url:"{% url 'delete_subservicetype' %}",
+          method:"POST",
+          data:{id:id},
+          success:function(data)
+          {  
+          
+           
+                location.reload();
+               
+            }
+         
+         });
+
+      });
+
+   });
+
+
+</script>
+
+
+
+
+
+<!-- ----------------------- This is Delete Segment------------------------ --> 
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="delete_city_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are You Sure For Remove This ?? This will be totally Undone!!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" id="delete_city" >Yes I Want Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="delete_subservcie_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are You Sure For Remove This ?? This will be totally Undone!!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" id="sub_service_remove" >Yes I Want Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="delete_servicetype_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are You Sure For Remove This ?? This will be totally Undone!!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" id="sub_servicetype_remove" >Yes I Want Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ----------------------- This is Delete Segment End------------------------ --> 
+
+
+<!-- ----------------------- This is Edit Segment------------------------ --> 
+<button type="button" hidden id="service_edit" class="btn btn-primary" data-toggle="modal" data-target=".service_edit"></button>
+
+<div class="modal fade service_edit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+   <center> <h1 style="color:white;">Edit Service information </h1></center>
+    <div class="modal-content">
+      <form>
+      <div class="form-group column container justify-content-center">
+        <br>
+        <div class="col-xs-7">
+          <label for="ex3">Edit Current Service</label>
+          <input class="form-control" id="current_service_data" type="text"><br>
+<script>
+
+  $(document).ready(function(){
+            
+    $("#service_edit").click(function(){
+
+       var value = $("#service_id").val();
+       document.getElementById("current_service_data").value = value;
+    });
+       
+
+  });
+
+</script>
+
+          <button type="submit" id="service_edit_submit" class="btn btn-primary">Update</button>
+        </div>
+   
+
+<script>
+     $(document).ready(function(){
+         
+      $("#service_edit_submit").click(function(){
+             
+        var value = $("#service_id").val();
+        var control = $("#service_id");
+        var id = control.find(":selected").data("id"); 
+        var data = $("#current_service_data").val();
+    $.ajax({
+          
+          url:"{% url 'edit_service' %}",
+          method:"POST",
+          data:{id:id,change_name_service:data},
+          success:function(data)
+          {   
+                alert("success");
+                
+               
+            }
+         
+         });
+   
+      });
+
+     })  
+
+</script>
+
+      </div>
+    </form>
+
+  </div>
+  </div>
+</div>
+
+
+<button type="button" hidden id="sub_service_edit" class="btn btn-primary" data-toggle="modal" data-target=".sub_service_edit"></button>
+
+<div class="modal fade sub_service_edit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+   <center> <h1  style="color:white;">Edit Sub Service information </h1></center>
+    <div class="modal-content">
+      
+      <form>    
+      <div class="form-group column container justify-content-center">
+        <br>
+        <div class="col-xs-7">
+          <label for="ex3">Edit Current SubService</label>
+          <input class="form-control" id="current_subservice_data" type="text"><br>
+          <button type="submit" id="subservice_edit_submit" class="btn btn-primary">Update</button>
+        </div>
+        <script>
+
+          $(document).ready(function(){
+                    
+            $("#sub_service_edit").click(function(){
+        
+               var value = $("#subservice_id").val();
+               document.getElementById("current_subservice_data").value = value;
+            });
+               
+        
+          });
+        
+        </script>
+
+        <script>
+          $(document).ready(function(){
+              
+           $("#subservice_edit_submit").click(function(){
+
+
+            var service_value = $("#service_id").val();
+            var service_control = $("#service_id");
+            var service_id = service_control.find(":selected").data("id");
+                  
+            var value = $("#subservice_id").val();
+            var control = $("#subservice_id");
+            var id = control.find(":selected").data("id");
+             var data = $("#current_subservice_data").val();
+
+         $.ajax({
+               
+               url:"{% url 'edit_subservice' %}",
+               method:"POST",
+               data:{service_id:service_id,id:id,change_name_subservice:data},
+               success:function(data)
+               {   
+                     alert("success");
+                     
+                    
+                 }
+              
+              });
+        
+           });
+     
+          })  
+     
+     </script>
+
+      </div>
+    </form>
+
+    </div>
+  </div>
+</div>
+
+<button type="button" hidden id="servicetype_edit" class="btn btn-primary" data-toggle="modal" data-target=".servicetype_edit"></button>
+
+<div class="modal fade servicetype_edit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+   <center> <h1  style="color:white;">Edit Service Type information </h1></center>
+    <div class="modal-content">
+        
+      <form>
+      <div class="form-group column container justify-content-center">
+        <br>
+        <div class="col-xs-7">
+          <label for="ex3">Edit Current sub-Service</label>
+          <input class="form-control" id="current_servicetype_data" type="text"><br>
+          <button type="submit" id="servicetype_edit_submit" class="btn btn-primary">Update</button>
+        </div>
+        <script>
+
+          $(document).ready(function(){
+                    
+            $("#servicetype_edit").click(function(){
+        
+               var value = $("#servicetype_id").val();
+               document.getElementById("current_servicetype_data").value = value;
+            });
+               
+        
+          });
+        
+        </script>
+
+ <script>
+ 
+    $(document).ready(function(){
+        
+     $("#servicetype_edit_submit").click(function(){
+
+
+      var subservice_value = $("#subservice_id").val();
+      var subservice_control = $("#subservice_id");
+      var subservice_id = subservice_control.find(":selected").data("id");
+            
+      var value = $("#servicetype_id").val();
+      var control = $("#servicetype_id");
+      var id = control.find(":selected").data("id");
+       var data = $("#current_servicetype_data").val();
+       
+   $.ajax({
+         
+         url:"{% url 'edit_subservicetype' %}",
+         method:"POST",
+         data:{subservice_id:subservice_id,id:id,change_name_servicetype:data},
+         success:function(data)
+         {   
+               alert("success");
+               
+              
+           }
+        
+        });
+  
+     });
+
+    })  
+
+ </script>
+
+        
+      </div>
+    </form>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+</div>
 
 <script type="text/javascript" src="{%static 'assets/js/jquery/jquery.min.js'%}"></script>
 

@@ -291,7 +291,50 @@ def show_area(request):
     }
     return render(request,"dashboard/admin/add_area.html",context)
 
+def fetch_area(request):
+    if request.is_ajax():
+        city_id = request.POST.get("id")
+        get_city = City.objects.get(pk=city_id)
+        area=[]
+        area_id =[]
+        for data in get_city.area_set.all():
+             area.append(data.area_name)
+             area_id.append(data.id)
+        fetch_area = list(zip(area,area_id))
+        return response.JsonResponse({
+             'msg' :'Success',
+             'fetch_area':fetch_area,
+           })
 
+def fetch_subarea(request):
+    if request.is_ajax():
+        area_id = request.POST.get("id")
+        get_area = Area.objects.get(pk=area_id)
+        subarea = []
+        subarea_id =[]
+        for data in get_area.subarea_set.all():
+            subarea.append(data.sub_area_name)
+            subarea_id.append(data.id)
+        fetch_subarea = list(zip(subarea,subarea_id))
+        return response.JsonResponse({
+             'msg' :'Success',
+             'fetch_subarea':fetch_subarea,
+           })
+
+def delete_city(request):
+    if request.is_ajax():
+        city_id = request.POST.get("id")
+        get_city = City.objects.get(pk=city_id)
+        get_city.delete()
+        return response.JsonResponse({
+             'msg' :'Success',
+             
+           })
+
+def delete_area(request):
+    if request.is_ajax():
+         area_id = request.POST.get("id")
+         get_area = Area.objects.get(pk=area_id)
 
 def add_city(request):
     if request.is_ajax():
@@ -331,7 +374,7 @@ def add_subarea(request):
 
 
 
-
+#-------------- Service Segment ------------------------------
 
 
 def show_service(request):
