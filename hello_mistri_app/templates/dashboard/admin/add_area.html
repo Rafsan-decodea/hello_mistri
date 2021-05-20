@@ -320,7 +320,7 @@
    </script>
     </div>
     <div class="col-sm-3">
-      <button class="btn btn-danger btn-block" data-toggle="modal" data-target="#delete_subservcie_modal"   >
+      <button class="btn btn-danger btn-block" data-toggle="modal" data-target="#delete_area_modal"   >
         Remove 
     </button>
     <button  class="btn btn-primary btn-block"  onClick="edit_subservice();" >
@@ -390,14 +390,14 @@
 
   $(document).ready(function(){
      
-      $("#sub_service_remove").click(function(){
+      $("#delete_area").click(function(){
              
-        var value = $("#subservice_id").val();
-        var control = $("#subservice_id");
+        var value = $("#area_id").val();
+        var control = $("#area_id");
         var id = control.find(":selected").data("id");
         $.ajax({
           
-          url:"{% url 'delete_subservice' %}",
+          url:"{% url 'delete_area' %}",
           method:"POST",
           data:{id:id},
           success:function(data)
@@ -482,7 +482,7 @@
 </div>
 
 
-<div class="modal fade" id="delete_subservcie_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="delete_area_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -496,7 +496,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger" id="sub_service_remove" >Yes I Want Delete</button>
+        <button type="button" class="btn btn-danger" id="delete_area" >Yes I Want Delete</button>
       </div>
     </div>
   </div>

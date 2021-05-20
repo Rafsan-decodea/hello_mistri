@@ -335,6 +335,17 @@ def delete_area(request):
     if request.is_ajax():
          area_id = request.POST.get("id")
          get_area = Area.objects.get(pk=area_id)
+         get_area.delete()
+         return response.JsonResponse({
+             'msg' :'Success',
+             
+           })
+
+def delete_subarea(request):
+    if request.is_ajax():
+         subarea_id = request.POST.get("id")
+         get_subarea = SubArea.objects.get(pk=subarea_id)
+         get_subarea.delete()
 
 def add_city(request):
     if request.is_ajax():
