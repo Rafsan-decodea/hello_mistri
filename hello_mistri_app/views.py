@@ -601,8 +601,13 @@ def delete_subservicetype(request):
 #------------------client Dashboard Part -------------------------
 
 def client_service_select(request):
-
-      return render(request,"dashboard/client_service_select.html" )
+     mistri = MistriInformation.objects.all()
+     client = ClientInformation.objects.all()
+     context ={
+         "mistri_data":mistri,
+         "client_data":client,
+     }
+     return render(request,"dashboard/client_service_select.html" ,context)
 
 
 

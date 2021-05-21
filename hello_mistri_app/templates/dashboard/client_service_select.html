@@ -1,65 +1,278 @@
-{% extends 'dashboard/index.html' %}
-
 {%load static%}
 
+{% if  request.user.is_authenticated %}
 
-{% block body %}
-<script src="https://cdn.jsdelivr.net/gh/js-cookie/js-cookie@1.5.1/src/js.cookie.js"></script> 
-<script src="https://cdn.jsdelivr.net/gh/bfontaine/jquery-djangocsrf@0.1.1/jquery.djangocsrf.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+{% if request.user.username != "sufian"  %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Welcome to Hello Mistri </title>
+    <!-- HTML5 Shim and Respond.js IE9 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+      <!-- Meta -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="description" content="CodedThemes">
+      <meta name="keywords" content=" Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
+      <meta name="author" content="CodedThemes">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- Favicon icon -->
+      <link rel="icon" href="{%static 'assets/images/favicon.ico' %}" type="image/x-icon">
+      <!-- Google font-->
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+      <!-- Required Fremwork -->
+      <link rel="stylesheet" type="text/css" href="{%static 'assets/css/bootstrap/css/bootstrap.min.css' %}">
+      <!-- themify-icons line icon -->
+      <link rel="stylesheet" type="text/css" href="{%static 'assets/icon/themify-icons/themify-icons.css' %}">
+      <!-- ico font -->
+      <link rel="stylesheet" type="text/css" href="{%static 'assets/icon/icofont/css/icofont.css' %}">
+      <!-- Style.css -->
+      <link rel="stylesheet" type="text/css" href="{%static 'assets/css/style.css' %}">
+      <link rel="stylesheet" type="text/css" href="{%static 'assets/css/jquery.mCustomScrollbar.css' %}">
+          <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/css/bootstrap-select.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>  
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
+  </head>
 
-<div class="pcoded-content  ">
-    <div class="pcoded-inner-content ">
 
-        <!-- Main-body start -->
-        <div class="main-body ">
-            <div class="page-wrapper ">
-            <!-- Page-header start -->
-                <div class="page-body">
+  <body>
 
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <!-- Typography card start -->
-                            <div class="card">
-                                <div class="card-header">
+     
 
-                                <div class="card-header-right">   
-                                 <i class="icofont icofont-spinner-alt-5"></i>                                                         </div>
+    <!-- Pre-loader start -->
+
+    <!-- Pre-loader end -->
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+
+            <nav class="navbar header-navbar pcoded-header  bg-dark text-white">
+                <div class="navbar-wrapper">
+
+                    <div class="navbar-logo">
+                        <a class="mobile-menu" id="mobile-collapse" href="#!">
+                            <i class="ti-menu"></i>
+                        </a>
+                        <a class="mobile-search morphsearch-search" href="#">
+                            <i class="ti-search"></i>
+                        </a>
+                        <a href="{% url 'dashboard'%} ">
+                            <!-- <img class="img-fluid" alt="Theme-Logo" /> -->
+                            <h6>Welcome to Hello Mistri</h6>
+                        </a>
+                        <a class="mobile-options">
+                            <i class="ti-more"></i>
+                        </a>
+                    </div>
+
+                    <div class="navbar-container container-fluid">
+                        <ul class="nav-left">
+                            <li>
+                                <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
+                            </li>
+
+                            <li>
+                                <a href="#!" onclick="javascript:toggleFullScreen()">
+                                    <i class="ti-fullscreen"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav-right">
+                            <li class="header-notification">
+                                <a href="#!">
+                                    <i class="ti-bell text-white"></i>
+                                    <span class="badge bg-c-pink"></span>
+                                </a>
+                                <ul class="show-notification">
+                                    <li>
+                                        <h6>Notifications</h6>
+                                       <br><br>
+
+                                        <!--  Section For Notification  -->
+                                </ul>
+                            </li>
+                            <li class="user-profile header-notification ">
+                                <a href="#!">
+                                   {% for ass in backends.associated %}
+                                            
+                                        <img src="{{ass.extra_data.picture.data.url}}" class="img-radius" alt="User-Profile-Image">
+                                  
+                                    {% endfor %}
+                                    <span id="user_name" class ="text-white"> </span>
+                                    <i class="ti-angle-down"></i>
+                                </a>
+                                <ul class="show-notification profile-notification">
+                                    <!-- <li>
+                                        <a href="#!">
+                                            <i class="ti-settings"></i> Settings
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="ti-user"></i> Profile
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="ti-email"></i> My Messages
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="ti-lock"></i> Lock Screen
+                                        </a>
+                                    </li> -->
+                                    <li>
+                                        <a href="{% url 'logout'%}">
+                                            <i class="ti-layout-sidebar-left"></i> Logout
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="pcoded-main-container bg-secondary">
+                <div class="pcoded-wrapper">
+                    <nav class="pcoded-navbar">
+                        <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
+                        <div class="pcoded-inner-navbar main-menu">
+                            <div class="">
+                                <div class="main-menu-header">
+                                  {% for ass in backends.associated %}
+                                    <img class="img-40 img-radius" src="{{ass.extra_data.picture.data.url}}" alt="User-Profile-Image">
+                                 {% endfor %}
+                               
+                                    <div class="user-details">
+                                        <span id="user_name1"></span>
+                                        <span id="user_details"><i class="ti-angle-down"></i></span>
+                                    </div>
+                                   
+                                     
                                 </div>
-                                <div class="card-block typography">
-                                    <div class="row">
-                                        <div class="col-sm-12 col-xl-10">
 
+                            </div>
+                            <div class="pcoded-search" >
+                                <span class="searchbar-toggle">  </span>
+                                {% comment %} <div class="pcoded-search-box ">
+                                    <input type="text" placeholder="Search">
+                                    <span class="search-icon"><i class="ti-search" aria-hidden="true"></i></span>
+                                </div> {% endcomment %}
+                            </div>
+                            <div class="pcoded-navigatio-lavel " data-i18n="nav.category.navigation">information</div>
+                            <ul class="pcoded-item pcoded-left-item ">
+                                <li class="active">
+                                    <a href="{% url 'dashboard'%}">
+                                        <span class="pcoded-micon"><i class="ti-home"></i><b></b></span>
+                                        <span class="pcoded-mtext" id="personal_information" data-i18n="nav.dash.main"></span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                            
 
- <style>
-         .margin{
-              margin-left: 80px;
-            }
+                          <!--     Client Segment  Segment  -->
+                        
+                                  <li class="active">
+                                    <a href="{%url 'client_service_select' %}" class="client_segment">
+                                        <span class="pcoded-micon"><i class="ti-home"></i><b></b></span>
+                                        <span class="pcoded-mtext" id="client_order" data-i18n="nav.dash.main"></span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
 
+                                <li class="active" >
+                                    <a href="" class="client_segment">
+                                        <span class="pcoded-micon"><i class="ti-home"></i><b></b></span>
+                                        <span class="pcoded-mtext" id="client_done" data-i18n="nav.dash.main"></span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+
+                                    <li class="active">
+                                    <a href="index.html" class="client_segment">
+                                        <span class="pcoded-micon"><i class="ti-home"></i><b></b></span>
+                                        <span class="pcoded-mtext" id="client_pending" data-i18n="nav.dash.main"></span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                           
+                            </ul>
+                            <!-- <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Forms &amp; Tables</div>
+                        
+
+                            <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Chart &amp; Maps</div>
+                          
+
+                            <div class="pcoded-navigatio-lavel" data-i18n="nav.category.other">Other</div> -->
+                           
+                        </div>
+                    </nav>
+      
+              </div>
+
+                
+                <div class="fixed-button">
+                   sdfsdf
+                </div>
+             
+            </div>
+         
+        </div>
         
- </style> 
+  
+
+<script type="text/javascript" src="{%static 'assets/js/jquery/jquery.min.js'%}"></script>
+<script type="text/javascript" src="{%static 'assets/js/jquery-ui/jquery-ui.min.js'%}"></script>
+<script type="text/javascript" src="{%static 'assets/js/popper.js/popper.min.js'%}"></script>
+<script type="text/javascript" src="{%static 'assets/js/bootstrap/js/bootstrap.min.js'%}"></script>
+<!-- jquery slimscroll js -->
+<script type="text/javascript" src="{%static 'assets/js/jquery-slimscroll/jquery.slimscroll.js'%}"></script>
+<!-- modernizr js -->
+<script type="text/javascript" src="{% static 'assets/js/modernizr/modernizr.js'%}"></script>
+<!-- am chart -->
+<script src="{%static 'assets/pages/widget/amchart/amcharts.min.js'%}"></script>
+<script src="assets/pages/widget/amchart/serial.min.js"></script>
+<!-- Todo js -->
+<script type="text/javascript " src="{%static 'assets/pages/todo/todo.js'%} "></script>
+<!-- Custom js -->
+<script type="text/javascript" src="{%static 'assets/pages/dashboard/custom-dashboard.js'%}"></script>
+<script type="text/javascript" src="{%static 'assets/js/script.js'%}"></script>
+<script type="text/javascript " src="{%static 'assets/js/SmoothScroll.js'%}"></script>
+<script src="{%static 'assets/js/pcoded.min.js' %}"></script>
+<script src="{%static 'assets/js/demo-12.js' %}"></script>
+<script src="{%static 'assets/js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+<!-- DJango Csrf javascript -->
+<script src="https://cdn.jsdelivr.net/gh/js-cookie/js-cookie@1.5.1/src/js.cookie.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/bfontaine/jquery-djangocsrf@0.1.1/jquery.djangocsrf.js"></script>
+<script>
+var $window = $(window);
+var nav = $('.fixed-button');
+    $window.scroll(function(){
+        if ($window.scrollTop() >= 200) {
+         nav.addClass('active');
+     }
+     else {
+         nav.removeClass('active');
+     }
+ });
+</script>
 
 
 
+</body>
 
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+</html>
 
-
-
-
- {% endblock %}
+{% endif %}
+{% endif %}
