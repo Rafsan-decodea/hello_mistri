@@ -108,7 +108,7 @@
                                         <img src="{{ass.extra_data.picture.data.url}}" class="img-radius" alt="User-Profile-Image">
                                   
                                     {% endfor %}
-                                    <span id="user_name" class ="text-white"> </span>
+                                    <span id="user_name_clientservice" class ="text-white"> </span>
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
@@ -155,8 +155,8 @@
                                  {% endfor %}
                                
                                     <div class="user-details">
-                                        <span id="user_name1"></span>
-                                        <span id="user_details"><i class="ti-angle-down"></i></span>
+                                        <span id="user_name1_clientservice"></span>
+                                        <span id="user_details_clientservice"><i class="ti-angle-down"></i></span>
                                     </div>
                                    
                                      
@@ -175,7 +175,7 @@
                                 <li class="active">
                                     <a href="{% url 'dashboard'%}">
                                         <span class="pcoded-micon"><i class="ti-home"></i><b></b></span>
-                                        <span class="pcoded-mtext" id="personal_information" data-i18n="nav.dash.main"></span>
+                                        <span class="pcoded-mtext" id="personal_information_clientservice" data-i18n="nav.dash.main"></span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
@@ -186,7 +186,7 @@
                                   <li class="active">
                                     <a href="{%url 'client_service_select' %}" class="client_segment">
                                         <span class="pcoded-micon"><i class="ti-home"></i><b></b></span>
-                                        <span class="pcoded-mtext" id="client_order" data-i18n="nav.dash.main"></span>
+                                        <span class="pcoded-mtext" id="client_order_client_service" data-i18n="nav.dash.main"></span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
@@ -194,7 +194,7 @@
                                 <li class="active" >
                                     <a href="" class="client_segment">
                                         <span class="pcoded-micon"><i class="ti-home"></i><b></b></span>
-                                        <span class="pcoded-mtext" id="client_done" data-i18n="nav.dash.main"></span>
+                                        <span class="pcoded-mtext" id="client_done_client_service" data-i18n="nav.dash.main"></span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
@@ -202,7 +202,7 @@
                                     <li class="active">
                                     <a href="index.html" class="client_segment">
                                         <span class="pcoded-micon"><i class="ti-home"></i><b></b></span>
-                                        <span class="pcoded-mtext" id="client_pending" data-i18n="nav.dash.main"></span>
+                                        <span class="pcoded-mtext" id="client_pending_client_service" data-i18n="nav.dash.main"></span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
@@ -221,15 +221,62 @@
       
               </div>
 
+<!---          =============================== This is Div Section==========================                                        -->
+
+              <br><br>
+              <div class="pcoded-content  ">
+                              <div class="pcoded-inner-content ">
+      
+                                  <!-- Main-body start -->
+                                  <div class="main-body ">
+                                      <div class="page-wrapper ">
+                                      <!-- Page-header start -->
+                                          <div class="page-body">
+      
+                                              <div class="row">
+                                                  <div class="col-sm-12">
+                                                      <!-- Typography card start -->
+                                                      <div class="card">
+                                                          <div class="card-header">
+                      
+                                                          <div class="card-header-right">   
+                                                                                                                       <i class="icofont icofont-spinner-alt-5"></i>                                                         </div>
+                                                          </div>
+                                                          <div class="card-block typography">
+                                                              <div class="row">
+                                                                  <div class="col-sm-12 col-xl-10">
+
+
+                            sdff
+    
+
+
+
+ </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+                                                            
+
+ 
+<!---          =============================== This is Div Section finish==========================                                        -->
                 
                 <div class="fixed-button">
-                   sdfsdf
+                 
                 </div>
              
             </div>
          
         </div>
-        
+    
   
 
 <script type="text/javascript" src="{%static 'assets/js/jquery/jquery.min.js'%}"></script>
@@ -268,7 +315,71 @@ var nav = $('.fixed-button');
  });
 </script>
 
+<script>
 
+    $(document).ready(function(){
+  
+   {% if not client_data and  not mistri_data  %} 
+       
+            $(location).attr('href',"{% url 'logout' %}");
+             $(location).attr('href',"{% url 'dashboard' %}");
+       
+     
+  {% endif %} 
+  
+  
+     
+      {% for evarage in client_data%}
+  
+         
+              {%if user.social_auth.get.uid == evarage.uid %}
+                 
+                  {% if evarage.clint_id == "1"  %}
+                     
+                     $("#contact-form-mistri").hide();
+                     $("#contact-form-client").show()
+                     $(".mistri_segment").hide();
+  
+                     document.getElementById("user_details_clientservice").innerHTML = "Logine as Client";
+                     document.getElementById("personal_information_clientservice").innerHTML = "আপনার তথ্য"; 
+                     document.getElementById("user_name_clientservice").innerHTML = "{{evarage.name}}";
+                     document.getElementById("user_name1_clientservice").innerHTML = "{{evarage.name}}";
+  
+  
+  
+  
+                     // This Segment Use For Client information Show
+                    // document.getElementById("client_uid").value = "{{evarage.uid}}";
+                   //  document.getElementById("yourname1").value = "{{evarage.name}}";
+                   //  document.getElementById("yourphone").value = "{{evarage.phone}}";
+                   //  document.getElementById("address_client").value = "{{evarage.home_address}}";
+  
+  
+  
+                    document.getElementById("client_order_client_service").innerHTML = "ওয়ার্ডার করুন";
+                    document.getElementById("client_done_client_service").innerHTML = "আপনার সম্পন্ন হওয়া কাজ";
+                    document.getElementById("client_pending_client_service").innerHTML ="আপনার পেইন্ডিং কাজ";      
+                    
+                  
+                     
+                  {% endif %}
+  
+  
+              {% endif %}
+    
+      
+              
+       {% endfor %} 
+  
+ 
+  
+    
+    
+    });
+  
+  
+  </script>
+  
 
 </body>
 

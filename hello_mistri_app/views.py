@@ -160,7 +160,7 @@ def update_client_information(request):
        c_data.profile_image_link = cplink
        c_data.name = request.POST.get('name')
        c_data.phone =request.POST.get('phone')
-       c_data.address = request.POST.get('address')
+       c_data.home_address = request.POST.get('address')
        c_data.save() 
     # return render(request,"dashboard/personal_information.html")
        return response.JsonResponse({
