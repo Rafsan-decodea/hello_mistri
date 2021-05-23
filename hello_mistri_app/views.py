@@ -603,9 +603,11 @@ def delete_subservicetype(request):
 def client_service_select(request):
      mistri = MistriInformation.objects.all()
      client = ClientInformation.objects.all()
+     service = Service.objects.all()
      context ={
          "mistri_data":mistri,
          "client_data":client,
+         "service":service,
      }
      return render(request,"dashboard/client_service_select.html" ,context)
 

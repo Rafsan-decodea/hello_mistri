@@ -38,10 +38,10 @@
       <!-- Style.css -->
       <link rel="stylesheet" type="text/css" href="{%static 'assets/css/style.css' %}">
       <link rel="stylesheet" type="text/css" href="{%static 'assets/css/jquery.mCustomScrollbar.css' %}">
-          <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/css/bootstrap-select.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   </head>
 
 
@@ -245,9 +245,89 @@
                                                           <div class="card-block typography">
                                                               <div class="row">
                                                                   <div class="col-sm-12 col-xl-10">
+                                                                    
+                                                                    <div class="container">
+                                                                        <div class="row">
+                                                                          <div class="col-sm-4">
+                                                                            <label for="cars"> সার্ভিস ক্যাটাগরি </label><br>
+                                                                            <select class="form-control"  data-live-search="true" style="height:35px;width:230px;"  name="service" id="serviceGet">
+                                                                                {% for data in service %}
+                                                                                  <option value="{{data.service_name}}" data-id="{{data.id}}" >{{data.service_name}}</option>
+                                                                                {% endfor %}
+                                                                                </select>
+                                                                          </div>
 
+                                                                          <div class="col-sm-4">
+                                                                            <label for="cars">  সার্ভিস </label><br>
+                                                                            <select class="form-control"  data-live-search="true" style="height:35px;width:230px;"  name="sub_service" id="subService">
+                                                                           
+                                                                            </select>
+                                                                           
+                                                                           <br><br>
+                                                                           
+                                                                           <script>
+                                                                           
+                                                                           $(document).ready(function(){
+                                                                           
+                                                                           
+                                                                              
+                                                                           
+                                                                             $.djangocsrf( "enable" );
+                                                                               
+                                                                             $("#serviceGet").change(function(){
+                                                                           
+                                                                             
+                                                                                var control = $(this);
+                                                                                var id = control.find(":selected").data("id");
+                                                                                  var sub_service = "";
+                                                                                $.ajax({
+                                                                               
+                                                                                 url:"{% url 'fetch_subservice' %}",
+                                                                                 method:"POST",
+                                                                                 data:{id:id},
+                                                                                 success:function(data)
+                                                                                 {  
+                                                                                 
+                                                                                     $("#subService").append("");
+                                                                                      for(i=0;i<data.fetch_subservice.length;i++)
+                                                                                       {
+                                                                                          var   [name,id] = data.fetch_subservice[i];
+                                                                                           sub_service += "<option value='"+name+"' data-id='"+id+"'>"+name+"</option>";      
+                                                                                           
+                                                                                     
+                                                                                       } 
+                                                                                  
+                                                                                       console.log(sub_service);
+                                                                                   
+                                                                                  
+                                                                                      $("#subService").append(sub_service);  
+                                                                                      $('#subService').selectpicker('refresh');  
+                                                                                      
+                                                                                   }
+                                                                                
+                                                                                });
+                                                                                
+                                                                            
+                                                                               
+                                                                                
+                                                                              });
+                                                                           
+                                                                           
+                                                                           
+                                                                           });
+                                                                           
+                                                                           
+                                                                           
+                                                                           </script>
+                                                                          </div>
 
-
+                                                                          <div class="col-sm-4">
+                                                                            One of three columns
+                                                                          </div>
+                                                                        </div>
+                                                                      </div>
+                                                                   
+                                                                            
 
 
  </div>
