@@ -474,6 +474,7 @@ def fetch_subservice(request):
              'msg' :'Success',
              'fetch_subservice':get_subservice,
             }) 
+
             
 def fetch_servicetype(request):
     if request.is_ajax():
