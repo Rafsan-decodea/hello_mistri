@@ -405,13 +405,13 @@
                                                                   </div>
                                                                
                                                             </div><br>
-                                                            <button class="btn-primary">add</button>
+                                                            <button class="btn-primary" id="add_que">add</button>
                                                         </div>
                                                      <br>
 
                                                         <table class="table" id="table_id">
                                                             <thead>
-                                                              <tr id="add_service">
+                                                              <tr >
                                                                 <th scope="col">#</th>
                                                                 <th scope="col">সার্ভিস ক্যাটাগরি</th>
                                                                 <th scope="col">সার্ভিস</th>
@@ -420,19 +420,19 @@
                                                               </tr>
                                                             </thead>
                                                             <tbody>
-                                                              <tr id="add_subservice">
+                                                              <tr id="add_service">
                                                                 <th scope="row">1</th>
                                                                 <td>Mark</td>
                                                                 <td>Otto</td>
                                                                 <td>@mdo</td>
                                                               </tr>
-                                                              <tr id="add_servicetype">
+                                                              <tr id="add_subservice">
                                                                 <th scope="row">2</th>
                                                                 <td>Jacob</td>
                                                                 <td>Thornton</td>
                                                                 <td>@fat</td>
                                                               </tr>
-                                                              <tr id="add_servicetime">
+                                                              <tr id="add_servicetype">
                                                                 <th scope="row">3</th>
                                                                 <td>Larry</td>
                                                                 <td>the Bird</td>
@@ -444,7 +444,16 @@
                                         <script>
 
                                          $(document).ready(function(){
-                                             
+                                              
+                                            $("#add_que").click(function(){
+                                                var service= $("#serviceGett").val();
+                                                var subservice = $("#subService").val();
+                                                var service_type = $("#subServicetype").val();
+
+                                                $("#add_service").append("<td>"+service+"</td>");
+
+                                            })
+
                                          })
 
                                         </script>
