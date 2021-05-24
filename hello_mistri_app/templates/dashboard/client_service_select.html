@@ -419,20 +419,18 @@
                                                                 <th scope="col">সময়</th>
                                                               </tr>
                                                             </thead>
-                                                            <tbody>
-                                                              <tr id="add_service">
+                                                            <tbody id="add_details">
+                                                              <tr>
                                                                 <th scope="row">1</th>
-                                                                <td>Mark</td>
-                                                                <td>Otto</td>
-                                                                <td>@mdo</td>
+                                                             
                                                               </tr>
-                                                              <tr id="add_subservice">
+                                                              <tr >
                                                                 <th scope="row">2</th>
                                                                 <td>Jacob</td>
                                                                 <td>Thornton</td>
                                                                 <td>@fat</td>
                                                               </tr>
-                                                              <tr id="add_servicetype">
+                                                              <tr>
                                                                 <th scope="row">3</th>
                                                                 <td>Larry</td>
                                                                 <td>the Bird</td>
@@ -450,7 +448,7 @@
                                                 var subservice = $("#subService").val();
                                                 var service_type = $("#subServicetype").val();
 
-                                                $("#add_service").append("<td>"+service+"</td>");
+                                                $("#add_details").before("<tr><td>"+service+"</td></tr>");
 
                                             })
 
