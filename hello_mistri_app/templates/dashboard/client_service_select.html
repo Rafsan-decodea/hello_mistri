@@ -396,6 +396,7 @@
                                                                    
                                                                         </div>
                                                                       </div>
+
                                                          <div class="container">
                                                               <div class="row">
                                                                 <div class="col-sm-3">
@@ -419,22 +420,18 @@
                                                                 <th scope="col">সময়</th>
                                                               </tr>
                                                             </thead>
-                                                            <tbody id="add_details">
-                                                              <tr>
+                                                            <tbody >
+                                                              <tr id="add_service" >
                                                                 <th scope="row">1</th>
-                                                             
+                                                                <!-- Add Service  -->
                                                               </tr>
-                                                              <tr >
-                                                                <th scope="row">2</th>
-                                                                <td>Jacob</td>
-                                                                <td>Thornton</td>
-                                                                <td>@fat</td>
-                                                              </tr>
-                                                              <tr>
+                                                              <tr id="add_subservice" >
                                                                 <th scope="row">3</th>
-                                                                <td>Larry</td>
-                                                                <td>the Bird</td>
-                                                                <td>@twitter</td>
+                                                                <!-- add Subservice -->
+                                                              </tr>
+                                                              <tr id="add_servicetype" >
+                                                                <th scope="row">3</th>
+                                                                <!-- add service type -->
                                                               </tr>
                                                             </tbody>
                                                           </table>
@@ -448,7 +445,11 @@
                                                 var subservice = $("#subService").val();
                                                 var service_type = $("#subServicetype").val();
 
-                                                $("#add_details").before("<tr><td>"+service+"</td></tr>");
+                                                $("#add_service").append("<td>"+service+"</td>");
+                                                $("#add_subservice").append("<td>"+subService+"</td>");
+                                                $("#service_type").append("<td>"+service_type+"</td>");
+                                             
+
 
                                             })
 
