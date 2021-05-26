@@ -413,7 +413,7 @@
                                                         <table class="table table-borderless table-striped table-earning" id="table_id">
                                                             <thead>
                                                               <tr >
-                                                            
+                                                                <th scope="col">ID</th>
                                                                 <th scope="col">সার্ভিস ক্যাটাগরি</th>
                                                                 <th scope="col">সার্ভিস</th>
                                                                 <th scope="col">সার্ভিস ধরন</th>
@@ -429,9 +429,10 @@
                                                           </table>
 
                                         <script>
+                                    
 
                                          $(document).ready(function(){
-                                              
+                                           
                                             $("#add_que").click(function(){
                                                 var service= $("#serviceGett").val();
                                                 var subservice = $("#subService").val();
@@ -446,36 +447,59 @@
                                                }
 
                                                else{
-                                              
+                                                var  rowCount = document.getElementById('add_details').rows.length;  
+
                                                 var table = document.getElementById("add_details");
                                                 var row = table.insertRow(0)
+                                               
                                                 var x = row.insertCell(0);
-                                                x.innerHTML = service;
+                                                x.innerHTML = rowCount;
 
                                                 var x = row.insertCell(1);
-                                                x.innerHTML = subservice;
+                                                x.innerHTML = service;
 
                                                 var x = row.insertCell(2);
+                                                x.innerHTML = subservice;
+
+                                                var x = row.insertCell(3);
                                                 x.innerHTML = service_type;
 
-                                                var x =  row.insertCell(3);
+                                                var x =  row.insertCell(4);
                                                 x.innerHTML = datatimeevent;
 
-                                                var x = row.insertRow(1);
-                                                 
-                                               
-                                               }
+                                              
+                                                var x = row.insertCell(5);
+                                                x.innerHTML = "<button class='btn-primary' name='table_row_click_name' id='table_row_"+rowCount+"' onclick='tablerowlclick();' >Submit </button>";
 
-                                           
-
-                                               
+                                               }    
 
 
                                             })
+                                       
 
                                          })
-
+                                  
                                         </script>
+
+
+
+                                    <script>
+
+                                        function tablerowlclick(){
+                                                    
+                                           var id = $("*[name='table_row_click_name']").attr('id');
+                                           
+                                           $("#"+id).click(function(){
+                                                 
+                                                
+                                           })
+                                        
+                                        };
+                                                     
+             
+
+                                    </script>
+
                                                           
                                               
 <!---          =============================== ========= This is Div Content Section End==============================================                                        -->     
