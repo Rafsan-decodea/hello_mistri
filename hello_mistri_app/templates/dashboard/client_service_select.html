@@ -427,9 +427,10 @@
                                                         
                                                             </tbody>
                                                           </table>
+                                                          
 
                                         <script>
-                                    
+                                        
 
                                          $(document).ready(function(){
                                            
@@ -469,7 +470,7 @@
 
                                               
                                                 var x = row.insertCell(5);
-                                                x.innerHTML = "<button class='btn-primary' name='table_row_click_name' id='table_row_"+rowCount+"' onclick='tablerowlclick();' >Submit </button>";
+                                                x.innerHTML = "<button class='btn-primary table_row_click' name='table_row_click_name' id='table_row_"+rowCount+"' onclick='tablerowlclick();' >Submit </button>";
 
                                                }    
 
@@ -481,18 +482,17 @@
                                   
                                         </script>
 
-
+                                     
 
                                     <script>
 
                                         function tablerowlclick(){
                                                     
-                                           var id = $("*[name='table_row_click_name']").attr('id');
-                                           
-                                           $("#"+id).click(function(){
-                                                 
+                                           //var id = $("[name='table_row_click_name']").attr('id');
+                                          //  alert(id);
+                                         
                                                 
-                                           })
+                                 
                                         
                                         };
                                                      
