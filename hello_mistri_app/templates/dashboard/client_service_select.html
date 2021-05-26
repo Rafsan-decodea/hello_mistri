@@ -420,8 +420,8 @@
                                                                 <th scope="col">সময়</th>
                                                               </tr>
                                                             </thead>
-                                                            <tbody>
-                                                              <tr id="add_details">
+                                                            <tbody id="add_details">
+                                                              <tr>
                                                                 <!-- Add Service  -->
                                                                </tr>
                                                         
@@ -447,7 +447,8 @@
 
                                                else{
                                               
-                                                var row = document.getElementById("add_details");
+                                                var table = document.getElementById("add_details");
+                                                var row = table.insertRow(0)
                                                 var x = row.insertCell(0);
                                                 x.innerHTML = service;
 
@@ -460,7 +461,7 @@
                                                 var x =  row.insertCell(3);
                                                 x.innerHTML = datatimeevent;
 
-
+                                                var x = row.insertRow(1);
                                                  
                                                
                                                }
