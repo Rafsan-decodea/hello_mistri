@@ -421,9 +421,9 @@
                                                               </tr>
                                                             </thead>
                                                             <tbody id="add_details">
-                                                              <tr>
+                                                              
                                                                 <!-- Add Service  -->
-                                                               </tr>
+                                                               
                                                         
                                                             </tbody>
                                                           </table>
@@ -483,23 +483,74 @@
                                         </script>
 
                                      
-
+<!-- 
                                     <script>
 
                                         function tablerowlclick(){
+
+                                            alert(document.getElementById("table_id").tBodies[0].value);
                                                     
-                                           //var id = $("[name='table_row_click_name']").attr('id');
-                                          //  alert(id);
-                                         
-                                                
-                                 
+                                            var item = document.getElementById("table_id");
+
+                                            
+                                            var row = item;
+                                  
+                                            var row_value = "";
+                              
+                                            for (var j = 0; j < row.cells.length; j++) {
+                              
+                                                row_value += row.cells[j].innerHTML;
+                                                row_value += " | ";
+                                            }
+                              
+                                            alert(row_value);
+                              
+                                            // Toggle the highlight
+                                           
+                                          
                                         
-                                        };
-                                                     
-             
+                                        }
 
-                                    </script>
 
+                                    </script> -->
+
+                                    <script type="text/javascript">
+  
+                                        // JavaScript Code to Highlight any
+                                        // row in the given table.
+                                        document.getElementById('table_id').addEventListener('click', tablerowlclick(item));
+                                    
+                                           
+                                           
+                                            function tablerowlclick(item){
+
+                                                console.log(item);
+                                                var row = item.path[1];
+                                  
+                                                var row_value = "";
+                                  
+                                                for (var j = 0; j < row.cells.length-1; j++) {
+                                  
+                                                    row_value += row.cells[j].innerHTML;
+                                                    row_value += " | ";
+                                                }
+                                  
+                                                alert(row_value);
+                                  
+                                                // Toggle the highlight
+                                                if (row.classList.contains('highlight'))
+                                                    row.classList.remove('highlight');
+                                                else
+                                                    row.classList.add('highlight');
+                                            
+                                            }
+                                    
+                                    
+                                        </script>
+
+
+
+                                    
                                                           
                                               
 <!---          =============================== ========= This is Div Content Section End==============================================                                        -->     
