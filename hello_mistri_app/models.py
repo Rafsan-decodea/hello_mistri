@@ -70,11 +70,11 @@ class MistriInformation(models.Model):
        sub_service = models.CharField(max_length=200)
        service_type =  models.CharField(max_length=200)
 
-       
 
 
        def __str__(self):
               return 'Mistri name ==>{0}'.format(self.name)
+
 
 
 
@@ -129,5 +129,17 @@ class ServiceType(models.Model):
 
        def __str__(self):
               return 'Service Type name ==>{0}'.format(self.service_name)
+
+
+class OrderSubmitByClient(models.Model):
+        user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+        service_name =  models.CharField(max_length=100)
+        sub_service_name = models.CharField(max_length=100)
+        service_type = models.CharField(max_length=100)
+        time = models.CharField(max_length=100)
+        status = models.CharField(max_length=100)
+
+
+
 
 

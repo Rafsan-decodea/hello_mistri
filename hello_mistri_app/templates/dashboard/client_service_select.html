@@ -518,33 +518,34 @@
   
                                         // JavaScript Code to Highlight any
                                         // row in the given table.
-                                        document.getElementById('table_id').addEventListener('click', tablerowlclick(item));
-                                    
-                                           
-                                           
-                                            function tablerowlclick(item){
+                                        document.getElementById('table_id').addEventListener('click',tablerowlclick )
 
-                                                console.log(item);
+                                              
+                                      function tablerowlclick(item){
+                                              console.log(item);
                                                 var row = item.path[1];
                                   
-                                                var row_value = "";
+                                                var row_value = [];
                                   
                                                 for (var j = 0; j < row.cells.length-1; j++) {
                                   
-                                                    row_value += row.cells[j].innerHTML;
-                                                    row_value += " | ";
+                                                    row_value.push(row.cells[j].innerHTML);
+                                                  
+                                                   
                                                 }
-                                  
-                                                alert(row_value);
+                                                
+                                                console.log(row_value[1]);
+                                                
                                   
                                                 // Toggle the highlight
                                                 if (row.classList.contains('highlight'))
                                                     row.classList.remove('highlight');
                                                 else
                                                     row.classList.add('highlight');
-                                            
+
                                             }
-                                    
+                                            
+                                              
                                     
                                         </script>
 
