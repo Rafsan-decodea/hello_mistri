@@ -620,8 +620,10 @@ def submit_client_order(request):
         service_name = request.POST.get("service_name")
         subservice_name = request.POST.get("subservice_name")
         servicetype_name = request.POST.get("service")
+        time = request.POST.get("time");
         status = request.POST.get("status")
-        OrderSubmitByClient.objects.create(user=user_get,service_name=service_name,sub_service_name=subservice_name,status=status).save()
+
+        OrderSubmitByClient.objects.create(user=user_get,service_name=service_name,sub_service_name=subservice_name,service_type= servicetype_name,time=time,status=status).save()
         return response.JsonResponse({
              'msg' :'Success',
             })
