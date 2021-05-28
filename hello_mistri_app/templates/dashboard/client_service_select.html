@@ -533,15 +533,28 @@
                                                   
                                                    
                                                 }
+
+                                                var service =  row_value[1];
+                                                var subservice = row_value[2];
+                                                var servicetype = row_value[3];
+                                                var status = 3;
                                                 
-                                                console.log(row_value[1]);
-                                                
+
+                                                $.ajax({
+                                                                                  
+                                                     url:"{% url 'submit_client_order' %}",
+                                                     method:"POST",
+                                                     data:{service:service,subservice:subservice,servicetype:servicetype,status:status},
+                                                    success:function(data)
+                                                    {  
+
+                                                       alert("succes");
+                                                                                       
+                                                    }
+                                                                                 
+                                          });
                                   
-                                                // Toggle the highlight
-                                                if (row.classList.contains('highlight'))
-                                                    row.classList.remove('highlight');
-                                                else
-                                                    row.classList.add('highlight');
+                                             
 
                                             }
                                             

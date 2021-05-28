@@ -56,8 +56,9 @@ urlpatterns = [
     
     #--------------client Dashboard part----------------------
     path(r'client_service_select',views.client_service_select,name="client_service_select"),
+    path(r'submit_client_order',views.submit_client_order,name="submit_client_order"),
 
-     path(r'login',views.login,name="login"),
-     path(r'logout', views.logout, name="logout"),
+    path(r'login',views.login,name="login"),
+    path(r'logout', views.logout, name="logout"),
      
 ]

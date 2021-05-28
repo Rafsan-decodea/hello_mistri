@@ -614,6 +614,23 @@ def client_service_select(request):
 
 
 
+def submit_client_order(request):
+   if request.is_ajax():
+        user_get =  User.objects.get(pk=request.user.id)
+        service_name = request.POST.get("service_name")
+        subservice_name = request.POST.get("subservice_name")
+        servicetype_name = request.POST.get("service")
+        status = request.POST.get("status")
+        OrderSubmitByClient.objects.create(user=user_get,service_name=service_name,sub_service_name=subservice_name,status=status).save()
+        return response.JsonResponse({
+             'msg' :'Success',
+            })
+
+
+
+
+
+
 def logout(request):
     user_logout(request)
     return render(request,"index.html")
