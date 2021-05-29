@@ -599,6 +599,12 @@ def delete_subservicetype(request):
 
 
 
+def client_order_recive(request):
+
+      return render(request,"dashboard/admin/client_orderlist.html")
+
+
+
 #------------------client Dashboard Part -------------------------
 
 def client_service_select(request):
