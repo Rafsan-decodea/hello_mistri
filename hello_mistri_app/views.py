@@ -515,7 +515,8 @@ def add_servicetype(request):
          sub_service_id = request.POST.get("subservice_id")
          subservice_get = SubService.objects.get(pk=sub_service_id)
          service_type = request.POST.get("service_type")
-         ServiceType.objects.create(service_name=subservice_get,service_type=service_type).save()
+         service_type_amount = request.POST.get("service_type_amount")
+         ServiceType.objects.create(service_name=subservice_get,service_type=service_type, service_type_rate=service_type_amount).save()
     
          return response.JsonResponse({
              'msg' :'Success',

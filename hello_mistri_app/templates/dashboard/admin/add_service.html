@@ -119,9 +119,15 @@
      <input type="text" class="form-control"  name="service_type" id="usr">
   </div>
   <br>
-  <div class="form-group">
-    <button type="submit" id class="btn btn-primary">Add</button>
+
+    <div class="form-group">
+      <label for="usr">Add Service Amount </label>
+       <input type="text" class="form-control"  name="service_type_amount" id="usr">
     </div>
+    <br>
+    <div class="form-group">
+      <button type="submit" id class="btn btn-primary">Add</button>
+      </div>
 </form>
 
 
@@ -273,8 +279,8 @@
                       $("#servicetype_id").html("");
                        for(i=0;i<data.fetch_servicetype.length;i++)
                         {
-                           var   [name,id] = data.fetch_servicetype[i];
-                           sub_service_type += "<option value='"+name+"' data-id='"+id+"'>"+name+"</option>";      
+                           var   [name,id,rate] = data.fetch_servicetype[i];
+                           sub_service_type += "<option value='"+name+"' data-id='"+id+"'>"+name+rate+"</option>";      
                             
                       
                         } 

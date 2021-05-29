@@ -126,6 +126,7 @@ class SubService(models.Model):
 class ServiceType(models.Model):
        service_name = models.ForeignKey(SubService, on_delete=models.CASCADE)
        service_type = models.CharField(max_length=100)
+       service_type_rate = models.CharField(max_length=100)
 
        def __str__(self):
               return 'Service Type name ==>{0}'.format(self.service_name)
@@ -134,7 +135,7 @@ class ServiceType(models.Model):
 class OrderSubmitByClient(models.Model):
         user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
         order_holder_name = models.CharField(max_length=100)
-        order_holder_pic = models.CharField(max_length=100)
+        order_holder_pic = models.CharField(max_length=500)
         service_name =  models.CharField(max_length=100)
         sub_service_name = models.CharField(max_length=100)
         service_type = models.CharField(max_length=100)
