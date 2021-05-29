@@ -14,8 +14,6 @@ admin.site.register(ServiceType)
 
 admin.site.register(OrderSubmitByClient)
 
-# admin.site.register(Admin)
-# admin.site.register(Mistri_UID)
-# admin.site.register(Clint_UID)
+
 
 

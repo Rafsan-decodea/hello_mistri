@@ -539,13 +539,18 @@
                                                 var servicetype = row_value[3];
                                                 var time = row_value[4]
                                                 var status = 3;
+                                                {% for ass in backends.associated %}
+                                            
+                                                  var order_holder_pic = "{{ass.extra_data.picture.data.url}}" ;
+                                  
+                                                {% endfor %}
                                                 
 
                                                 $.ajax({
                                                                                   
                                                      url:"{% url 'submit_client_order' %}",
                                                      method:"POST",
-                                                     data:{service_name:service,subservice_name:subservice,service_type:servicetype,status:status,time:time},
+                                                     data:{service_name:service,subservice_name:subservice,service_type:servicetype,status:status,order_holder_pic:order_holder_pic,time:time},
                                                     success:function(data)
                                                     {  
 

@@ -626,13 +626,15 @@ def client_service_select(request):
 def submit_client_order(request):
    if request.is_ajax():
         user_get =  User.objects.get(pk=request.user.id)
+        orderholder_name =  request.user.get_full_name()
+        order_holder_pic =  request.POST.get("order_holder_pic")
         service_name = request.POST.get("service_name")
         subservice_name = request.POST.get("subservice_name")
         servicetype_name = request.POST.get("service_type")
         time = request.POST.get("time");
         status = request.POST.get("status") 
 
-        OrderSubmitByClient.objects.create(user=user_get,service_name=service_name,sub_service_name=subservice_name,service_type=servicetype_name,time=time,status=status).save()
+        OrderSubmitByClient.objects.create(user=user_get, order_holder_name= orderholder_name,order_holder_pic= order_holder_pic,service_name=service_name,sub_service_name=subservice_name,service_type=servicetype_name,time=time,status=status).save()
         return response.JsonResponse({
              'msg' :'Success',
             })

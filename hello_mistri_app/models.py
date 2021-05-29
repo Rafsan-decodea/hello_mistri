@@ -133,6 +133,8 @@ class ServiceType(models.Model):
 
 class OrderSubmitByClient(models.Model):
         user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+        order_holder_name = models.CharField(max_length=100)
+        order_holder_pic = models.CharField(max_length=100)
         service_name =  models.CharField(max_length=100)
         sub_service_name = models.CharField(max_length=100)
         service_type = models.CharField(max_length=100)
