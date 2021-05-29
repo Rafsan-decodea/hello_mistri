@@ -139,6 +139,9 @@ class OrderSubmitByClient(models.Model):
         time = models.CharField(max_length=100)
         status = models.CharField(max_length=100)
 
+        def __str__(self):
+              return 'Service Type name ==>{0}'.format(self.service_name)
+
 
 
 

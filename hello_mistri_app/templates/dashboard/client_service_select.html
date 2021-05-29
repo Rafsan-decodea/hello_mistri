@@ -537,6 +537,7 @@
                                                 var service =  row_value[1];
                                                 var subservice = row_value[2];
                                                 var servicetype = row_value[3];
+                                                var time = row_value[4]
                                                 var status = 3;
                                                 
 
@@ -544,11 +545,12 @@
                                                                                   
                                                      url:"{% url 'submit_client_order' %}",
                                                      method:"POST",
-                                                     data:{service:service,subservice:subservice,servicetype:servicetype,status:status},
+                                                     data:{service_name:service,subservice_name:subservice,service_type:servicetype,status:status,time:time},
                                                     success:function(data)
                                                     {  
 
-                                                       alert("succes");
+                                                       alert("Your Order Submitted Success");
+
                                                                                        
                                                     }
                                                                                  
