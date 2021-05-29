@@ -280,7 +280,7 @@
                        for(i=0;i<data.fetch_servicetype.length;i++)
                         {
                            var   [name,id,rate] = data.fetch_servicetype[i];
-                           sub_service_type += "<option value='"+name+"' data-id='"+id+"'>"+name+rate+"</option>";      
+                           sub_service_type += "<option value='"+name+"' data-id='"+id+"'>"+name+" ("+rate+")TK</option>";      
                             
                       
                         } 
@@ -692,6 +692,8 @@
         <div class="col-xs-7">
           <label for="ex3">Edit Current sub-Service</label>
           <input class="form-control" id="current_servicetype_data" type="text"><br>
+          <label for="ex3">Edit Current sub-Service Rate</label>
+          <input class="form-control" id="current_servicetype_rate_data" type="text"><br>
           <button type="submit" id="servicetype_edit_submit" class="btn btn-primary">Update</button>
         </div>
         <script>
@@ -724,12 +726,13 @@
       var control = $("#servicetype_id");
       var id = control.find(":selected").data("id");
        var data = $("#current_servicetype_data").val();
+       var data2 = $("#current_servicetype_rate_data").val();
        
    $.ajax({
          
          url:"{% url 'edit_subservicetype' %}",
          method:"POST",
-         data:{subservice_id:subservice_id,id:id,change_name_servicetype:data},
+         data:{subservice_id:subservice_id,id:id,change_name_servicetype:data,change_servicetype_rate:data2},
          success:function(data)
          {   
                alert("success");

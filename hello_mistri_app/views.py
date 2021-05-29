@@ -481,12 +481,14 @@ def fetch_servicetype(request):
         servicetype_id = request.POST.get("id")
         get_subservice = SubService.objects.get(pk=servicetype_id)
         subservice = []
+        subservicerate= []
         subservice_id = []
         
         for data in get_subservice.servicetype_set.all():
               subservice.append(data.service_type)
               subservice_id.append(data.id)
-        get_servicetype = list(zip(subservice,subservice_id))
+              subservicerate.append(data.service_type_rate)
+        get_servicetype = list(zip(subservice,subservice_id,subservicerate))
         return response.JsonResponse({
              'msg' :'Success',
              'fetch_servicetype':get_servicetype,
@@ -570,7 +572,7 @@ def edit_subservicetype(request):
             servicetype = ServiceType.objects.get(pk=servicetype_id)
             servicetype.service_name = fetch_subservice
             servicetype.service_type = request.POST.get("change_name_servicetype")
-       
+            servicetype.service_type_rate = request.POST.get("change_servicetype_rate")
 
             servicetype.save()
             return response.JsonResponse({
