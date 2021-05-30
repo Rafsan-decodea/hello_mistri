@@ -701,10 +701,26 @@
           $(document).ready(function(){
                     
             $("#servicetype_edit").click(function(){
+
+              function getNumbers(inputString){ // Function For Extrat numbers
+                var regex=/\d+\.\d+|\.\d+|\d+/g, 
+                    results = [],
+                    n;
+            
+                while(n = regex.exec(inputString)) {
+                    results.push(parseFloat(n[0]));
+                }
+            
+                return results;
+            }
         
                var value = $("#servicetype_id").val();
+               var value2 =  $("#servicetype_id").text();
+  
                document.getElementById("current_servicetype_data").value = value;
-            });
+               document.getElementById("current_servicetype_rate_data").value = getNumbers(value2);
+        
+              });
                
         
           });
