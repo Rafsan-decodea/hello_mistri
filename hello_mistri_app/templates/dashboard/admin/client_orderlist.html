@@ -42,14 +42,31 @@
                             <th scope="col">ID</th>
                             <th scope="col">প্রফাইল</th>
                             <th scope="col">নাম</th>
+                            <th scope="col">সার্ভিস ক্যাটাগরি</th>
+                            <th scope="col">সার্ভিস</th>
                             <th scope="col">সার্ভিস ধরন</th>
                             <th scope="col">সময়</th>
+                            <th scope="col">টাকা</th>
+                            <th scope="col">ডিসকাউন্ট</th>
                           </tr>
                         </thead>
                         <tbody id="add_details">
-                          
-                            <!-- Add Service  -->
+                        {% for data in orders %}  
+                        <tr>
+                            <td>{{data.id}}</td>
+                            <td><img src="{{data.order_holder_pic}}"class="rounded-circle " height="50px" weidth="50px" ></td>
+                            <td>{{data.order_holder_name}}</td>
+                            <td>{{data.service_name}}</td>
+                            <td>{{data.sub_service_name}}</td>
+                            <td>{{data.service_type}}</td>
+                            <td>{{data.time}}</td>
+                            <td>{{data.service_type_rate}}/=</td>
+                            <td><input type="text" class="form-control" id="discount"></td>
+                            <td><button id="order_approve_id" class="btn btn-primary">Approve</button></td>
+                            <td><button id="order_cancel_id" class="btn btn-danger">Cancel</button></td>
 
+                        </tr>
+                    {% endfor %}
                         </tbody>
                       </table>
 
