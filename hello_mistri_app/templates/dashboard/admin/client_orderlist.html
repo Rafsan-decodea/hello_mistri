@@ -45,9 +45,10 @@
                             <th scope="col">সার্ভিস ক্যাটাগরি</th>
                             <th scope="col">সার্ভিস</th>
                             <th scope="col">সার্ভিস ধরন</th>
-                            <th scope="col">সময়</th>
+                            <th scope="col">যে সময় লাগবে </th>
                             <th scope="col">টাকা</th>
                             <th scope="col">ডিসকাউন্ট</th>
+                            <th scope="col">মিস্ত্রি সিলেক্ট করুন</th>
                           </tr>
                         </thead>
                         <tbody id="add_details">
@@ -62,6 +63,26 @@
                             <td>{{data.time}}</td>
                             <td>{{data.service_type_rate}}/=</td>
                             <td><input type="text" class="form-control" id="discount"></td>
+                            <td>
+                                <select class="form-control"  name="mistri_select"  style=" height:35px;"  id="mistri_select_options">
+                                  {% for data_mistri in mistri %}
+
+                                    {%for  service in data_mistri.service %}
+                                       
+                                 
+
+                                       {% if service == data.service_name %}
+                                     
+                                       <option  value="{{data_mistri.name}}">{{data_mistri.name}}</option>
+
+                                        {% endif %}
+                                     {% endfor %}
+
+                                  {% endfor %}
+                                       
+                                </select>
+
+                            </td>
                             <td><button id="order_approve_id" class="btn btn-primary">Approve</button></td>
                             <td><button id="order_cancel_id" class="btn btn-danger">Cancel</button></td>
 
@@ -71,7 +92,13 @@
                       </table>
 
                     </div>
-                                        
+
+                    <!-- {% for data_mistri in mistri %}
+
+                     <h1>{{ data_mistri.service}} 
+                    </h1>
+                    {% endfor %}
+                                         -->
 
 
 </div>

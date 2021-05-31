@@ -605,8 +605,10 @@ def delete_subservicetype(request):
 
 def client_order_recive(request):
       order = OrderSubmitByClient.objects.all()
+      mistri =  MistriInformation.objects.all()
       context = {
-          "orders":order
+          "orders":order,
+          "mistri":mistri,
       }
       return render(request,"dashboard/admin/client_orderlist.html",context)
 
