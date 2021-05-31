@@ -513,6 +513,7 @@
 
 
                                     </script> -->
+                                    
 
                                     <script type="text/javascript">
   
@@ -541,20 +542,23 @@
                                                 var status = 3;
                                                 {% for ass in backends.associated %}
                                             
-                                                  var order_holder_pic = "{{ass.extra_data.picture.data.url}}" ;
-                                  
+                                                  var order_holder_pic = "{{ass.extra_data.picture.data.url | safe }}" ;
+                                         
                                                 {% endfor %}
                                                 
-
+                                                var post_data = {"service_name":service,"subservice_name":subservice,"service_type":servicetype,"status":status,"order_holder_pic":order_holder_pic,"time":time};
+                                               
                                                 $.ajax({
                                                                                   
                                                      url:"{% url 'submit_client_order' %}",
                                                      method:"POST",
-                                                     data:{service_name:service,subservice_name:subservice,service_type:servicetype,status:status,order_holder_pic:order_holder_pic,time:time},
+                                                     data:post_data,
                                                     success:function(data)
                                                     {  
 
                                                        alert("Your Order Submitted Success");
+
+                                                       
                                     
                                                     }
                                                                                  
@@ -709,3 +713,7 @@ var nav = $('.fixed-button');
 
 {% endif %}
 {% endif %}
+
+
+
+
