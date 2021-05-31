@@ -139,6 +139,7 @@ class OrderSubmitByClient(models.Model):
         service_name =  models.CharField(max_length=100)
         sub_service_name = models.CharField(max_length=100)
         service_type = models.CharField(max_length=100)
+        service_type_rate = models.CharField(max_length=100)
         time = models.CharField(max_length=100)
         status = models.CharField(max_length=100)
 
