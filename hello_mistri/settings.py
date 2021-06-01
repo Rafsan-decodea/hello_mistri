@@ -26,7 +26,7 @@ SECRET_KEY = 'bih!2-x!v=1lu^f!bv(h7e2frl)vaa62=3b_ljloeq)au@d!sg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','rafsan123.pythonanywhere.com','192.168.0.102'] 
+ALLOWED_HOSTS = ['127.0.0.1','rafsan123.pythonanywhere.com','192.168.0.102']
 
 
 # Application definition
@@ -43,13 +43,13 @@ INSTALLED_APPS = [
     'social_django',
     'django_extensions',
     'phone_field',
-    'django_cleanup',# This is for autometic media Delete 
+    'django_cleanup',# This is for autometic media Delete
     # 'allauth',
- 
+
     # 'allauth.account',
     # 'allauth.socialaccount',
     # 'allauth.socialaccount.providers.facebook',
-    
+
 ]
 
 SITE_ID=1
@@ -92,7 +92,7 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
     # 'account.authentication.EmailAuthBackend',
-   
+
 
     # 'allauth.account.auth_backends.AuthenticationBackend',
 )
@@ -125,27 +125,27 @@ WSGI_APPLICATION = 'hello_mistri.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'hello_mistri',
-        'USER':'root',
-        'PASSWORD':'',
-        'HOST':'localhost',
-        'PORT':'3306',
-    }
-}
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
 #         'NAME': 'hello_mistri',
 #         'USER':'root',
-#         'PASSWORD':'rafsan123',
+#         'PASSWORD':'',
 #         'HOST':'localhost',
 #         'PORT':'3306',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'hello_mistri',
+        'USER':'root',
+        'PASSWORD':'rafsan123',
+        'HOST':'localhost',
+        'PORT':'3306',
+    }
+}
 
 # DATABASES = {
 #     'default': {

@@ -48,7 +48,7 @@
 
   <body>
 
-     
+
 
     <!-- Pre-loader start -->
 
@@ -105,9 +105,9 @@
                             <li class="user-profile header-notification ">
                                 <a href="#!">
                                    {% for ass in backends.associated %}
-                                            
+
                                         <img src="{{ass.extra_data.picture.data.url}}" class="img-radius" alt="User-Profile-Image">
-                                  
+
                                     {% endfor %}
                                     <span id="user_name" class ="text-white"> </span>
                                     <i class="ti-angle-down"></i>
@@ -154,13 +154,13 @@
                                   {% for ass in backends.associated %}
                                     <img class="img-40 img-radius" src="{{ass.extra_data.picture.data.url}}" alt="User-Profile-Image">
                                  {% endfor %}
-                               
+
                                     <div class="user-details">
                                         <span id="user_name1"></span>
                                         <span id="user_details"><i class="ti-angle-down"></i></span>
                                     </div>
-                                   
-                                     
+
+
                                 </div>
 
                             </div>
@@ -208,11 +208,11 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-                               
-                            
+
+
 
                           <!--     Client Segment  Segment  -->
-                        
+
                                   <li class="active">
                                     <a href="{%url 'client_service_select' %}" class="client_segment">
                                         <span class="pcoded-micon"><i class="ti-home"></i><b></b></span>
@@ -236,40 +236,40 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-                           
+
                             </ul>
                             <!-- <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Forms &amp; Tables</div>
-                        
+
 
                             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Chart &amp; Maps</div>
-                          
+
 
                             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.other">Other</div> -->
-                           
+
                         </div>
                     </nav>
 
-                    
-                    {% block body %}
-                   
 
-                          
+                    {% block body %}
+
+
+
                     {% endblock %}
 
-                   
-                    
+
+
               </div>
 
-                
+
                 <div class="fixed-button">
-                   
+
                 </div>
-             
+
             </div>
-         
+
         </div>
-        
-  
+
+
 
 <script type="text/javascript" src="{%static 'assets/js/jquery/jquery.min.js'%}"></script>
 <script type="text/javascript" src="{%static 'assets/js/jquery-ui/jquery-ui.min.js'%}"></script>
@@ -311,29 +311,29 @@ var nav = $('.fixed-button');
 
   $(document).ready(function(){
 
- {% if not client_data and  not mistri_data  %} 
-     
+ {% if not client_data and  not mistri_data  %}
+
           $(location).attr('href',"{% url 'logout' %}");
-           $(location).attr('href',"{% url 'dashboard' %}");
-     
-   
-{% endif %} 
+           $(location).attr('href',"{% url 'information' %}");
 
 
-   
+{% endif %}
+
+
+
     {% for evarage in client_data%}
 
-       
+
             {%if user.social_auth.get.uid == evarage.uid %}
-               
+
                 {% if evarage.clint_id == "1"  %}
-                   
+
                    $("#contact-form-mistri").hide();
                    $("#contact-form-client").show()
                    $(".mistri_segment").hide();
 
                    document.getElementById("user_details").innerHTML = "Logine as Client";
-                   document.getElementById("personal_information").innerHTML = "আপনার তথ্য"; 
+                   document.getElementById("personal_information").innerHTML = "আপনার তথ্য";
                    document.getElementById("user_name").innerHTML = "{{evarage.name}}";
                    document.getElementById("user_name1").innerHTML = "{{evarage.name}}";
 
@@ -353,35 +353,35 @@ var nav = $('.fixed-button');
                   document.getElementById("client_pending").innerHTML ="আপনার পেইন্ডিং কাজ";
 
 
-                  
-                  
-                
-                   
+
+
+
+
                 {% endif %}
 
 
             {% endif %}
-  
-    
-            
-     {% endfor %} 
 
 
- 
+
+     {% endfor %}
+
+
+
    {% for evarage in mistri_data %}
 
-      
+
 
             {%if user.social_auth.get.uid == evarage.uid %}
 
-               
+
             {% if evarage.mistri_id == "2"  %}
 
                    $("#contact-form-mistri").show();
                    $("#contact-form-client").hide();
                    $(".client_segment").hide();
                    document.getElementById("mistri_panding_work").innerHTML ="আপনার পেইডিং কাজ";
-                   document.getElementById("personal_information").innerHTML = "আপনার তথ্য";  
+                   document.getElementById("personal_information").innerHTML = "আপনার তথ্য";
                    document.getElementById("user_details").innerHTML = "Logine as Msitri";
                    document.getElementById("mistri_service").innerHTML = "আপনার সার্ভিস Select করুন";
                    document.getElementById("mistri_done_work").innerHTML = "আপনার কি কি  সার্ভিস সম্পন্ন করেছেন ";
@@ -400,32 +400,32 @@ var nav = $('.fixed-button');
                    document.getElementById("mistri_uid").value = "{{evarage.uid}}";
 
                    document.getElementById("address").value = "{{evarage.address}}";
-                 
+
                    document.getElementById("service_list").innerHTML = "{{evarage.service}}";
                    document.getElementById("sub_service").innerHTML = "{{evarage.sub_service}}";
-             
-                   $("#mistri_dob_image").attr('src','{{evarage.image.url}}');
-                  
 
-                   
-           
+                   $("#mistri_dob_image").attr('src','{{evarage.image.url}}');
+
+
+
+
 
 
 
                 {% endif %}
 
-              
+
 
 
             {% endif %}
 
-  
-    
-            
-     {% endfor %}  
 
-  
-  
+
+
+     {% endfor %}
+
+
+
   });
 
 
