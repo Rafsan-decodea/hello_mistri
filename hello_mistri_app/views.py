@@ -612,9 +612,11 @@ def delete_subservicetype(request):
 def client_order_recive(request):
       order = OrderSubmitByClient.objects.all()
       mistri =  MistriInformation.objects.all()
+
       for x in mistri:
              print (x.service)
-
+             print (type(x.service))
+    
       context = {
           "orders":order,
           "mistri":mistri,
@@ -629,6 +631,7 @@ def client_service_select(request):
      mistri = MistriInformation.objects.all()
      client = ClientInformation.objects.all()
      service = Service.objects.all()
+    
      context ={
          "mistri_data":mistri,
          "client_data":client,

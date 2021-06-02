@@ -314,7 +314,7 @@ var nav = $('.fixed-button');
  {% if not client_data and  not mistri_data  %}
 
           $(location).attr('href',"{% url 'logout' %}");
-           $(location).attr('href',"{% url 'information' %}");
+           $(location).attr('href',"{% url 'dashboard' %}");
 
 
 {% endif %}
