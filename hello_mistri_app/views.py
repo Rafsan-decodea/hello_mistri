@@ -12,6 +12,7 @@ from django.http import *
 from django.urls import reverse
 
 
+
 def index(request):
     mistri = MistriInformation.objects.all()
     client = ClientInformation.objects.all()
@@ -611,6 +612,9 @@ def delete_subservicetype(request):
 def client_order_recive(request):
       order = OrderSubmitByClient.objects.all()
       mistri =  MistriInformation.objects.all()
+      for x in mistri:
+             print (x.service)
+
       context = {
           "orders":order,
           "mistri":mistri,

@@ -67,20 +67,14 @@
                                 <select class="form-control"  name="mistri_select"  style=" height:35px;"  id="mistri_select_options">
                                   {% for data_mistri in mistri %}
 
-                                    {%for  service in data_mistri.service %}
+                                    {% for service_list in orders%}
 
+                                     {% if data_mistri.service == service_list.service_name  %}
 
-
-                                       {% if service == data.service_name %}
-
-                                       <option  value="{{data_mistri.name}}">{{data_mistri.name}}</option>
-
-
-
-
-                                        {% endif %}
+                                       <option  value="{{data_mistri.service}}">{{data_mistri.service}}</option>
+                                  
+                                       {% endif %}
                                      {% endfor %}
-
                                   {% endfor %}
 
                                 </select>
@@ -97,6 +91,10 @@
                     </div>
 
                     <select class="form-control" id="demo_form_control" >
+
+                    </select><br><br>
+
+                    <select class="form-control" id="demo_form_control_2">
 
                     </select>
 
@@ -118,9 +116,12 @@
                       $("#demo_form_control").html(data);
                       $("#demo_form_control").selectpicker('refresh');
 
+              
                     
                     
                     });
+
+
 
 
                       </script>

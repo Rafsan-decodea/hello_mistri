@@ -61,15 +61,7 @@
             <a class="btn btn-primary btn-lg " href="{% url 'admin_dashboard' %}" role="button">Goto Admin Dashboard</a>
           {% else %}
 
-          {% if not client_data or  not mistri_data  %}
-             
-                <a class="btn btn-primary btn-lg " href="{% url 'information' %}" role="button">Complete Place your infomation</a>
-         
-           {% else %}
-
-           <a class="btn btn-primary btn-lg " href="{% url 'dashboard' %}" role="button">Goto Dashboard</a>
-
-         {% endif %}
+                <a class="btn btn-primary btn-lg " href="{% url 'information' %}" role="button">Goto Dashboard</a>
           
           {% endif %}
         {% else %}
