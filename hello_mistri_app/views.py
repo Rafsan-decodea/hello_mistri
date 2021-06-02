@@ -13,7 +13,13 @@ from django.urls import reverse
 
 
 def index(request):
-    return render(request,"index.html")
+    mistri = MistriInformation.objects.all()
+    client = ClientInformation.objects.all()
+    context ={
+        "mistri_data":mistri,
+        "client_data":client,
+    }
+    return render(request,"index.html",context)
 
 def dashboard(request): 
      mistri = MistriInformation.objects.all()
@@ -191,7 +197,6 @@ def insert_mistri_information(request):
          education = request.POST.get('education')
          is_bick = request.POST.get('is_bike')
          is_instrument = request.POST.get('is_instrument')
-
          service = request.POST.getlist('service')
          sub_service = request.POST.getlist('sub_service')
          service_type = request.POST.getlist('service_type')

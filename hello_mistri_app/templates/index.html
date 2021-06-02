@@ -61,11 +61,21 @@
             <a class="btn btn-primary btn-lg " href="{% url 'admin_dashboard' %}" role="button">Goto Admin Dashboard</a>
           {% else %}
 
-          <a class="btn btn-primary btn-lg " href="{% url 'dashboard' %}" role="button">Goto Dashboard</a>
+          {% if not client_data or  not mistri_data  %}
+             
+                <a class="btn btn-primary btn-lg " href="{% url 'information' %}" role="button">Complete Place your infomation</a>
+         
+           {% else %}
+
+           <a class="btn btn-primary btn-lg " href="{% url 'dashboard' %}" role="button">Goto Dashboard</a>
+
+         {% endif %}
           
           {% endif %}
         {% else %}
         <a class="btn btn-primary btn-lg" href="{% url 'social:begin' 'facebook' %}" role="button">Login/Signup</a>
+      
+      
         {%  endif %}
        
         <!-- <a class="btn btn-primary btn-lg " id="open-popup-btn"    role="button">Login/Signup</a> -->

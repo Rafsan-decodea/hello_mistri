@@ -101,6 +101,26 @@
                     </select>
 
                     <script>
+                      
+                    $(document).ready(function(){
+                     
+                      var data = "";
+
+                      $("#demo_form_control").html("");
+ 
+                      {%for  data_mistri in mistri %}
+
+
+                        data += "<option value='{{data_mistri.service}}'>{{data_mistri.service}}</option>";
+                         
+                      {% endfor %}
+
+                      $("#demo_form_control").html(data);
+                      $("#demo_form_control").selectpicker('refresh');
+
+                    
+                    
+                    });
 
 
                       </script>
