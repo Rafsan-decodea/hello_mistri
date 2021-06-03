@@ -108,7 +108,9 @@
  
                       {%for  data_mistri in mistri %}
 
-
+                        const temp  = "{{data_mistri.service}}" 
+                        var tem_data = temp.replace(/[\[\]']+/g,'');
+                        console.log(tem_data);
                         data += "<option value='{{data_mistri.service}}'>{{data_mistri.service}}</option>";
                          
                       {% endfor %}

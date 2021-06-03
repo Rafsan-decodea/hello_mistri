@@ -612,11 +612,14 @@ def delete_subservicetype(request):
 def client_order_recive(request):
       order = OrderSubmitByClient.objects.all()
       mistri =  MistriInformation.objects.all()
-
+      
+      import re
       for x in mistri:
-             print (x.service)
-             print (type(x.service))
-    
+          print (x.service.strip("']").strip("['"))
+          
+           
+      
+
       context = {
           "orders":order,
           "mistri":mistri,
