@@ -613,16 +613,17 @@ def client_order_recive(request):
       order = OrderSubmitByClient.objects.all()
       mistri =  MistriInformation.objects.all()
       
-      import re
       for x in mistri:
-          print (x.service.strip("']").strip("['"))
+          mistri_servie = x.service.strip("']").strip("['").replace("'","").split(",")
           
+      print ( mistri_servie )    
            
       
 
       context = {
           "orders":order,
           "mistri":mistri,
+          "mistri_service":mistri_servie,
       }
       return render(request,"dashboard/admin/client_orderlist.html",context)
 

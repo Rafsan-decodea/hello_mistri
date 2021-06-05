@@ -65,18 +65,11 @@
                             <td><input type="text" class="form-control" id="discount"></td>
                             <td>
                                 <select class="form-control"  name="mistri_select"  style=" height:35px;"  id="mistri_select_options">
-                                  {% for data_mistri in mistri %}
+                              
+                                 
 
-                                    {% for service_list in orders%}
-
-                                     {% if data_mistri.service == service_list.service_name  %}
-
-                                       <option  value="{{data_mistri.service}}">{{data_mistri.service}}</option>
+        
                                   
-                                       {% endif %}
-                                     {% endfor %}
-                                  {% endfor %}
-
                                 </select>
 
                             </td>
@@ -106,12 +99,10 @@
 
                       $("#demo_form_control").html("");
  
-                      {%for  data_mistri in mistri %}
+                      {%for  data_mistri in mistri_service %}
 
-                        const temp  = "{{data_mistri.service}}" 
-                        var tem_data = temp.replace(/[\[\]']+/g,'');
-                        console.log(tem_data);
-                        data += "<option value='{{data_mistri.service}}'>{{data_mistri.service}}</option>";
+                      
+                          data += "<option value='{{data_mistri}}'>{{data_mistri}}</option>";
                          
                       {% endfor %}
 
