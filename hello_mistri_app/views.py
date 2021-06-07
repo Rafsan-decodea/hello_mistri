@@ -612,18 +612,22 @@ def delete_subservicetype(request):
 def client_order_recive(request):
       order = OrderSubmitByClient.objects.all()
       mistri =  MistriInformation.objects.all()
-      
+      mistri_name =[]
+      mistri_service = []
+      mistri_phone = []
+      mistri_area = []
       for x in mistri:
-          mistri_servie = x.service.strip("']").strip("['").replace("'","").split(",")
-          
-      print ( mistri_servie )    
-           
+          mistri_service.append(x.service.strip("']").strip("['").replace("'","").split(","))
+          mistri_name.append(x.name)
+          mistri_phone.append(x.phone)
+          mistri_area.append(x.area)
+      get_mistri_information = list(zip(mistri_name,mistri_service,mistri_phone,mistri_area))
       
 
       context = {
           "orders":order,
           "mistri":mistri,
-          "mistri_service":mistri_servie,
+          "mistri_information":get_mistri_information,
       }
       return render(request,"dashboard/admin/client_orderlist.html",context)
 
