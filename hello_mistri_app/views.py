@@ -496,6 +496,7 @@ def fetch_servicetype(request):
               subservice_id.append(data.id)
               subservice_rate.append(data.service_type_rate)
         get_servicetype = list(zip(subservice,subservice_id,subservice_rate))
+      
         return response.JsonResponse({
              'msg' :'Success',
              'fetch_servicetype':get_servicetype,
@@ -612,22 +613,24 @@ def delete_subservicetype(request):
 def client_order_recive(request):
       order = OrderSubmitByClient.objects.all()
       mistri =  MistriInformation.objects.all()
-      mistri_name =[]
-      mistri_service = []
-      mistri_phone = []
-      mistri_area = []
-      for x in mistri:
-          mistri_service.append(x.service.strip("']").strip("['").replace("'","").split(","))
-          mistri_name.append(x.name)
-          mistri_phone.append(x.phone)
-          mistri_area.append(x.area)
-      get_mistri_information = list(zip(mistri_name,mistri_service,mistri_phone,mistri_area))
       
+      mistri_information =[]
+      
+      for x in mistri:
+          mistri_service = x.service.strip("']").strip("['").replace("'","").split(",")
+          for y in mistri_service:
+                mistri_information.append(y)
+          mistri_information.append(x.name)
+          mistri_information.append(x.phone)
+          mistri_information.append(x.area)
+
+      final_data = list(zip(mistri_information))
+  
 
       context = {
           "orders":order,
           "mistri":mistri,
-          "mistri_information":get_mistri_information,
+          "mistri_information":final_data,
       }
       return render(request,"dashboard/admin/client_orderlist.html",context)
 
