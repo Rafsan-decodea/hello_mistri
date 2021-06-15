@@ -44,11 +44,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'phone_field',
     'django_cleanup',# This is for autometic media Delete
-    # 'allauth',
 
-    # 'allauth.account',
-    # 'allauth.socialaccount',
-    # 'allauth.socialaccount.providers.facebook',
 
 ]
 
@@ -86,15 +82,13 @@ TEMPLATES = [
         },
     },
 ]
-#https://rafsan123.pythonanywhere.com/oauth/complete/facebook/Remove
+
 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
     # 'account.authentication.EmailAuthBackend',
 
-
-    # 'allauth.account.auth_backends.AuthenticationBackend',
 )
 
 

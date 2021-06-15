@@ -614,17 +614,19 @@ def client_order_recive(request):
       order = OrderSubmitByClient.objects.all()
       mistri =  MistriInformation.objects.all()
       
-      mistri_information =[]
-      
+      mistri_name =[]
+      mistri_services = []
+      mistri_phone = []
+      mistri_area =[]
       for x in mistri:
           mistri_service = x.service.strip("']").strip("['").replace("'","").split(",")
           for y in mistri_service:
-                mistri_information.append(y)
-          mistri_information.append(x.name)
-          mistri_information.append(x.phone)
-          mistri_information.append(x.area)
+                mistri_services.append(y)
+          mistri_name.append(x.name)
+          mistri_phone.append(x.phone)
+          mistri_area.append(x.area)
 
-      final_data = list(zip(mistri_information))
+      final_data = list(zip(mistri_name,mistri_services))
   
 
       context = {
