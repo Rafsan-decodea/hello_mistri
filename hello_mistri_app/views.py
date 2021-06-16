@@ -22,7 +22,7 @@ def index(request):
     }
     return render(request,"index.html",context)
 
-def dashboard(request): 
+def dashboard(request):
      mistri = MistriInformation.objects.all()
      client = ClientInformation.objects.all()
      city  = City.objects.all()
@@ -36,7 +36,7 @@ def dashboard(request):
         "area":area,
         "sub_area":sub_area,
        }
-   
+
      return render(request ,"dashboard/personal_information.html",context)
 
 
@@ -46,11 +46,11 @@ def information(request):
     mistri = MistriInformation.objects.all()
     client = ClientInformation.objects.all()
     city  = City.objects.all()
- 
+
     # get_cityid = request.POST.get("id")
     # if get_cityid != None:
     #   a = City.objects.get(pk=get_cityid)
-    
+
     #   area = []
     #   area_id=[]
     #   for data in a.area_set.all():
@@ -61,7 +61,7 @@ def information(request):
     # if get_cityid == None:
     #     fetch_area = zip("asdasd","aasdsad")
 
-    
+
     # c = City.objects.get(pk=1)
     # for a in c.area_set.all():
     #     print ("Area is ====>",a.area_name)
@@ -85,9 +85,9 @@ def information(request):
 
 
 def get_cityinformation(request):
-    
-     if request.is_ajax(): 
-   
+
+     if request.is_ajax():
+
        get_cityid = request.POST.get("id")
        getcity = City.objects.get(pk=get_cityid)
 
@@ -97,7 +97,7 @@ def get_cityinformation(request):
        for data in getcity.area_set.all():
            area.append(data.area_name)
            area_id.append(data.id)
-        
+
        get_area = list(zip(area,area_id))
 
 
@@ -105,14 +105,14 @@ def get_cityinformation(request):
              'msg' :'Success',
              'fetch_area':get_area,
         })
-   
+
 
 def get_areainformation(request):
-    
+
      if request.is_ajax():
         get_area_id = request.POST.get("id")
         getarea = Area.objects.get(pk=get_area_id)
-   
+
         subarea = []
         subarea_id = []
 
@@ -126,10 +126,10 @@ def get_areainformation(request):
              'msg' :'Success',
              'fetch_subarea':get_subarea,
         })
-   
+
 
 def insert_clint_information(request):
-    
+
     if request.method == 'POST':
          u = User.objects.get(pk=request.user.id)# get Authenticate id and insert data to it
          clint_id = 1
@@ -143,32 +143,32 @@ def insert_clint_information(request):
          sub_area = request.POST.get('sub_area_client')
          home_address = request.POST.get('home_address')
          c = ClientInformation.objects.create(user=u ,uid=uid ,email=email,profile_image_link=profile_image_link,clint_id=clint_id,name=name,phone=phone,city=city,area=area,sub_area=sub_area,home_address=home_address)
-         c.save()     
-        
+         c.save()
+
     return render(request,"dashboard/personal_information.html")
 
 # @ensure_csrf_cookie
 def update_client_information(request):
-    if request.is_ajax(): 
+    if request.is_ajax():
        u = User.objects.get(pk=request.user.id)
        c = ClientInformation.objects.all()
        global cid
        global cuid
        global memail
        for x in c:
-           cid = x.id   
+           cid = x.id
            cuid =x.uid
            cemail =x.email
            cplink = x.profile_image_link
-       c_data = ClientInformation.objects.get(pk=cid)  
-       c_data.clint_id = 1 
+       c_data = ClientInformation.objects.get(pk=cid)
+       c_data.clint_id = 1
        c_data.uid =  cuid
        c_data.email = cemail
        c_data.profile_image_link = cplink
        c_data.name = request.POST.get('name')
        c_data.phone =request.POST.get('phone')
        c_data.home_address = request.POST.get('address')
-       c_data.save() 
+       c_data.save()
     # return render(request,"dashboard/personal_information.html")
        return response.JsonResponse({
              'msg' :'Success',
@@ -183,7 +183,7 @@ def insert_mistri_information(request):
          profile_image_link = request.POST.get('mistri_profile_image_link')
          name = request.POST.get('name')
          phone = request.POST.get('number')
-         image = request.FILES['image']  
+         image = request.FILES['image']
          dob = request.POST.get('dob')
          city = request.POST.get('city')
          area = request.POST.get('area')
@@ -231,14 +231,14 @@ def update_mistri_information(request):
           m_data.name = request.POST.get('name')
           m_data.phone = request.POST.get('number')
           try:
-             m_data.image = request.FILES['image'] 
+             m_data.image = request.FILES['image']
              print (request.FILES['image'])
              print ("fuck From image")
           except :
               print ("fuck without  image")
         #   m_data.address = request.POST.get('address')
-          m_data.dob = request.POST.get('dob') 
-         
+          m_data.dob = request.POST.get('dob')
+
 #user=u,mistri_id=mistri_id,uid=uid,name=name,phone=phone,image=image,address=address,dob=dob
           m_data.save()
        return response.JsonResponse({
@@ -246,14 +246,14 @@ def update_mistri_information(request):
       })
 
 
-def admin_dashboard(request): 
+def admin_dashboard(request):
     return render(request, "dashboard/admin/dashboard.html")
 
-def admin_login_page(request): 
+def admin_login_page(request):
     return render(request,"dashboard/admin/login.html")
 
 def login(request):
-    
+
     if request.method == "POST":
          context = {}
          username = request.POST.get("username")
@@ -293,7 +293,7 @@ def show_area(request):
         "city":city,
         "area" :area,
         "sub_area":sub_area,
-       
+
     }
     return render(request,"dashboard/admin/add_area.html",context)
 
@@ -334,7 +334,7 @@ def delete_city(request):
         get_city.delete()
         return response.JsonResponse({
              'msg' :'Success',
-             
+
            })
 
 def delete_area(request):
@@ -344,7 +344,7 @@ def delete_area(request):
          get_area.delete()
          return response.JsonResponse({
              'msg' :'Success',
-             
+
            })
 
 def delete_subarea(request):
@@ -354,7 +354,7 @@ def delete_subarea(request):
          get_subarea.delete()
          return response.JsonResponse({
              'msg' :'Success',
-             
+
            })
 
 def  edit_city(request):
@@ -365,7 +365,7 @@ def  edit_city(request):
          city_get.save()
          return response.JsonResponse({
              'msg' :'Success',
-             
+
            })
 
 def edit_area(request):
@@ -379,7 +379,7 @@ def edit_area(request):
          get_area.save()
          return response.JsonResponse({
              'msg' :'Success',
-             
+
            })
 
 def edit_subarea(request):
@@ -393,7 +393,7 @@ def edit_subarea(request):
          subarea_get.save()
          return response.JsonResponse({
              'msg' :'Success',
-             
+
            })
 
 
@@ -406,8 +406,8 @@ def add_city(request):
     return response.JsonResponse({
              'msg' :'Success',
            })
-    
-           
+
+
 
 def add_area(request):
     if request.is_ajax():
@@ -420,7 +420,7 @@ def add_area(request):
     return response.JsonResponse({
              'msg' :'Success',
             })
- 
+
 
 def add_subarea(request):
       if request.is_ajax():
@@ -448,7 +448,7 @@ def show_service(request):
         "sub_service":sub_service,
         "service_type":service_type,
     }
-    return render(request,"dashboard/admin/add_service.html",context)        
+    return render(request,"dashboard/admin/add_service.html",context)
 
 
 
@@ -458,7 +458,7 @@ def add_service(request):
         Service.objects.create( service_name=get_service).save()
         return response.JsonResponse({
              'msg' :'Success',
-            })   
+            })
     return response.JsonResponse({
              'msg' :'error',
             })
@@ -475,13 +475,13 @@ def fetch_subservice(request):
               sub_service.append(data.sub_service_name)
               sub_serviceid.append(data.id)
           get_subservice = list(zip(sub_service,sub_serviceid))
-          
+
           return response.JsonResponse({
              'msg' :'Success',
              'fetch_subservice':get_subservice,
-            }) 
+            })
 
-            
+
 def fetch_servicetype(request):
     if request.is_ajax():
         servicetype_id = request.POST.get("id")
@@ -490,17 +490,17 @@ def fetch_servicetype(request):
         subservice_rate= []
         subservice_id = []
 
-        
+
         for data in get_subservice.servicetype_set.all():
               subservice.append(data.service_type)
               subservice_id.append(data.id)
               subservice_rate.append(data.service_type_rate)
         get_servicetype = list(zip(subservice,subservice_id,subservice_rate))
-      
+
         return response.JsonResponse({
              'msg' :'Success',
              'fetch_servicetype':get_servicetype,
-            }) 
+            })
 
 
 
@@ -513,11 +513,11 @@ def add_subservice(request):
          SubService.objects.create(service_name=service_get,sub_service_name=sub_service).save()
          return response.JsonResponse({
              'msg' :'Success',
-            })   
+            })
      return response.JsonResponse({
              'msg' :'error',
             })
-    
+
 
 
 def add_servicetype(request):
@@ -527,10 +527,10 @@ def add_servicetype(request):
          service_type = request.POST.get("service_type")
          service_type_amount = request.POST.get("service_type_amount")
          ServiceType.objects.create(service_name=subservice_get,service_type=service_type, service_type_rate=service_type_amount).save()
-    
+
          return response.JsonResponse({
              'msg' :'Success',
-            }) 
+            })
      return response.JsonResponse({
              'msg' :'error',
             })
@@ -543,33 +543,33 @@ def delete_service(request):
         service.delete()
         return response.JsonResponse({
              'msg' :'Success',
-            }) 
+            })
 
 def edit_service(request):
     if request.is_ajax():
-        
+
         service_id = request.POST.get("id")
         service =  Service.objects.get(pk=service_id)
         service.service_name = request.POST.get("change_name_service")
         service.save()
         return response.JsonResponse({
              'msg' :'Success',
-            }) 
+            })
 
 
 def edit_subservice(request):
     if request.is_ajax():
         service_id = request.POST.get("service_id")
-        fetch_service = Service.objects.get(pk=service_id) 
+        fetch_service = Service.objects.get(pk=service_id)
         subservice_id = request.POST.get("id")
         subservice =  SubService.objects.get(pk=subservice_id)
         subservice.service_name = fetch_service
         subservice.sub_service_name  = request.POST.get("change_name_subservice")
- 
+
         subservice.save()
         return response.JsonResponse({
              'msg' :'Success',
-            }) 
+            })
 
 
 def edit_subservicetype(request):
@@ -585,7 +585,7 @@ def edit_subservicetype(request):
             servicetype.save()
             return response.JsonResponse({
              'msg' :'Success',
-            }) 
+            })
 
 
 
@@ -597,7 +597,7 @@ def delete_subservice(request):
         subservice.delete()
         return response.JsonResponse({
              'msg' :'Success',
-            }) 
+            })
 
 def delete_subservicetype(request):
     if request.is_ajax():
@@ -613,7 +613,7 @@ def delete_subservicetype(request):
 def client_order_recive(request):
       order = OrderSubmitByClient.objects.all()
       mistri =  MistriInformation.objects.all()
-      
+
       mistri_name =[]
       mistri_services = []
       mistri_phone = []
@@ -627,9 +627,8 @@ def client_order_recive(request):
           mistri_area.append(x.area)
 
       final_data = list(zip(mistri_name,mistri_services, mistri_area ))
-      print (final_data)
-  
 
+      print(final_data)
       context = {
           "orders":order,
           "mistri":mistri,
@@ -645,7 +644,7 @@ def client_service_select(request):
      mistri = MistriInformation.objects.all()
      client = ClientInformation.objects.all()
      service = Service.objects.all()
-    
+
      context ={
          "mistri_data":mistri,
          "client_data":client,
@@ -667,7 +666,7 @@ def submit_client_order(request):
         client_city = request.POST.get("client_city")
         client_area = request.POST.get("client_area")
         time = request.POST.get("time");
-        status = request.POST.get("status") 
+        status = request.POST.get("status")
 
         OrderSubmitByClient.objects.create(user=user_get, order_holder_name= orderholder_name,order_holder_pic= order_holder_pic,service_name=service_name,sub_service_name=subservice_name,service_type=servicetype_name,order_holder_city=client_city,order_holder_area=client_area,service_type_rate=servicetype_rate ,time=time,status=status).save()
         return response.JsonResponse({
