@@ -390,6 +390,13 @@
                                                                               });
 
                                                                            </script>
+
+                                                                             {% for clientdata in client_data %}
+
+                                                                                <input hidden id="client_city" value="{{ clientdata.city }}">
+                                                                                <input hidden id="client_area" value="{{ clientdata.area }}">
+
+                                                                             {% endfor %}
                                                                          
                                                                            </div>
                                                                          
@@ -546,6 +553,8 @@
                                                 var servicetype = row_value[3];
                                                 var servicetype_rate =row_value[6]
                                                 var time = row_value[4]
+                                                var client_city = $("#client_city").val();
+                                                var client_area = $("#client_area").val();
                             
                                                 var status = 3;
                                                 {% for ass in backends.associated %}
@@ -554,7 +563,7 @@
                                          
                                                 {% endfor %}
                                                 
-                                                var post_data = {"service_name":service,"subservice_name":subservice,"service_type_rate":servicetype_rate,"service_type":servicetype,"status":status,"order_holder_pic":order_holder_pic,"time":time};
+                                                var post_data = {"service_name":service,"subservice_name":subservice,"service_type_rate":servicetype_rate,"service_type":servicetype,"status":status,"order_holder_pic":order_holder_pic,"time":time,"client_city":client_city,"client_area":client_area};
                                                
                                                 $.ajax({
                                                                                   

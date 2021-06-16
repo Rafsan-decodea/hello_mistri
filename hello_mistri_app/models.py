@@ -106,10 +106,6 @@ class SubArea(models.Model):
 
 
 
-
-
-
-
 class Service(models.Model):
        service_name = models.CharField(max_length=100)
        def __str__(self):
@@ -136,7 +132,8 @@ class OrderSubmitByClient(models.Model):
         user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
         order_holder_name = models.CharField(max_length=100)
         order_holder_pic = models.CharField(max_length=500)
-        order_holder_address = models.CharField(max_length=500)
+        order_holder_city = models.CharField(max_length=500)
+        order_holder_area = models.CharField(max_length=500)
         service_name =  models.CharField(max_length=100)
         sub_service_name = models.CharField(max_length=100)
         service_type = models.CharField(max_length=100)

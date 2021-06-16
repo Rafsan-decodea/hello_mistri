@@ -64,9 +64,10 @@
                             <td>{{data.service_type_rate}}/=</td>
                             <td><input type="text" class="form-control" id="discount"></td>
                             <td>
-                              {% for mistri_name , mistri_service  in mistri_information %}
+                              {% for mistri_name , mistri_service ,mistri_area  in mistri_information %}
                                
-                               {% if mistri_service == data.service_name%}
+                               {% if mistri_service == data.service_name and mistri_area == data.order_holder_area %}
+
                                 <select class="form-control"  name="mistri_select"  style=" height:35px;"  id="mistri_select_options">
                                      
                                      <option value="{{mistri_name}}">{{mistri_name}}</option>
@@ -103,7 +104,7 @@
 
                       $("#demo_form_control").html("");
  
-                      {%for  mistri_name , mistri_service  in mistri_information %}
+                      {%for  mistri_name , mistri_service,mistri_area  in mistri_information %}
                         
         
                           data += "<option value='{{mistri_name}}'>{{mistri_name}} {{mistri_service}}</option>";
