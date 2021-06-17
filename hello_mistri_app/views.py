@@ -626,9 +626,14 @@ def client_order_recive(request):
           mistri_phone.append(x.phone)
           mistri_area.append(x.area)
 
-      final_data = list(zip(mistri_name,mistri_services, mistri_area ))
+      import itertools
+      final_data = list(itertools.zip_longest(mistri_name,mistri_services, mistri_area ))
 
-      print(final_data)
+      for x in final_data:
+           for y in x :
+                for z in order:
+                    print (y.strip(" "))
+
       context = {
           "orders":order,
           "mistri":mistri,
