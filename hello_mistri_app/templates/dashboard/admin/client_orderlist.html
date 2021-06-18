@@ -66,7 +66,6 @@
                             <td>
                               {% for mistri_name , mistri_service ,mistri_area  in mistri_information %}
 
-                              <h1>client Order Service ==>{{data.service_name}}</h1><h2>mistri service ==>{{mistri_service}}</h2>
 
                                {% if mistri_service == data.service_name and mistri_area == data.order_holder_area %}
                                 <select class="form-control"  name="mistri_select"  style=" height:35px;"  id="mistri_select_options">
@@ -107,11 +106,16 @@
 
                       {%for  mistri_name , mistri_service,mistri_area  in mistri_information %}
 
+                        {% for client_order in orders %}
 
+                         {% if client_order.service_name == mistri_service %}
 
-                         data += "<option value='{{mistri_service}}'> {{mistri_service}}</option>";
+                         data += "<option value='{{mistri_name}}'> {{mistri_name}}</option>";
+
+                         {% endif %}
 
                        {% endfor %}
+                     {% endfor %}
 
                       $("#demo_form_control").html(data);
                       $("#demo_form_control").selectpicker('refresh');

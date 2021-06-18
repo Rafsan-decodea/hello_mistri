@@ -621,7 +621,7 @@ def client_order_recive(request):
       for x in mistri:
           mistri_service = x.service.strip("']").strip("['").replace("'","").split(",")
           for y in mistri_service:
-                mistri_services.append(y)
+                mistri_services.append(y.strip(" "))
           mistri_name.append(x.name)
           mistri_phone.append(x.phone)
           mistri_area.append(x.area)
@@ -630,9 +630,13 @@ def client_order_recive(request):
       final_data = list(itertools.zip_longest(mistri_name,mistri_services, mistri_area ))
 
       for x in final_data:
-           for y in x :
-                for z in order:
-                    print (y.strip(" "))
+          for t in x:
+              for d in order:
+                   if d.service_name == t:
+                       print ("[Match in]==>",d)
+                   else:
+                       print ("[Not Match in]===>",d)
+    
 
       context = {
           "orders":order,
