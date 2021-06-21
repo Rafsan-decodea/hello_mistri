@@ -627,16 +627,12 @@ def client_order_recive(request):
           mistri_area.append(x.area)
 
       import itertools
-      final_data = list(itertools.zip_longest(mistri_name,mistri_services, mistri_area ))
+      final_data = list(itertools.zip_longest(mistri_name,mistri_services, mistri_area))
 
-      for x in final_data:
-          for t in x:
-              for d in order:
-                   if d.service_name == t:
-                       print ("[Match in]==>",d)
-                   else:
-                       print ("[Not Match in]===>",d)
-    
+      for mistri_name, mistri_service in map(None,mistri_name,mistri_service):
+           print (mistri_name)
+           print (mistri_service)
+      
 
       context = {
           "orders":order,
@@ -646,7 +642,7 @@ def client_order_recive(request):
       return render(request,"dashboard/admin/client_orderlist.html",context)
 
 
-
+  
 #------------------client Dashboard Part -------------------------
 
 def client_service_select(request):

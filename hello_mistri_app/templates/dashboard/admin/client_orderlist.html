@@ -70,7 +70,7 @@
                                {% if mistri_service == data.service_name and mistri_area == data.order_holder_area %}
                                 <select class="form-control"  name="mistri_select"  style=" height:35px;"  id="mistri_select_options">
 
-                                       <option value="{{mistri_name}}">{{mistri_name}}</option>
+                                        <option value="{{mistri_name}}">{{mistri_name}}</option>
 
                                 </select>
                                 {% endif %}
@@ -110,7 +110,7 @@
 
                          {% if client_order.service_name == mistri_service %}
 
-                         data += "<option value='{{mistri_name}}'> {{mistri_name}}</option>";
+                         data += "<option value='{{mistri_name}}'> {{mistri_area}}</option>";
 
                          {% endif %}
 
