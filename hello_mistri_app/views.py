@@ -642,7 +642,14 @@ def client_order_recive(request):
       }
       return render(request,"dashboard/admin/client_orderlist.html",context)
 
+def client_order_process(request):
+     if request.is_ajax():
 
+           
+
+          return response.JsonResponse({
+              "msg":"success"
+          })
   
 #------------------client Dashboard Part -------------------------
 

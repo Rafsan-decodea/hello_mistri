@@ -60,6 +60,8 @@ urlpatterns = [
 
     #-------------admin Dashboard -----------------------
     path(r'client_order_recive',views.client_order_recive,name="client_order_recive"),
+    path(r'client_order_process',views.client_order_process,name="client_order_process"),
+    
 
     path(r'login',views.login,name="login"),
     path(r'logout', views.logout, name="logout"),
