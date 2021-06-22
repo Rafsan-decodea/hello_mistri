@@ -66,8 +66,7 @@
                             <td>
                               {% for mistri_name , mistri_service ,mistri_area  in mistri_information %}
 
-
-                               {% if mistri_service == data.service_name and mistri_area == data.order_holder_area %}
+                               {% if mistri_service == data.service_name  %}
                                 <select class="form-control"  name="mistri_select"  style=" height:35px;"  id="mistri_select_options">
 
                                         <option value="{{mistri_name}}">{{mistri_name}}</option>
@@ -88,13 +87,23 @@
 
                     </div>
 
-                    <select class="form-control" id="demo_form_control" >
+
+                    
+
+                    <!-- <select class="form-control" id="demo_form_control" >
 
                     </select><br><br>
 
                     <select class="form-control" id="demo_form_control_2">
 
                     </select>
+
+
+                   <script>
+                     
+                   </script>
+
+
 
                     <script>
 
@@ -128,7 +137,7 @@
 
 
 
-                      </script>
+                      </script> -->
 
 
 </div>

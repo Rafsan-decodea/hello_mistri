@@ -1,3 +1,4 @@
+
 from django.http import response
 from django.shortcuts import render
 from django.contrib.auth.models import User
@@ -626,14 +627,14 @@ def client_order_recive(request):
           mistri_phone.append(x.phone)
           mistri_area.append(x.area)
 
+      # There is a problem That not filter Area
       import itertools
-      final_data = list(itertools.zip_longest(mistri_name,mistri_services, mistri_area))
-
-      for mistri_name, mistri_service in map(None,mistri_name,mistri_service):
-           print (mistri_name)
-           print (mistri_service)
-      
-
+      fill = mistri_area[-1] if (len(mistri_area) < len(mistri_name)) else mistri_name[-1]
+      final_data = list(itertools.zip_longest(mistri_name,mistri_services, mistri_area,fillvalue=fill))
+            
+      for x in final_data:
+          print (x)
+                 
       context = {
           "orders":order,
           "mistri":mistri,
