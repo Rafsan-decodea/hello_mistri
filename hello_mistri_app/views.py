@@ -631,10 +631,10 @@ def client_order_recive(request):
       import itertools
       fill = mistri_area[-1] if (len(mistri_area) < len(mistri_name)) else mistri_name[-1]
       final_data = list(itertools.zip_longest(mistri_name,mistri_services, mistri_area,fillvalue=fill))
-            
+
       for x in final_data:
           print (x)
-                 
+
       context = {
           "orders":order,
           "mistri":mistri,
@@ -645,12 +645,12 @@ def client_order_recive(request):
 def client_order_process(request):
      if request.is_ajax():
 
-           
+
 
           return response.JsonResponse({
               "msg":"success"
           })
-  
+
 #------------------client Dashboard Part -------------------------
 
 def client_service_select(request):
@@ -699,7 +699,7 @@ def mistri_painding_work(request):
          "client_data":client,
          "service":service,
      }
-     return render(request,"dashboard/mistri_painding_work.html")
+     return render(request,"dashboard/mistri_painding_work.html",context)
 
 
 
