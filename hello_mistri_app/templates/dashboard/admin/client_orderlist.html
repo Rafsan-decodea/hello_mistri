@@ -64,24 +64,21 @@
                             <td>{{data.service_type_rate}}/=</td>
                             <td><input type="text" class="form-control" id="discount"></td>
                             <td>
-                              {% for mistri_name , mistri_service ,mistri_area  in mistri_information %}
+                           {% endfor %}
 
-                               {% if mistri_service == data.service_name  %}
                                 <select class="form-control"  name="mistri_select"  style=" height:35px;"  id="mistri_select_options">
 
-                                        <option value="{{mistri_name}}">{{mistri_name}}</option>
+
 
                                 </select>
-                                {% endif %}
 
-                            {% endfor %}
 
                             </td>
                             <td><button id="order_approve_id" class="btn btn-primary">Approve</button></td>
                             <td><button id="order_cancel_id" class="btn btn-danger">Cancel</button></td>
 
                         </tr>
-                    {% endfor %}
+
                         </tbody>
                       </table>
 
@@ -90,15 +87,23 @@
 
                     <script>
 
-                       $(document).ready(function (){
+      {% for data in orders %}
 
-                           $("#order_approve_id").click(function(){
+           {% for mistri_name , mistri_service ,mistri_area  in mistri_information %}
 
-                              alert("clicled");
-                           })
-                       })
+              {% if mistri_service == data.service_name  %}
 
-                    </script>
+
+
+
+              {% endif %}
+            {% endfor %}
+
+        {% endfor %}
+
+
+                </script>
+
 
 
 
@@ -113,7 +118,7 @@
 
 
                    <script>
-                     
+
                    </script>
 
 
