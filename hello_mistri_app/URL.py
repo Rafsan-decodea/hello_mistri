@@ -58,10 +58,13 @@ urlpatterns = [
     path(r'client_service_select',views.client_service_select,name="client_service_select"),
     path(r'submit_client_order',views.submit_client_order,name="submit_client_order"),
 
+    #-------------Mistri Dashboard Part ----------------------
+    path(r'mistri_painding_work',views.mistri_painding_work,name="mistri_painding_work"),
+
     #-------------admin Dashboard -----------------------
     path(r'client_order_recive',views.client_order_recive,name="client_order_recive"),
     path(r'client_order_process',views.client_order_process,name="client_order_process"),
-    
+
 
     path(r'login',views.login,name="login"),
     path(r'logout', views.logout, name="logout"),

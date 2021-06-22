@@ -687,7 +687,19 @@ def submit_client_order(request):
             })
 
 
+#---------------- Mistri Dashboard part --------------------
 
+def mistri_painding_work(request):
+     mistri = MistriInformation.objects.all()
+     client = ClientInformation.objects.all()
+     service = Service.objects.all()
+
+     context ={
+         "mistri_data":mistri,
+         "client_data":client,
+         "service":service,
+     }
+     return render(request,"dashboard/mistri_painding_work.html")
 
 
 
