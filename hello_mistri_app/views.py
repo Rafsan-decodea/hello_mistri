@@ -632,13 +632,21 @@ def client_order_recive(request):
       fill = mistri_area[-1] if (len(mistri_area) < len(mistri_name)) else mistri_name[-1]
       final_data = list(itertools.zip_longest(mistri_name,mistri_services, mistri_area,fillvalue=fill))
       
-      for x in final_data:
-          print (x)
+      import collections
+      services = collections.defaultdict(list)
+
+      for data in mistri:
+           for test in data.service.strip("']").strip("['").replace("'","").split(","):
+             services[test.strip(" ")].append(data.name)          
+      
+      for i,k  in services.items():
+          print (i,"====>",k)
 
       context = {
           "orders":order,
           "mistri":mistri,
-          "mistri_information":final_data,
+          "mistri_information":final_data,   
+          "mistri_services":services,  
       }
       return render(request,"dashboard/admin/client_orderlist.html",context)
 

@@ -64,20 +64,18 @@
                             <td>{{data.service_type_rate}}/=</td>
                             <td><input type="text" class="form-control" id="discount"></td>
                             <td>
-                          {% for mistri_name , mistri_service ,mistri_area  in mistri_information %}
-
-                              {% if mistri_service == data.service_name  %}
-
+        
+                              {% for mistri_work , mistri_name in mistri_services.items %}  
+                                
                                 <select class="form-control"  name="mistri_select"  style=" height:35px;"  id="mistri_select_options">
-
-                                      <option value="{{mistri_name}}">{{mistri_name}}</option>
+                                 
+                                      <!-- <option value="{{mistri_name}}">{{mistri_name}}</option> -->
 
                                 </select>
 
-                              {%endif%}
+                                {% endfor %}
 
-                            {%endfor%}
-
+                        
 
                             </td>
                             <td><button id="order_approve_id" class="btn btn-primary">Approve</button></td>
@@ -90,7 +88,12 @@
 
                     </div>
 
+                    {% for mistri_work , mistri_name in mistri_services.items %}
+                              
+                           dsfsdf {{mistri_work}} ===> {{mistri_name}}
 
+                    {% endfor %}
+                   
                     <!-- <script>
 
        $(document).ready(function(){
