@@ -639,14 +639,16 @@ def client_order_recive(request):
            for test in data.service.strip("']").strip("['").replace("'","").split(","):
              services[test.strip(" ")].append(data.name)          
       
-      for i,k  in services.items():
-          print (i,"====>",k)
-
+      for i,j in services.items():
+          print (i,"===>",j)
+    
       context = {
           "orders":order,
           "mistri":mistri,
           "mistri_information":final_data,   
-          "mistri_services":services,  
+          "mistri_services":dict(services),  
+
+         
       }
       return render(request,"dashboard/admin/client_orderlist.html",context)
 

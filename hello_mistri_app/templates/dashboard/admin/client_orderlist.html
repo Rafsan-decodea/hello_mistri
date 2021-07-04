@@ -66,12 +66,18 @@
                             <td>
         
                               {% for mistri_work , mistri_name in mistri_services.items %}  
+                             
+                                {% if mistri_work == data.service_name%}
+                                  {% for mistri_name_data in mistri_name %}
                                 
                                 <select class="form-control"  name="mistri_select"  style=" height:35px;"  id="mistri_select_options">
                                  
-                                      <!-- <option value="{{mistri_name}}">{{mistri_name}}</option> -->
+                                      <option value="{{mistri_name_data}}">{{mistri_name_data}}</option>
 
                                 </select>
+
+                                  {%endfor%}
+                                  {%endif%}
 
                                 {% endfor %}
 
@@ -90,8 +96,7 @@
 
                     {% for mistri_work , mistri_name in mistri_services.items %}
                               
-                           dsfsdf {{mistri_work}} ===> {{mistri_name}}
-
+                       
                     {% endfor %}
                    
                     <!-- <script>
