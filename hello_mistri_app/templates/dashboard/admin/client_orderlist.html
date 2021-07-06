@@ -64,28 +64,37 @@
                             <td>{{data.service_type_rate}}/=</td>
                             <td><input type="text" class="form-control" id="discount"></td>
                             <td>
-        
-                              {% for mistri_work , mistri_name in mistri_services.items %}  
-                             
-                                {% if mistri_work == data.service_name%}
-                                  {% for mistri_name_data in mistri_name %}
+      
+
+                          {% for mistri_work , mistri_name in mistri_services.items %}  
+                     
+                            {% if mistri_work == data.service_name%}
+                        
+                              {% for mistri_name_data in mistri_name %}
                                 
-                                <select class="form-control"  name="mistri_select"  style=" height:35px;"  id="mistri_select_options">
+                                <!-- <select class="form-control"  name="mistri_select"  style=" height:35px;"  id="mistri_select_options">
                                  
                                       <option value="{{mistri_name_data}}">{{mistri_name_data}}</option>
 
-                                </select>
+                                </select> -->
+ 
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="mistri_select">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                          {{mistri_name_data}}
+                                        </label>
+                                      </div>
 
-                                  {%endfor%}
-                                  {%endif%}
-
-                                {% endfor %}
-
+                                {%endfor%}
+                                
+                               {%endif%}
+        
+                          {% endfor %}
                         
-
                             </td>
                             <td><button id="order_approve_id" class="btn btn-primary">Approve</button></td>
                             <td><button id="order_cancel_id" class="btn btn-danger">Cancel</button></td>
+
 
                         </tr>
                         {% endfor %}
@@ -94,10 +103,17 @@
 
                     </div>
 
-                    {% for mistri_work , mistri_name in mistri_services.items %}
-                              
-                       
-                    {% endfor %}
+
+                    <script>
+                      
+                      if(document.getElementById("order_approve_id").clicked == true)
+                      {
+                        alert("1 button clicked");
+                      }
+                      
+                    </script>
+
+
                    
                     <!-- <script>
 
@@ -142,43 +158,48 @@
 
                    <script>
 
-                   </script>
+                   </script>-->
+   
+           
 
+          <!-- <script>
+        
 
+           $(document).ready(function(){
+                     
+            var  rowCount = document.getElementById('add_details').rows.length; 
 
-                    <script>
-
-                    $(document).ready(function(){
-
+             alert(rowCount);
                       var data = "";
 
-                      $("#demo_form_control").html("");
+                      $("#mistri_select_options").html("");
+                
+                  {% for data in orders %}
 
-                      {%for  mistri_name , mistri_service,mistri_area  in mistri_information %}
+                     {% for mistri_work , mistri_name in mistri_services.items %}  
+                     
+                             
+                      {% if mistri_work == data.service_name%}
+                        
+                      {% for mistri_name_data in mistri_name %}
 
-                        {% for client_order in orders %}
+                                   data += "<option value='{{mistri_name_data}}'> {{mistri_name_data}}</option>";
 
-                         {% if client_order.service_name == mistri_service %}
+                         {%endfor%}
+                                
+                        {%endif%}
 
-                         data += "<option value='{{mistri_name}}'> {{mistri_area}}</option>";
-
-                         {% endif %}
-
-                       {% endfor %}
                      {% endfor %}
+                  {%endfor%}
 
-                      $("#demo_form_control").html(data);
-                      $("#demo_form_control").selectpicker('refresh');
-
-
+                  $("#mistri_select_options").html(data);
+                  $("#mistri_select_options").selectpicker('refresh');
 
 
                     });
 
-
-
-
-                      </script> -->
+             </script>  -->
+            
 
 
 </div>

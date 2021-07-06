@@ -615,23 +615,25 @@ def client_order_recive(request):
       order = OrderSubmitByClient.objects.all()
       mistri =  MistriInformation.objects.all()
 
-      mistri_name =[]
-      mistri_services = []
-      mistri_phone = []
-      mistri_area =[]
-      for x in mistri:
-          mistri_service = x.service.strip("']").strip("['").replace("'","").split(",")
-          for y in mistri_service:
-                mistri_services.append(y.strip(" "))
-          mistri_name.append(x.name)
-          mistri_phone.append(x.phone)
-          mistri_area.append(x.area)
+    #   mistri_name =[]
+    #   mistri_services = []
+    #   mistri_phone = []
+    #   mistri_area =[]
+    #   for x in mistri:
+    #       mistri_service = x.service.strip("']").strip("['").replace("'","").split(",")
+    #       for y in mistri_service:
+    #             mistri_services.append(y.strip(" "))
+    #       mistri_name.append(x.name)
+    #       mistri_phone.append(x.phone)
+    #       mistri_area.append(x.area)
 
-      # There is a problem That not filter Area
-      import itertools
-      fill = mistri_area[-1] if (len(mistri_area) < len(mistri_name)) else mistri_name[-1]
-      final_data = list(itertools.zip_longest(mistri_name,mistri_services, mistri_area,fillvalue=fill))
-      
+    #   # There is a problem That not filter Area
+    #   import itertools
+    #   fill = mistri_area[-1] if (len(mistri_area) < len(mistri_name)) else mistri_name[-1]
+    #   final_data = list(itertools.zip_longest(mistri_name,mistri_services, mistri_area,fillvalue=fill))
+     
+    # ------- Not Order by  mistri area ---------
+
       import collections
       services = collections.defaultdict(list)
 
@@ -639,13 +641,13 @@ def client_order_recive(request):
            for test in data.service.strip("']").strip("['").replace("'","").split(","):
              services[test.strip(" ")].append(data.name)          
       
-      for i,j in services.items():
-          print (i,"===>",j)
+
+           
     
       context = {
           "orders":order,
           "mistri":mistri,
-          "mistri_information":final_data,   
+        #   "mistri_information":final_data,   
           "mistri_services":dict(services),  
 
          
@@ -654,6 +656,7 @@ def client_order_recive(request):
 
 def client_order_process(request):
      if request.is_ajax():
+         
 
           return response.JsonResponse({
               "msg":"success"
