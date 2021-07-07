@@ -71,17 +71,12 @@
                             {% if mistri_work == data.service_name%}
                         
                               {% for mistri_name_data in mistri_name %}
-                                
-                                <!-- <select class="form-control"  name="mistri_select"  style=" height:35px;"  id="mistri_select_options">
-                                 
-                                      <option value="{{mistri_name_data}}">{{mistri_name_data}}</option>
-
-                                </select> -->
+                                   
  
                                       <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="mistri_select">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                          {{mistri_name_data}}
+                                        <input class="form-check-input mistri_select" type="checkbox" value="{{mistri_name_data}}" id="mistri_select_{{forloop.counter}}">
+                                        <label class="form-check-label" for="flexCheckDefault" >
+                                             {{mistri_name_data}}
                                         </label>
                                       </div>
 
@@ -92,7 +87,7 @@
                           {% endfor %}
                         
                             </td>
-                            <td><button id="order_approve_id" class="btn btn-primary">Approve</button></td>
+                            <td><button id="order_approve_id" class="btn btn-primary order_approve">Approve</button></td>
                             <td><button id="order_cancel_id" class="btn btn-danger">Cancel</button></td>
 
 
@@ -102,14 +97,28 @@
                       </table>
 
                     </div>
+                  
 
 
                     <script>
                       
-                      if(document.getElementById("order_approve_id").clicked == true)
-                      {
-                        alert("1 button clicked");
-                      }
+                        $(document).ready(function(){
+                            
+                            $(".order_approve").on('click',function(){
+                                
+                               var row = $(this).closest("tr");
+                               var col1 = row.find("td:eq(9)").text();
+                               
+                               //alert($("#mistri_select_2").val());
+                               var Id = $(this).attr("id");
+                               alert(Id);
+
+                             
+                             
+                              
+                            })
+                          
+                        })
                       
                     </script>
 
