@@ -140,17 +140,19 @@
           dataType:"json",
           success: function(data)
           {
-              if(data.msg == "Success")
-              {
-                  
+              
                   $(document).ready(function(){
 
-                        $("#success").click();
-                         document.getElementById("show_massage").innerHTML = "City Save Successfully .. Do Refresh to See Changes";
-                         window.setTimeout(function(){location.reload()},500) 
-                        })
+                     alert("mistri name list is ===>",data.mistri_list);// for testing 
+                          
+
+                       // $("#success").click();
+                       //  document.getElementById("show_massage").innerHTML = "City Save Successfully .. Do Refresh to See Changes";
+                       //  window.setTimeout(function(){location.reload()},500) 
+                  
+                      })
                    
-              }
+              
               if(data.msg == "city")
               {
                   $(document).ready(function(){

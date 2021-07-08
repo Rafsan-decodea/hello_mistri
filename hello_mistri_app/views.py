@@ -641,16 +641,11 @@ def client_order_recive(request):
            for test in data.service.strip("']").strip("['").replace("'","").split(","):
              services[test.strip(" ")].append(data.name)          
       
-
-           
-    
       context = {
           "orders":order,
           "mistri":mistri,
         #   "mistri_information":final_data,   
-          "mistri_services":dict(services),  
-
-         
+          "mistri_services":dict(services),        
       }
       return render(request,"dashboard/admin/client_orderlist.html",context)
 
@@ -661,7 +656,9 @@ def client_order_process(request):
           print (mistri_list,"===>",discount_amount)
 
           return response.JsonResponse({
-              "msg":"success"
+              'msg':'success',
+              'mistri_list':list(mistri_list),
+              'discount_amount':discount_amount,
           })
 
 #------------------client Dashboard Part -------------------------
