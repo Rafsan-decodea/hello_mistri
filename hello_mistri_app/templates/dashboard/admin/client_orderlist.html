@@ -36,6 +36,7 @@
 
                       <center><h2>======See Order list=====</h2></center>
                       <div class="margin"  style="overflow-x:auto;">
+                    <form action="POST" id="order_approve">
                       <table class="table table-borderless table-striped table-earning" id="table_id">
                         <thead>
                           <tr >
@@ -62,7 +63,8 @@
                             <td>{{data.service_type}}</td>
                             <td>{{data.time}}</td>
                             <td>{{data.service_type_rate}}/=</td>
-                            <td><input type="text" class="form-control" id="discount"></td>
+                            <td><input type="text" name="discountAmount" value="0"  class="form-control" ></input>
+                            </td>
                             <td>
       
 
@@ -74,7 +76,7 @@
                                    
  
                                       <div class="form-check">
-                                        <input class="form-check-input mistri_select" type="checkbox" value="{{mistri_name_data}}" id="mistri_select_{{forloop.counter}}">
+                                      <input class="form-check-input mistri_select" type="checkbox" name="mistri_name_data" value="{{mistri_name_data}}" id="mistri_select_{{forloop.counter}}">
                                         <label class="form-check-label" for="flexCheckDefault" >
                                              {{mistri_name_data}}
                                         </label>
@@ -87,7 +89,7 @@
                           {% endfor %}
                         
                             </td>
-                            <td><button id="order_approve_id" class="btn btn-primary order_approve">Approve</button></td>
+                            <td><button id="order_approve_id" type="submit" class="btn btn-primary order_approve">Approve</button></td>
                             <td><button id="order_cancel_id" class="btn btn-danger">Cancel</button></td>
 
 
@@ -95,6 +97,7 @@
                         {% endfor %}
                         </tbody>
                       </table>
+                    </form>
 
                     </div>
                   
@@ -110,17 +113,59 @@
                                var col1 = row.find("td:eq(9)").text();
                                
                                //alert($("#mistri_select_2").val());
-                               var Id = $(this).attr("id");
-                               alert(Id);
+                               
+                               
 
-                             
-                             
+                               
                               
                             })
                           
                         })
                       
                     </script>
+
+
+     <script>
+             const form = document.getElementById("order_approve");
+            form.addEventListener("submit",submitHandler);
+
+  function submitHandler(e)
+  {
+      e.preventDefault();
+      $.djangocsrf( "enable" );
+      $.ajax({
+          type: "POST",
+          url:"{%url 'client_order_process'%}",
+          data:$("#order_approve").serialize(),
+          dataType:"json",
+          success: function(data)
+          {
+              if(data.msg == "Success")
+              {
+                  
+                  $(document).ready(function(){
+
+                        $("#success").click();
+                         document.getElementById("show_massage").innerHTML = "City Save Successfully .. Do Refresh to See Changes";
+                         window.setTimeout(function(){location.reload()},500) 
+                        })
+                   
+              }
+              if(data.msg == "city")
+              {
+                  $(document).ready(function(){
+
+                       $("#success").click(); 
+                       document.getElementById("show_massage").innerHTML = "City Already Exist";
+                       window.setTimeout(function(){location.reload()},500) 
+                      })
+              }
+             
+          }
+      })
+  };
+
+  </script>
 
 
                    

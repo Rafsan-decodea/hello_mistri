@@ -656,7 +656,9 @@ def client_order_recive(request):
 
 def client_order_process(request):
      if request.is_ajax():
-         
+          mistri_list  = request.POST.getlist("mistri_name_data")
+          discount_amount = request.POST.get("discountAmount")
+          print (mistri_list,"===>",discount_amount)
 
           return response.JsonResponse({
               "msg":"success"
