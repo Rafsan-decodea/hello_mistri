@@ -131,6 +131,7 @@ class ServiceType(models.Model):
 class OrderSubmitByClient(models.Model):
         user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
         order_holder_name = models.CharField(max_length=100)
+        order_holder_uid  = models.CharField(max_length=1000,null=True)
         order_holder_pic = models.CharField(max_length=500)
         order_holder_city = models.CharField(max_length=500)
         order_holder_area = models.CharField(max_length=500)
@@ -139,6 +140,9 @@ class OrderSubmitByClient(models.Model):
         service_type = models.CharField(max_length=100)
         service_type_rate = models.CharField(max_length=100)
         time = models.CharField(max_length=100)
+        discount = models.CharField(max_length=100,null=True)
+        mistri_name = models.CharField(max_length=700,null=True)
+        mistri_uid =  models.CharField(max_length=1000,null=True)
         status = models.CharField(max_length=100)
 
         def __str__(self):

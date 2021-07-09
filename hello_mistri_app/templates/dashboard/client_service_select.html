@@ -393,8 +393,10 @@
 
                                                                              {% for clientdata in client_data %}
 
-                                                                                <input hidden id="client_city" value="{{ clientdata.city }}">
-                                                                                <input hidden id="client_area" value="{{ clientdata.area }}">
+                                                                                <input hidden id="client_city" value="{{clientdata.city}}">
+                                                                                <input hidden id="client_area" value="{{ clientdata.area}}">
+                                                                                <input hidden id="client_uid"  value="{{clientdata.uid}}"
+        
 
                                                                              {% endfor %}
                                                                          
