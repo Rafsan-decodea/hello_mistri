@@ -688,10 +688,10 @@ def submit_client_order(request):
         servicetype_rate = request.POST.get("service_type_rate")
         client_city = request.POST.get("client_city")
         client_area = request.POST.get("client_area")
+        client_uid =  request.POST.get("client_uid")
         time = request.POST.get("time");
         status = request.POST.get("status")
-
-        OrderSubmitByClient.objects.create(user=user_get, order_holder_name= orderholder_name,order_holder_pic= order_holder_pic,service_name=service_name,sub_service_name=subservice_name,service_type=servicetype_name,order_holder_city=client_city,order_holder_area=client_area,service_type_rate=servicetype_rate ,time=time,status=status).save()
+        OrderSubmitByClient.objects.create(user=user_get, order_holder_name= orderholder_name,order_holder_pic= order_holder_pic,service_name=service_name,sub_service_name=subservice_name,service_type=servicetype_name,order_holder_city=client_city,order_holder_area=client_area,service_type_rate=servicetype_rate ,time=time,status=status,order_holder_uid=client_uid).save()
         return response.JsonResponse({
              'msg' :'Success',
             })

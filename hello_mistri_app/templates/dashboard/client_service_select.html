@@ -395,7 +395,7 @@
 
                                                                                 <input hidden id="client_city" value="{{clientdata.city}}">
                                                                                 <input hidden id="client_area" value="{{ clientdata.area}}">
-                                                                                <input hidden id="client_uid"  value="{{clientdata.uid}}"
+                                                                                <input hidden id="client_uid"  value="{{clientdata.uid}}">
         
 
                                                                              {% endfor %}
@@ -557,6 +557,7 @@
                                                 var time = row_value[4]
                                                 var client_city = $("#client_city").val();
                                                 var client_area = $("#client_area").val();
+                                                var client_uid = $("#client_uid").val();
                             
                                                 var status = 3;
                                                 {% for ass in backends.associated %}
@@ -565,7 +566,7 @@
                                          
                                                 {% endfor %}
                                                 
-                                                var post_data = {"service_name":service,"subservice_name":subservice,"service_type_rate":servicetype_rate,"service_type":servicetype,"status":status,"order_holder_pic":order_holder_pic,"time":time,"client_city":client_city,"client_area":client_area};
+                                                var post_data = {"service_name":service,"subservice_name":subservice,"service_type_rate":servicetype_rate,"service_type":servicetype,"status":status,"order_holder_pic":order_holder_pic,"time":time,"client_city":client_city,"client_area":client_area,"client_uid":client_uid};
                                                
                                                 $.ajax({
                                                                                   
