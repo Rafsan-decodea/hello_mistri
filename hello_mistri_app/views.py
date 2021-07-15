@@ -639,7 +639,8 @@ def client_order_recive(request):
 
       for data in mistri:
            for test in data.service.strip("']").strip("['").replace("'","").split(","):
-             services[test.strip(" ")].append(data.name)          
+             services[test.strip(" ")].append([data.name,data.phone,data.profile_image_link])  
+     
       
       context = {
           "orders":order,

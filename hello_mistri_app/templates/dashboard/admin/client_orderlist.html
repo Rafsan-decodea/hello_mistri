@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/css/bootstrap-select.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 
 <div class="pcoded-content  ">
     <div class="pcoded-inner-content ">
@@ -36,7 +37,7 @@
 
                       <center><h2>======See Order list=====</h2></center>
                       <div class="margin"  style="overflow-x:auto;">
-                    <form action="POST" id="order_approve">
+                   
                       <table class="table table-borderless table-striped table-earning" id="table_id">
                         <thead>
                           <tr >
@@ -52,6 +53,7 @@
                             <th scope="col">মিস্ত্রি সিলেক্ট করুন</th>
                           </tr>
                         </thead>
+                   <form action="POST" id="order_approve">
                         <tbody id="add_details">
                         {% for data in orders %}
                         <tr>
@@ -78,9 +80,25 @@
                                       <div class="form-check">
                                       <input class="form-check-input mistri_select" type="checkbox" name="mistri_name_data" value="{{mistri_name_data}}" id="mistri_select_{{forloop.counter}}">
                                         <label class="form-check-label" for="flexCheckDefault" >
-                                             {{mistri_name_data}}
+                                             {{mistri_name_data.0}}({{mistri_name_data.1}})
                                         </label>
                                       </div>
+                                      <button class="btn-group-xs btn-warning see_details" > Details</button>
+                                      <div id="mistri_all_data">
+                                          <img src="{{mistri_name_data.2}}" />
+                                      </div>
+                                      
+                                      <script>
+                                       $(document).ready(function(){
+                                           $("#mistri_all_data").hide();
+                                           $(".see_details").click(function(){
+                                             
+                                                $("#mistri_all_data").show();
+                                                
+                                           }) 
+                                        })
+                                        
+                                      </script>
 
                                 {%endfor%}
                                 
@@ -114,7 +132,7 @@
                                
                                //alert($("#mistri_select_2").val());
                                
-                               
+  
 
                                
                               
